@@ -1,0 +1,29 @@
+{
+  "comments": {
+    "dependencies": {},
+    "devDependencies": {
+      "@tailwindcss/typography": "github.com/nicokaiser/hugo-theme-gallery",
+      "autoprefixer": "github.com/nicokaiser/hugo-theme-gallery",
+      "postcss": "github.com/nicokaiser/hugo-theme-gallery",
+      "postcss-cli": "github.com/nicokaiser/hugo-theme-gallery",
+      "postcss-import": "github.com/nicokaiser/hugo-theme-gallery",
+      "prettier": "github.com/nicokaiser/hugo-theme-gallery",
+      "prettier-plugin-go-template": "github.com/nicokaiser/hugo-theme-gallery",
+      "prettier-plugin-tailwindcss": "github.com/nicokaiser/hugo-theme-gallery",
+      "tailwindcss": "github.com/nicokaiser/hugo-theme-gallery"
+    }
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.9",
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.24",
+    "postcss-cli": "^10.1.0",
+    "postcss-import": "^15.1.0",
+    "prettier": "^2.8.8",
+    "prettier-plugin-go-template": "^0.0.13",
+    "prettier-plugin-tailwindcss": "^0.3.0",
+    "tailwindcss": "^3.3.2"
+  },
+  "private": "true"
+}
