@@ -1,0 +1,11 @@
+name = "Gallery"
+license = "MIT"
+licenselink = "https://github.com/nicokaiser/hugo-theme-gallery/blob/main/LICENSE"
+description = ""
+homepage = "https://github.com/nicokaiser/hugo-theme-gallery"
+tags = ["Gallery"]
+min_version = "0.112.0"
+
+[author]
+  name = "Nico Kaiser"
+  homepage = "https://kaiser.me"

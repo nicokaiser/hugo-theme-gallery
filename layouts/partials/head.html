@@ -1,0 +1,26 @@
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  {{ if .IsHome -}}
+    <title>{{ block "title" . }}{{ .Site.Title }}{{ end }}</title>
+  {{- else -}}
+    <title>{{ .Title }} – {{ .Site.Title }}</title>
+  {{- end }}
+  <link rel="canonical" href="{{ .Permalink }}" />
+  <link rel="icon" type="image/svg+xml" href="{{ "images/favicon.svg" | relURL }}" />
+  <link rel="icon" type="image/png" href="{{ "images/favicon.png" | relURL }}" />
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ "images/apple-touch-icon.png" | relURL }}" />
+  <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}" />
+  {{ hugo.Generator }}
+  {{ if .Params.private }}
+    <meta name="robots" content="noindex, nofollow" />
+  {{ end }}
+  {{ range .AlternativeOutputFormats -}}
+    {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
+  {{ end -}}
+  {{ partial "opengraph.html" . }}
+  {{ $css := resources.Get "/css/styles.css" | resources.PostCSS (dict "inlineImports" true) | resources.Minify | resources.Fingerprint }}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
+  {{ $js := resources.Get "js/main.js" | js.Build (dict "minify" true) | resources.Fingerprint }}
+  <script src="{{ $js.RelPermalink }}" defer></script>
+</head>

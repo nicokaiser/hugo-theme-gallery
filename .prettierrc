@@ -1,0 +1,7 @@
+printWidth: 1000
+tabWidth: 2
+overrides:
+  - files:
+      - "*.html"
+    options:
+      parser: "go-template"

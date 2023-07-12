@@ -1,0 +1,31 @@
+<ul class="my-12 text-center text-xl font-medium text-neutral-500 dark:text-neutral-500">
+  {{ with .Site.Home }}
+    <li itemscope itemtype="http://www.schema.org/SiteNavigationElement">
+      <a class="{{ if $.IsHome }}text-black dark:text-white{{ end }} block py-2 transition-colors hover:text-black dark:hover:text-neutral-200" href="{{ .RelPermalink }}" itemprop="url">
+        <span itemprop="name">{{ .Title | default (i18n "home") }}</span>
+      </a>
+    </li>
+    {{ range where .Pages.ByDate.Reverse "Params.private" "ne" true }}
+      {{ if .IsSection }}
+        {{ $active := false }}
+        {{ if or (eq . page.Page) (.IsAncestor page.Page) }}
+          {{ $active = true }}
+        {{ end }}
+        <li itemscope itemtype="http://www.schema.org/SiteNavigationElement">
+          <a class="{{ if $active }}text-black dark:text-white{{ end }} block py-2 hover:text-black dark:hover:text-neutral-200" href="{{ .RelPermalink }}" itemprop="url">
+            <span itemprop="name">{{ .Title }}</span>
+          </a>
+        </li>
+      {{ else }}
+        {{ $count := (len (.Resources.ByType "image")) }}
+        {{ if gt $count 0 }}
+          <li itemscope itemtype="http://www.schema.org/SiteNavigationElement">
+            <a class="{{ if (eq . page.Page) }}text-black dark:text-white{{ end }} block py-2 hover:text-black dark:hover:text-neutral-200" href="{{ .RelPermalink }}" itemprop="url">
+              <span itemprop="name">{{ .Title }}</span>
+            </a>
+          </li>
+        {{ end }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+</ul>

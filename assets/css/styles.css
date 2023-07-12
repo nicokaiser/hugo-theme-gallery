@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "../jslibs/photoswipe/dist/photoswipe.css";
+@import "../jslibs/photoswipe-dynamic-caption-plugin/photoswipe-dynamic-caption-plugin.css";
+@import "../jslibs/flickr-justified-gallery/dist/fjGallery.css";
+
+html.dark {
+  color-scheme: dark;
+}
+
+[x-cloak] {
+  display: none !important;
+}
+
+.lazyload,
+.lazyloading {
+  opacity: 0;
+}
+.lazyloaded {
+  opacity: 1;
+  transition: opacity 300ms;
+}
+img.lazyload:not([src]) {
+  visibility: hidden;
+}

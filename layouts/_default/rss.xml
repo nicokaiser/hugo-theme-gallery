@@ -1,0 +1,57 @@
+{{- $pctx := . -}}
+{{- if .IsHome -}}{{ $pctx = .Site }}{{- end -}}
+{{- $pages := slice -}}
+{{- if or $.IsHome $.IsSection -}}
+{{- $pages = $pctx.RegularPages -}}
+{{- else -}}
+{{- $pages = $pctx.Pages -}}
+{{- end -}}
+{{- $limit := .Site.Config.Services.RSS.Limit -}}
+{{- if ge $limit 1 -}}
+{{- $pages = $pages | first $limit -}}
+{{- end -}}
+{{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>{{ if eq  .Title  .Site.Title }}{{ .Site.Title }}{{ else }}{{ with .Title }}{{.}} on {{ end }}{{ .Site.Title }}{{ end }}</title>
+    <link>{{ .Permalink }}</link>
+    <description>Recent content {{ if ne  .Title  .Site.Title }}{{ with .Title }}in {{.}} {{ end }}{{ end }}on {{ .Site.Title }}</description>
+    {{ with .Site.LanguageCode }}
+    <language>{{.}}</language>{{end}}{{ with .Site.Author.email }}
+    <managingEditor>{{.}}{{ with $.Site.Author.name }} ({{.}}){{end}}</managingEditor>{{end}}{{ with .Site.Author.email }}
+    <webMaster>{{.}}{{ with $.Site.Author.name }} ({{.}}){{end}}</webMaster>{{end}}{{ with .Site.Copyright }}
+    <copyright>{{.}}</copyright>{{end}}{{ if not .Date.IsZero }}
+    <lastBuildDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</lastBuildDate>{{ end }}
+    {{- with .OutputFormats.Get "RSS" -}}
+    {{ printf "<atom:link href=%q rel=\"self\" type=%q />" .Permalink .MediaType | safeHTML }}
+    {{- end -}}
+    {{ range where $pages "Params.rss_ignore" "!=" true }}
+    {{- $private := false -}}
+    {{- if .Params.private -}}{{- $private = true -}}{{- end -}}
+    {{- range $value := .Ancestors.Reverse -}}
+      {{- if .Params.private -}}{{- $private = true -}}{{- end -}}
+    {{- end -}}
+    {{- if not $private -}}
+    <item>
+      <title>{{ .Title }}</title>
+      <link>{{ .Permalink }}</link>
+      <pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>
+      {{ with .Site.Author.email }}<author>{{.}}{{ with $.Site.Author.name }} ({{.}}){{end}}</author>{{end}}
+      <guid>{{ .Permalink }}</guid>
+      {{- $images := .Resources.ByType "image" -}}
+      {{- if gt (len $images) 0 -}}
+        {{- $featured := ($images.GetMatch (.Params.featured_image | default "*feature*")) | default (index $images 0) -}}
+        {{- $thumbnail := $featured.Fill "900x600" -}}
+        <media:content url="{{ $thumbnail.Permalink }}" type="image/jpeg"/>
+        <description>
+          &lt;img src=&quot;{{ $thumbnail.Permalink }}&quot; /&gt;
+          &lt;p&gt;{{ .Params.description | html }}&lt;/p&gt;
+        </description>
+      {{- else -}}
+        <description>{{ .Params.description | html }}</description>
+      {{- end -}}
+    </item>
+    {{- end -}}
+    {{ end }}
+  </channel>
+</rss>
