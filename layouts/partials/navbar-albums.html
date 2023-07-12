@@ -2,7 +2,7 @@
   {{ with .Site.Home }}
     <li itemscope itemtype="http://www.schema.org/SiteNavigationElement">
       <a class="{{ if $.IsHome }}text-black dark:text-white{{ end }} block py-2 transition-colors hover:text-black dark:hover:text-neutral-200" href="{{ .RelPermalink }}" itemprop="url">
-        <span itemprop="name">{{ .Title | default (i18n "home") }}</span>
+        <span itemprop="name">{{ .LinkTitle | default (i18n "home") }}</span>
       </a>
     </li>
     {{ range where .Pages.ByDate.Reverse "Params.private" "ne" true }}
@@ -13,7 +13,7 @@
         {{ end }}
         <li itemscope itemtype="http://www.schema.org/SiteNavigationElement">
           <a class="{{ if $active }}text-black dark:text-white{{ end }} block py-2 hover:text-black dark:hover:text-neutral-200" href="{{ .RelPermalink }}" itemprop="url">
-            <span itemprop="name">{{ .Title }}</span>
+            <span itemprop="name">{{ .LinkTitle }}</span>
           </a>
         </li>
       {{ else }}
@@ -21,7 +21,7 @@
         {{ if gt $count 0 }}
           <li itemscope itemtype="http://www.schema.org/SiteNavigationElement">
             <a class="{{ if (eq . page.Page) }}text-black dark:text-white{{ end }} block py-2 hover:text-black dark:hover:text-neutral-200" href="{{ .RelPermalink }}" itemprop="url">
-              <span itemprop="name">{{ .Title }}</span>
+              <span itemprop="name">{{ .LinkTitle }}</span>
             </a>
           </li>
         {{ end }}
