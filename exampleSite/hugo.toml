@@ -32,8 +32,6 @@ theme = "github.com/nicokaiser/hugo-theme-gallery"
   [module.hugoVersion]
     extended = false
     min = "0.112.0"
-  [[module.imports]]
-    path = "github.com/nicokaiser/hugo-theme-gallery"
   [[module.mounts]]
     source = "assets"
     target = "assets"
