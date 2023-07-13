@@ -1,5 +1,5 @@
 ---
-title: Example Gallery
+title: Hugo Gallery
 linktitle: Home
 description: An example site for hugo-theme-gallery.
 #lastmod: 2023-07-05
