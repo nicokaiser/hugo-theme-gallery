@@ -1,7 +1,7 @@
 {{ define "main" }}
   {{ if .Title }}
     <div class="mx-auto mb-16 mt-9 max-w-screen-lg px-6 text-center">
-      <h1 class="text-3xl font-medium md:text-4xl tracking-tight">{{ .Title }}</h1>
+      <h1 class="text-3xl font-semibold tracking-tight md:text-4xl">{{ .Title }}</h1>
       <p class="mt-6 text-neutral-500 dark:text-neutral-400 md:text-lg">{{ .Params.Description }}</p>
     </div>
   {{ end }}
@@ -19,7 +19,7 @@
               <img class="lazyload aspect-[3/2] w-full" data-src="{{ $thumbnail.RelPermalink }}" alt="{{ .Title }}" />
             </div>
             <div class="p-5">
-              <h5 class="mb-2 text-lg font-medium leading-6">
+              <h5 class="mb-2 text-lg font-semibold leading-6">
                 {{ .Title }}
               </h5>
               <p class="text-sm font-normal text-neutral-600 dark:text-neutral-400">
