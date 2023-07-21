@@ -28,4 +28,11 @@
       {{ end }}
     {{ end }}
   {{ end }}
+  {{- range site.Menus.main }}
+    <li itemscope itemtype="http://www.schema.org/SiteNavigationElement">
+      <a class="{{ if page.IsMenuCurrent .Menu . }}text-black dark:text-white{{ end }} block py-2 transition-colors hover:text-black dark:hover:text-neutral-200" href="{{ .URL }}" itemprop="url">
+        <span itemprop="name">{{ .Name }}</span>
+      </a>
+    </li>
+  {{- end }}
 </ul>
