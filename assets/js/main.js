@@ -59,6 +59,14 @@ if (gallery) {
     });
   });
 
+  lightbox.on("change", () => {
+    history.replaceState("", document.title, "#" + lightbox.pswp.currSlide.index);
+  });
+
+  lightbox.on("close", () => {
+    history.replaceState("", document.title, window.location.pathname);
+  });
+
   new PhotoSwipeDynamicCaption(lightbox, {
     mobileLayoutBreakpoint: 700,
     type: "auto",
@@ -70,6 +78,14 @@ if (gallery) {
     onInit: () => {
       gallery.style.visibility = "";
       lightbox.init();
+    },
+    onJustify: () => {
+      if (window.location.hash.substring(1).length > 0) {
+        const index = parseInt(window.location.hash.substring(1), 10);
+        if (!Number.isNaN(index) && index >= 0 && index < gallery.querySelectorAll("a").length) {
+          lightbox.loadAndOpen(index, { gallery });
+        }
+      }
     },
     transitionDuration: false,
   });
