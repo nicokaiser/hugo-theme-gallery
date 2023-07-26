@@ -9,7 +9,7 @@ other = "Go to homepage"
 
 [photoCount]
 one = "1 photo"
-other = "{{ .Count }} photo"
+other = "{{ .Count }} photos"
 
 [in]
 other = "in"
