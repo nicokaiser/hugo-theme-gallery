@@ -1,8 +1,11 @@
+{{/* Return images and albums count. */}}
+
 {{ $images := 0 }}
 {{ $albums := 0 }}
+
 {{ if .IsSection }}
   {{ range where .Pages "Params.private" "ne" true }}
-    {{ $sub := partial "GetCounts" . }}
+    {{ $sub := partial "get_counts.html" . }}
     {{ $albums = add $albums 1 }}
     {{ $albums = add $albums $sub.albums }}
     {{ $images = add $images $sub.images }}
@@ -10,4 +13,5 @@
 {{ else }}
   {{ $images = add $images (len (.Resources.ByType "image")) }}
 {{ end }}
+
 {{ return (dict "images" $images "albums" $albums) }}

@@ -1,0 +1,28 @@
+<div class="mb-12 mt-9 grid grid-cols-1 gap-6 px-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 3xl:grid-cols-5">
+  {{ range where .Pages.ByDate.Reverse "Params.private" "ne" true }}
+    {{ $images := .Resources.ByType "image" }}
+    {{ if gt (len $images) 0 }}
+      {{ $featured := ($images.GetMatch (.Params.featured_image | default "*feature*")) | default (index $images 0) }}
+      {{ $thumbnail := $featured.Fill "900x600" }}
+      {{ $color := index $thumbnail.Colors 0 | default "transparent" }}
+      {{ $counts := partial "get_counts.html" . }}
+
+      <a href="{{ .RelPermalink }}" class="rounded-2xl bg-neutral-100 transition-[filter] hover:brightness-90 dark:bg-neutral-800 dark:hover:brightness-110" title="{{ .Title }}">
+        <div class="h-100">
+          <div class="w-full overflow-hidden rounded-2xl" style="background-color: {{ $color }}">
+            <img class="lazyload aspect-[3/2] w-full" data-src="{{ $thumbnail.RelPermalink }}" alt="{{ .Title }}" />
+          </div>
+          <div class="p-5">
+            <h5 class="mb-2 text-lg font-semibold leading-6">
+              {{ .Title }}
+            </h5>
+            <p class="text-sm font-normal text-neutral-600 dark:text-neutral-400">
+              {{- i18n "photoCount" $counts.images }}
+              {{ if gt $counts.albums 0 }}{{ i18n "in" }} {{ i18n "albumCount" $counts.albums }}{{ end -}}
+            </p>
+          </div>
+        </div>
+      </a>
+    {{ end }}
+  {{ end }}
+</div>

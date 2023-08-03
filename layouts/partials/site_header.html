@@ -8,18 +8,19 @@
         {{ else }}
           {{ $scratch.Set "back" .Site.Home }}
         {{ end }}
-      {{ end }}
-      {{ with $scratch.Get "back" }}
-        <a class="-ms-4 inline-flex items-center px-3 py-5 text-xl font-medium dark:text-neutral-100" href="{{ .RelPermalink }}" title="{{ .Title }}">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75" />
-          </svg>
-        </a>
+        {{ with $scratch.Get "back" }}
+          <a class="-ms-4 inline-flex items-center px-3 py-5 text-xl font-medium dark:text-neutral-100" href="{{ .RelPermalink }}" title="{{ .Title }}">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75" />
+            </svg>
+          </a>
+        {{ end }}
       {{ else }}
         <a class="inline-flex items-center py-4 text-xl font-medium dark:text-neutral-100" href="{{ .Site.Home.RelPermalink }}">
           {{ .Site.Title }}
         </a>
       {{ end }}
+
       <button @click="expanded = !expanded" type="button" class="group -me-4 ml-3 inline-flex items-center p-3 text-sm dark:text-neutral-100" title="{{ i18n "albums" }}">
         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" x-show="!expanded">
           <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
@@ -29,6 +30,7 @@
         </svg>
       </button>
     </div>
+
     <div x-cloak x-show="expanded" x-collapse class="w-full">
       {{- partial "menu" . -}}
     </div>
