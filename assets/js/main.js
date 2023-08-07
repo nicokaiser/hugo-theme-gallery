@@ -88,5 +88,6 @@ if (gallery) {
       }
     },
     transitionDuration: false,
+    calculateItemsHeight: true,
   });
 }
