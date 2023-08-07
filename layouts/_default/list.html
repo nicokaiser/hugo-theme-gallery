@@ -1,4 +1,7 @@
 {{ define "main" }}
   {{- partial "page_header.html" . -}}
   {{- partial "page_albums.html" . -}}
+  {{ if $.Param "sectionGallery" }}
+    {{- partial "page_gallery.html" . -}}
+  {{ end }}
 {{ end }}

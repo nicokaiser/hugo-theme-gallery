@@ -10,6 +10,15 @@
     {{ $albums = add $albums $sub.albums }}
     {{ $images = add $images $sub.images }}
   {{ end }}
+  {{ if and ($.Param "sectionGallery") (not .Params.private) }}
+    {{ $myImages := (len (.Resources.ByType "image")) }}
+    {{ if gt $myImages 0 }}
+      {{ if not (and ($.Param "excludeSingleFeatured") (eq 1 $myImages)) }}
+        {{ $images = add $images $myImages }}
+        {{ $albums = add $albums 1 }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
 {{ else }}
   {{ $images = add $images (len (.Resources.ByType "image")) }}
 {{ end }}

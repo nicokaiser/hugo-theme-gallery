@@ -1,0 +1,3 @@
+{{ $images := .Resources.ByType "image" }}
+{{ $featured := ($images.GetMatch (.Params.featured_image | default "*feature*")) | default (index $images 0) }}
+{{ return $featured }}
