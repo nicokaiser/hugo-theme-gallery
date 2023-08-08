@@ -3,20 +3,20 @@
 {{ $images := 0 }}
 {{ $albums := 0 }}
 
-{{ if .IsSection }}
+{{ if .IsNode }}
   {{ range where .Pages "Params.private" "ne" true }}
     {{ $sub := partial "get_counts.html" . }}
     {{ $albums = add $albums 1 }}
     {{ $albums = add $albums $sub.albums }}
     {{ $images = add $images $sub.images }}
   {{ end }}
-  {{ if and ($.Param "sectionGallery") (not .Params.private) }}
+  {{ if ($.Param "nodeGallery") }}
     {{ $myImages := (len (.Resources.ByType "image")) }}
+    {{ if or (and (eq "auto" ($.Param "hideFeatured")) (eq $myImages 1)) (eq "always" ($.Param "hideFeatured")) }}
+      {{ $myImages = add $myImages -1 }}
+    {{ end }}
     {{ if gt $myImages 0 }}
-      {{ if not (and ($.Param "excludeSingleFeatured") (eq 1 $myImages)) }}
-        {{ $images = add $images $myImages }}
-        {{ $albums = add $albums 1 }}
-      {{ end }}
+      {{ $images = add $images $myImages }}
     {{ end }}
   {{ end }}
 {{ else }}

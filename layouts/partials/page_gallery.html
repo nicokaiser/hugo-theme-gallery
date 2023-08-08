@@ -2,10 +2,12 @@
   <div class="fj-gallery" style="visibility: hidden; height: 650px;">
     {{ $photos := sort (.Resources.ByType "image") (index .Params "sort_by" | default "Name") (.Params.sort_order | default "asc") }}
     {{ $featured := partial "featured" . }}
-    {{ $considerExluding := and .IsSection ($.Param "excludeSingleFeatured")}}
+    {{ $considerExcluding := 
+        or (and (and .IsNode (eq "auto" ($.Param "hideFeatured"))) (eq 1 (len $photos))) 
+	    (eq "always" ($.Param "hideFeatured")) }}
     {{ range $index, $original := $photos }}
       {{ if eq $original.ResourceType "image" }}
-        {{ if not (and ($considerExluding) (eq $original $featured)) }}
+        {{ if not (and ($considerExcluding) (eq $original $featured)) }}
 	  {{ $metadata := dict }}
 	  {{ with $original.Exif }}
 	    {{ $metadata = merge .Tags $metadata }}

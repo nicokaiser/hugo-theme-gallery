@@ -1,7 +1,7 @@
 {{ define "main" }}
   {{- partial "page_header.html" . -}}
   {{- partial "page_albums.html" . -}}
-  {{ if $.Param "sectionGallery" }}
+  {{ if $.Param "nodeGallery" }}
     {{- partial "page_gallery.html" . -}}
   {{ end }}
 {{ end }}

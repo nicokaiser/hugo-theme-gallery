@@ -1,7 +1,7 @@
 <div class="mb-12 mt-9 grid grid-cols-1 gap-6 px-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 3xl:grid-cols-5">
   {{ range where .Pages.ByDate.Reverse "Params.private" "ne" true }}
     {{ $images := .Resources.ByType "image" }}
-    {{ if or (gt (len $images) 0) ($.Param "sectionGallery") }}
+    {{ if or (gt (len $images) 0) ($.Param "nodeGallery") }}
       {{ $featured := partial "featured" . }}
       {{ $thumbnail := $featured.Fill "900x600" }}
       {{ $color := index $thumbnail.Colors 0 | default "transparent" }}
