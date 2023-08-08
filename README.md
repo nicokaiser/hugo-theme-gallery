@@ -76,17 +76,37 @@ contents
 
 ### Albums with images and sub-albums
 
-In some cases it might be desirable to show images _and_ sub-albums on one page. To achive this, a local version of `list.html` needs to be added with something like this:
+In some cases it might be desirable to show images _and_ sub-albums on one page. 
 
-```diff
-  {{ define "main" }}
-    {{- partial "page_header.html" . -}}
-    {{- partial "page_albums.html" . -}}
-+   {{- partial "page_gallery.html" . -}}
-  {{ end }}
-```
+This is configured by setting nodeGallery true for the entire site in hugo.toml:
 
-In this case, featured images for albums which only contain other albums need to be moved to a sub-directory to avoid being displayed.
+'''
+  [params]
+    nodeGallery = true
+'''
+
+or for the nodes for which that should be the case in \_index.md:
+
+'''
+---
+...
+nodeGallery: true
+---
+'''
+
+Such albums will always be shown even if they hold no images. 
+
+By default, all images in such nodes will then be shown. To hide the featured_image, define hideFeatured to either
+"always", "auto" or "never" for the entire site (hugo.toml) or for the relevant nodes (\_index.md), e.g.:
+
+'''
+  [params]
+    hideFeatured = "auto"
+'''
+
+When set to "always", the featured images is hidden for all nodes (but NOT for leaf pages). When set to "never", 
+the featured images will be shown in their corresponding node. When set to "auto", featured images in nodes that
+only hold one image will be hidden otherwise not.
 
 ## Author
 
