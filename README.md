@@ -80,29 +80,29 @@ In some cases it might be desirable to show images _and_ sub-albums on one page.
 
 This is configured by setting nodeGallery true for the entire site in hugo.toml:
 
-'''
+```
   [params]
     nodeGallery = true
-'''
+```
 
 or for the nodes for which that should be the case in \_index.md:
 
-'''
+```
 ---
 ...
 nodeGallery: true
 ---
-'''
+```
 
 Such albums will always be shown even if they hold no images. 
 
 By default, all images in such nodes will then be shown. To hide the featured_image, define hideFeatured to either
 "always", "auto" or "never" for the entire site (hugo.toml) or for the relevant nodes (\_index.md), e.g.:
 
-'''
+```
   [params]
     hideFeatured = "auto"
-'''
+```
 
 When set to "always", the featured images is hidden for all nodes (but NOT for leaf pages). When set to "never", 
 the featured images will be shown in their corresponding node. When set to "auto", featured images in nodes that
