@@ -88,23 +88,11 @@ In some cases it might be desirable to show images _and_ sub-albums on one page.
 
 In this case, featured images for albums which only contain other albums need to be moved to a sub-directory to avoid being displayed.
 
-### Galleries on List nodes
-
-List nodes (pages with sub-pages, with an `_index.md` file) currently only display their sub-albums. This can be changed by adding the `page_gallery.html` partial to a local copy of the `list.html` temlpate:
-
-```diff
-  {{ define "main" }}
-    {{- partial "page_header.html" . -}}
-    {{- partial "page_albums.html" . -}}
-+   {{- partial "page_gallery.html" . -}}
-  {{ end }}
-```
-
 ### Folders with no images
 
 Albums with no images are hidden by default. This is a design decision to keep the structure as simple as possible and hides pages like `about.md` or `imprint.md` from the album list without the need of defining a layout/section for each gallery.
 
-@baekgaard made a [Pull Request](https://github.com/nicokaiser/hugo-theme-gallery/pull/14) about handling of empty albums, which allows to modify this behaviour (which, for simplicity reasons, is not merged).
+@baekgaard made a [Pull request](https://github.com/nicokaiser/hugo-theme-gallery/pull/14) about handling of empty albums, which allows to modify this behaviour (which, for simplicity reasons, is not merged).
 
 ## Author
 
