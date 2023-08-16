@@ -5,7 +5,9 @@ A very simple and opinionated photo gallery theme for Hugo built with Tailwind C
 - [Demo](https://hugo-gallery-example.netlify.com)
 - [Example site source](exampleSite)
 
-![Screenshot](images/screenshot.jpg)
+---
+
+![Screenshot](https://github.com/nicokaiser/hugo-theme-gallery/raw/main/images/screenshot.jpg)
 
 ---
 
