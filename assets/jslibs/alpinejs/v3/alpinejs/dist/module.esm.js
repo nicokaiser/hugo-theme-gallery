@@ -85,6 +85,120 @@ function elementBoundEffect(el) {
   }];
 }
 
+// packages/alpinejs/src/utils/dispatch.js
+function dispatch(el, name, detail = {}) {
+  el.dispatchEvent(
+    new CustomEvent(name, {
+      detail,
+      bubbles: true,
+      // Allows events to pass the shadow DOM barrier.
+      composed: true,
+      cancelable: true
+    })
+  );
+}
+
+// packages/alpinejs/src/utils/walk.js
+function walk(el, callback) {
+  if (typeof ShadowRoot === "function" && el instanceof ShadowRoot) {
+    Array.from(el.children).forEach((el2) => walk(el2, callback));
+    return;
+  }
+  let skip = false;
+  callback(el, () => skip = true);
+  if (skip)
+    return;
+  let node = el.firstElementChild;
+  while (node) {
+    walk(node, callback, false);
+    node = node.nextElementSibling;
+  }
+}
+
+// packages/alpinejs/src/utils/warn.js
+function warn(message, ...args) {
+  console.warn(`Alpine Warning: ${message}`, ...args);
+}
+
+// packages/alpinejs/src/lifecycle.js
+var started = false;
+function start() {
+  if (started)
+    warn("Alpine has already been initialized on this page. Calling Alpine.start() more than once can cause problems.");
+  started = true;
+  if (!document.body)
+    warn("Unable to initialize. Trying to load Alpine before `<body>` is available. Did you forget to add `defer` in Alpine's `<script>` tag?");
+  dispatch(document, "alpine:init");
+  dispatch(document, "alpine:initializing");
+  startObservingMutations();
+  onElAdded((el) => initTree(el, walk));
+  onElRemoved((el) => destroyTree(el));
+  onAttributesAdded((el, attrs) => {
+    directives(el, attrs).forEach((handle) => handle());
+  });
+  let outNestedComponents = (el) => !closestRoot(el.parentElement, true);
+  Array.from(document.querySelectorAll(allSelectors())).filter(outNestedComponents).forEach((el) => {
+    initTree(el);
+  });
+  dispatch(document, "alpine:initialized");
+}
+var rootSelectorCallbacks = [];
+var initSelectorCallbacks = [];
+function rootSelectors() {
+  return rootSelectorCallbacks.map((fn) => fn());
+}
+function allSelectors() {
+  return rootSelectorCallbacks.concat(initSelectorCallbacks).map((fn) => fn());
+}
+function addRootSelector(selectorCallback) {
+  rootSelectorCallbacks.push(selectorCallback);
+}
+function addInitSelector(selectorCallback) {
+  initSelectorCallbacks.push(selectorCallback);
+}
+function closestRoot(el, includeInitSelectors = false) {
+  return findClosest(el, (element) => {
+    const selectors = includeInitSelectors ? allSelectors() : rootSelectors();
+    if (selectors.some((selector) => element.matches(selector)))
+      return true;
+  });
+}
+function findClosest(el, callback) {
+  if (!el)
+    return;
+  if (callback(el))
+    return el;
+  if (el._x_teleportBack)
+    el = el._x_teleportBack;
+  if (!el.parentElement)
+    return;
+  return findClosest(el.parentElement, callback);
+}
+function isRoot(el) {
+  return rootSelectors().some((selector) => el.matches(selector));
+}
+var initInterceptors = [];
+function interceptInit(callback) {
+  initInterceptors.push(callback);
+}
+function initTree(el, walker = walk, intercept = () => {
+}) {
+  deferHandlingDirectives(() => {
+    walker(el, (el2, skip) => {
+      intercept(el2, skip);
+      initInterceptors.forEach((i) => i(el2, skip));
+      directives(el2, el2.attributes).forEach((handle) => handle());
+      el2._x_ignore && skip();
+    });
+  });
+}
+function destroyTree(root) {
+  walk(root, (el) => {
+    cleanupAttributes(el);
+    cleanupElement(el);
+  });
+}
+
 // packages/alpinejs/src/mutation.js
 var onAttributeAddeds = [];
 var onElRemoveds = [];
@@ -121,6 +235,12 @@ function cleanupAttributes(el, names) {
       delete el._x_attributeCleanups[name];
     }
   });
+}
+function cleanupElement(el) {
+  if (el._x_cleanups) {
+    while (el._x_cleanups.length)
+      el._x_cleanups.pop()();
+  }
 }
 var observer = new MutationObserver(onMutate);
 var currentlyObserving = false;
@@ -217,10 +337,7 @@ function onMutate(mutations) {
     if (addedNodes.includes(node))
       continue;
     onElRemoveds.forEach((i) => i(node));
-    if (node._x_cleanups) {
-      while (node._x_cleanups.length)
-        node._x_cleanups.pop()();
-    }
+    destroyTree(node);
   }
   addedNodes.forEach((node) => {
     node._x_ignoreSelf = true;
@@ -318,7 +435,7 @@ function mergeProxies(objects) {
 }
 
 // packages/alpinejs/src/interceptor.js
-function initInterceptors(data2) {
+function initInterceptors2(data2) {
   let isObject2 = (val) => typeof val === "object" && !Array.isArray(val) && val !== null;
   let recurse = (obj, basePath = "") => {
     Object.entries(Object.getOwnPropertyDescriptors(obj)).forEach(([key, { value, enumerable }]) => {
@@ -431,8 +548,9 @@ var shouldAutoEvaluateFunctions = true;
 function dontAutoEvaluateFunctions(callback) {
   let cache = shouldAutoEvaluateFunctions;
   shouldAutoEvaluateFunctions = false;
-  callback();
+  let result = callback();
   shouldAutoEvaluateFunctions = cache;
+  return result;
 }
 function evaluate(el, expression, extras = {}) {
   let result;
@@ -467,7 +585,7 @@ function generateFunctionFromString(expression, el) {
   }
   let AsyncFunction = Object.getPrototypeOf(async function() {
   }).constructor;
-  let rightSideSafeExpression = /^[\n\s]*if.*\(.*\)/.test(expression) || /^(let|const)\s/.test(expression) ? `(async()=>{ ${expression} })()` : expression;
+  let rightSideSafeExpression = /^[\n\s]*if.*\(.*\)/.test(expression.trim()) || /^(let|const)\s/.test(expression.trim()) ? `(async()=>{ ${expression} })()` : expression;
   const safeAsyncFunction = () => {
     try {
       return new AsyncFunction(["__self", "scope"], `with (scope) { __self.result = ${rightSideSafeExpression} }; __self.finished = true; return __self.result;`);
@@ -602,15 +720,15 @@ function getElementBoundUtilities(el) {
 function getDirectiveHandler(el, directive2) {
   let noop = () => {
   };
-  let handler3 = directiveHandlers[directive2.type] || noop;
+  let handler4 = directiveHandlers[directive2.type] || noop;
   let [utilities, cleanup2] = getElementBoundUtilities(el);
   onAttributeRemoved(el, directive2.original, cleanup2);
   let fullHandler = () => {
     if (el._x_ignore || el._x_ignoreSelf)
       return;
-    handler3.inline && handler3.inline(el, directive2, utilities);
-    handler3 = handler3.bind(handler3, el, directive2, utilities);
-    isDeferringHandlers ? directiveHandlerStacks.get(currentHandlerStackKey).push(handler3) : handler3();
+    handler4.inline && handler4.inline(el, directive2, utilities);
+    handler4 = handler4.bind(handler4, el, directive2, utilities);
+    isDeferringHandlers ? directiveHandlerStacks.get(currentHandlerStackKey).push(handler4) : handler4();
   };
   fullHandler.runCleanups = cleanup2;
   return fullHandler;
@@ -676,117 +794,6 @@ function byPriority(a, b) {
   let typeA = directiveOrder.indexOf(a.type) === -1 ? DEFAULT : a.type;
   let typeB = directiveOrder.indexOf(b.type) === -1 ? DEFAULT : b.type;
   return directiveOrder.indexOf(typeA) - directiveOrder.indexOf(typeB);
-}
-
-// packages/alpinejs/src/utils/dispatch.js
-function dispatch(el, name, detail = {}) {
-  el.dispatchEvent(
-    new CustomEvent(name, {
-      detail,
-      bubbles: true,
-      // Allows events to pass the shadow DOM barrier.
-      composed: true,
-      cancelable: true
-    })
-  );
-}
-
-// packages/alpinejs/src/utils/walk.js
-function walk(el, callback) {
-  if (typeof ShadowRoot === "function" && el instanceof ShadowRoot) {
-    Array.from(el.children).forEach((el2) => walk(el2, callback));
-    return;
-  }
-  let skip = false;
-  callback(el, () => skip = true);
-  if (skip)
-    return;
-  let node = el.firstElementChild;
-  while (node) {
-    walk(node, callback, false);
-    node = node.nextElementSibling;
-  }
-}
-
-// packages/alpinejs/src/utils/warn.js
-function warn(message, ...args) {
-  console.warn(`Alpine Warning: ${message}`, ...args);
-}
-
-// packages/alpinejs/src/lifecycle.js
-var started = false;
-function start() {
-  if (started)
-    warn("Alpine has already been initialized on this page. Calling Alpine.start() more than once can cause problems.");
-  started = true;
-  if (!document.body)
-    warn("Unable to initialize. Trying to load Alpine before `<body>` is available. Did you forget to add `defer` in Alpine's `<script>` tag?");
-  dispatch(document, "alpine:init");
-  dispatch(document, "alpine:initializing");
-  startObservingMutations();
-  onElAdded((el) => initTree(el, walk));
-  onElRemoved((el) => destroyTree(el));
-  onAttributesAdded((el, attrs) => {
-    directives(el, attrs).forEach((handle) => handle());
-  });
-  let outNestedComponents = (el) => !closestRoot(el.parentElement, true);
-  Array.from(document.querySelectorAll(allSelectors())).filter(outNestedComponents).forEach((el) => {
-    initTree(el);
-  });
-  dispatch(document, "alpine:initialized");
-}
-var rootSelectorCallbacks = [];
-var initSelectorCallbacks = [];
-function rootSelectors() {
-  return rootSelectorCallbacks.map((fn) => fn());
-}
-function allSelectors() {
-  return rootSelectorCallbacks.concat(initSelectorCallbacks).map((fn) => fn());
-}
-function addRootSelector(selectorCallback) {
-  rootSelectorCallbacks.push(selectorCallback);
-}
-function addInitSelector(selectorCallback) {
-  initSelectorCallbacks.push(selectorCallback);
-}
-function closestRoot(el, includeInitSelectors = false) {
-  return findClosest(el, (element) => {
-    const selectors = includeInitSelectors ? allSelectors() : rootSelectors();
-    if (selectors.some((selector) => element.matches(selector)))
-      return true;
-  });
-}
-function findClosest(el, callback) {
-  if (!el)
-    return;
-  if (callback(el))
-    return el;
-  if (el._x_teleportBack)
-    el = el._x_teleportBack;
-  if (!el.parentElement)
-    return;
-  return findClosest(el.parentElement, callback);
-}
-function isRoot(el) {
-  return rootSelectors().some((selector) => el.matches(selector));
-}
-var initInterceptors2 = [];
-function interceptInit(callback) {
-  initInterceptors2.push(callback);
-}
-function initTree(el, walker = walk, intercept = () => {
-}) {
-  deferHandlingDirectives(() => {
-    walker(el, (el2, skip) => {
-      intercept(el2, skip);
-      initInterceptors2.forEach((i) => i(el2, skip));
-      directives(el2, el2.attributes).forEach((handle) => handle());
-      el2._x_ignore && skip();
-    });
-  });
-}
-function destroyTree(root) {
-  walk(root, (el) => cleanupAttributes(el));
 }
 
 // packages/alpinejs/src/nextTick.js
@@ -1198,14 +1205,31 @@ function skipDuringClone(callback, fallback = () => {
 function onlyDuringClone(callback) {
   return (...args) => isCloning && callback(...args);
 }
+function cloneNode(from, to) {
+  if (from._x_dataStack) {
+    to._x_dataStack = from._x_dataStack;
+    to.setAttribute("data-has-alpine-state", true);
+  }
+  isCloning = true;
+  dontRegisterReactiveSideEffects(() => {
+    initTree(to, (el, callback) => {
+      callback(el, () => {
+      });
+    });
+  });
+  isCloning = false;
+}
+var isCloningLegacy = false;
 function clone(oldEl, newEl) {
   if (!newEl._x_dataStack)
     newEl._x_dataStack = oldEl._x_dataStack;
   isCloning = true;
+  isCloningLegacy = true;
   dontRegisterReactiveSideEffects(() => {
     cloneTree(newEl);
   });
   isCloning = false;
+  isCloningLegacy = false;
 }
 function cloneTree(el) {
   let hasRunThroughFirstEl = false;
@@ -1229,6 +1253,13 @@ function dontRegisterReactiveSideEffects(callback) {
   });
   callback();
   overrideEffect(cache);
+}
+function shouldSkipRegisteringDataDuringClone(el) {
+  if (!isCloning)
+    return false;
+  if (isCloningLegacy)
+    return true;
+  return el.hasAttribute("data-has-alpine-state");
 }
 
 // packages/alpinejs/src/utils/bind.js
@@ -1267,7 +1298,7 @@ function bindInputValue(el, value) {
   } else if (el.type === "checkbox") {
     if (Number.isInteger(value)) {
       el.value = value;
-    } else if (!Number.isInteger(value) && !Array.isArray(value) && typeof value !== "boolean" && ![null, void 0].includes(value)) {
+    } else if (!Array.isArray(value) && typeof value !== "boolean" && ![null, void 0].includes(value)) {
       el.value = String(value);
     } else {
       if (Array.isArray(value)) {
@@ -1281,7 +1312,7 @@ function bindInputValue(el, value) {
   } else {
     if (el.value === value)
       return;
-    el.value = value;
+    el.value = value === void 0 ? "" : value;
   }
 }
 function bindClasses(el, value) {
@@ -1367,6 +1398,21 @@ function attributeShouldntBePreservedIfFalsy(name) {
 function getBinding(el, name, fallback) {
   if (el._x_bindings && el._x_bindings[name] !== void 0)
     return el._x_bindings[name];
+  return getAttributeBinding(el, name, fallback);
+}
+function extractProp(el, name, fallback, extract = true) {
+  if (el._x_bindings && el._x_bindings[name] !== void 0)
+    return el._x_bindings[name];
+  if (el._x_inlineBindings && el._x_inlineBindings[name] !== void 0) {
+    let binding = el._x_inlineBindings[name];
+    binding.extract = extract;
+    return dontAutoEvaluateFunctions(() => {
+      return evaluate(el, binding.expression);
+    });
+  }
+  return getAttributeBinding(el, name, fallback);
+}
+function getAttributeBinding(el, name, fallback) {
   let attr = el.getAttribute(name);
   if (attr === null)
     return typeof fallback === "function" ? fallback() : fallback;
@@ -1405,6 +1451,39 @@ function throttle(func, limit) {
   };
 }
 
+// packages/alpinejs/src/entangle.js
+function entangle({ get: outerGet, set: outerSet }, { get: innerGet, set: innerSet }) {
+  let firstRun = true;
+  let outerHash, innerHash, outerHashLatest, innerHashLatest;
+  let reference = effect(() => {
+    let outer, inner;
+    if (firstRun) {
+      outer = outerGet();
+      innerSet(JSON.parse(JSON.stringify(outer)));
+      inner = innerGet();
+      firstRun = false;
+    } else {
+      outer = outerGet();
+      inner = innerGet();
+      outerHashLatest = JSON.stringify(outer);
+      innerHashLatest = JSON.stringify(inner);
+      if (outerHashLatest !== outerHash) {
+        inner = innerGet();
+        innerSet(outer);
+        inner = outer;
+      } else {
+        outerSet(JSON.parse(innerHashLatest ?? null));
+        outer = inner;
+      }
+    }
+    outerHash = JSON.stringify(outer);
+    innerHash = JSON.stringify(inner);
+  });
+  return () => {
+    release(reference);
+  };
+}
+
 // packages/alpinejs/src/plugin.js
 function plugin(callback) {
   let callbacks = Array.isArray(callback) ? callback : [callback];
@@ -1426,7 +1505,7 @@ function store(name, value) {
   if (typeof value === "object" && value !== null && value.hasOwnProperty("init") && typeof value.init === "function") {
     stores[name].init();
   }
-  initInterceptors(stores[name]);
+  initInterceptors2(stores[name]);
 }
 function getStores() {
   return stores;
@@ -1437,10 +1516,12 @@ var binds = {};
 function bind2(name, bindings) {
   let getBindings = typeof bindings !== "function" ? () => bindings : bindings;
   if (name instanceof Element) {
-    applyBindingsObject(name, getBindings());
+    return applyBindingsObject(name, getBindings());
   } else {
     binds[name] = getBindings;
   }
+  return () => {
+  };
 }
 function injectBindingProviders(obj) {
   Object.entries(binds).forEach(([name, callback]) => {
@@ -1473,6 +1554,10 @@ function applyBindingsObject(el, obj, original) {
     cleanupRunners.push(handle.runCleanups);
     handle();
   });
+  return () => {
+    while (cleanupRunners.length)
+      cleanupRunners.pop()();
+  };
 }
 
 // packages/alpinejs/src/datas.js
@@ -1508,13 +1593,15 @@ var Alpine = {
   get raw() {
     return raw;
   },
-  version: "3.12.2",
+  version: "3.13.0",
   flushAndStopDeferringMutations,
   dontAutoEvaluateFunctions,
   disableEffectScheduling,
   startObservingMutations,
   stopObservingMutations,
   setReactivityEngine,
+  onAttributeRemoved,
+  onAttributesAdded,
   closestDataStack,
   skipDuringClone,
   onlyDuringClone,
@@ -1527,7 +1614,9 @@ var Alpine = {
   interceptInit,
   setEvaluator,
   mergeProxies,
+  extractProp,
   findClosest,
+  onElRemoved,
   closestRoot,
   destroyTree,
   interceptor,
@@ -1538,6 +1627,7 @@ var Alpine = {
   // INTERNAL
   mutateDom,
   directive,
+  entangle,
   throttle,
   debounce,
   evaluate,
@@ -1550,6 +1640,9 @@ var Alpine = {
   store,
   start,
   clone,
+  // INTERNAL
+  cloneNode,
+  // INTERNAL
   bound: getBinding,
   $data: scope,
   walk,
@@ -2356,39 +2449,6 @@ function warnMissingPluginMagic(name, magicName, slug) {
   magic(magicName, (el) => warn(`You can't use [$${directiveName}] without first installing the "${name}" plugin here: https://alpinejs.dev/plugins/${slug}`, el));
 }
 
-// packages/alpinejs/src/entangle.js
-function entangle({ get: outerGet, set: outerSet }, { get: innerGet, set: innerSet }) {
-  let firstRun = true;
-  let outerHash, innerHash, outerHashLatest, innerHashLatest;
-  let reference = effect(() => {
-    let outer, inner;
-    if (firstRun) {
-      outer = outerGet();
-      innerSet(outer);
-      inner = innerGet();
-      firstRun = false;
-    } else {
-      outer = outerGet();
-      inner = innerGet();
-      outerHashLatest = JSON.stringify(outer);
-      innerHashLatest = JSON.stringify(inner);
-      if (outerHashLatest !== outerHash) {
-        inner = innerGet();
-        innerSet(outer);
-        inner = outer;
-      } else {
-        outerSet(inner);
-        outer = inner;
-      }
-    }
-    outerHash = JSON.stringify(outer);
-    innerHash = JSON.stringify(inner);
-  });
-  return () => {
-    release(reference);
-  };
-}
-
 // packages/alpinejs/src/directives/x-modelable.js
 directive("modelable", (el, { expression }, { effect: effect3, evaluateLater: evaluateLater2, cleanup: cleanup2 }) => {
   let func = evaluateLater2(expression);
@@ -2485,7 +2545,7 @@ directive("effect", (el, { expression }, { effect: effect3 }) => effect3(evaluat
 // packages/alpinejs/src/utils/on.js
 function on(el, event, modifiers, callback) {
   let listenerTarget = el;
-  let handler3 = (e) => callback(e);
+  let handler4 = (e) => callback(e);
   let options = {};
   let wrapHandler = (callback2, wrapper) => (e) => wrapper(callback2, e);
   if (modifiers.includes("dot"))
@@ -2503,30 +2563,30 @@ function on(el, event, modifiers, callback) {
   if (modifiers.includes("debounce")) {
     let nextModifier = modifiers[modifiers.indexOf("debounce") + 1] || "invalid-wait";
     let wait = isNumeric(nextModifier.split("ms")[0]) ? Number(nextModifier.split("ms")[0]) : 250;
-    handler3 = debounce(handler3, wait);
+    handler4 = debounce(handler4, wait);
   }
   if (modifiers.includes("throttle")) {
     let nextModifier = modifiers[modifiers.indexOf("throttle") + 1] || "invalid-wait";
     let wait = isNumeric(nextModifier.split("ms")[0]) ? Number(nextModifier.split("ms")[0]) : 250;
-    handler3 = throttle(handler3, wait);
+    handler4 = throttle(handler4, wait);
   }
   if (modifiers.includes("prevent"))
-    handler3 = wrapHandler(handler3, (next, e) => {
+    handler4 = wrapHandler(handler4, (next, e) => {
       e.preventDefault();
       next(e);
     });
   if (modifiers.includes("stop"))
-    handler3 = wrapHandler(handler3, (next, e) => {
+    handler4 = wrapHandler(handler4, (next, e) => {
       e.stopPropagation();
       next(e);
     });
   if (modifiers.includes("self"))
-    handler3 = wrapHandler(handler3, (next, e) => {
+    handler4 = wrapHandler(handler4, (next, e) => {
       e.target === el && next(e);
     });
   if (modifiers.includes("away") || modifiers.includes("outside")) {
     listenerTarget = document;
-    handler3 = wrapHandler(handler3, (next, e) => {
+    handler4 = wrapHandler(handler4, (next, e) => {
       if (el.contains(e.target))
         return;
       if (e.target.isConnected === false)
@@ -2539,12 +2599,12 @@ function on(el, event, modifiers, callback) {
     });
   }
   if (modifiers.includes("once")) {
-    handler3 = wrapHandler(handler3, (next, e) => {
+    handler4 = wrapHandler(handler4, (next, e) => {
       next(e);
-      listenerTarget.removeEventListener(event, handler3, options);
+      listenerTarget.removeEventListener(event, handler4, options);
     });
   }
-  handler3 = wrapHandler(handler3, (next, e) => {
+  handler4 = wrapHandler(handler4, (next, e) => {
     if (isKeyEvent(event)) {
       if (isListeningForASpecificKeyThatHasntBeenPressed(e, modifiers)) {
         return;
@@ -2552,9 +2612,9 @@ function on(el, event, modifiers, callback) {
     }
     next(e);
   });
-  listenerTarget.addEventListener(event, handler3, options);
+  listenerTarget.addEventListener(event, handler4, options);
   return () => {
-    listenerTarget.removeEventListener(event, handler3, options);
+    listenerTarget.removeEventListener(event, handler4, options);
   };
 }
 function dotSyntax(subject) {
@@ -2679,8 +2739,10 @@ directive("model", (el, { modifiers, expression }, { effect: effect3, cleanup: c
   } : on(el, event, modifiers, (e) => {
     setValue(getInputValue(el, modifiers, e, getValue()));
   });
-  if (modifiers.includes("fill") && [null, ""].includes(getValue())) {
-    el.dispatchEvent(new Event(event, {}));
+  if (modifiers.includes("fill")) {
+    if ([null, ""].includes(getValue()) || el.type === "checkbox" && Array.isArray(getValue())) {
+      el.dispatchEvent(new Event(event, {}));
+    }
   }
   if (!el._x_removeModelListeners)
     el._x_removeModelListeners = {};
@@ -2701,7 +2763,6 @@ directive("model", (el, { modifiers, expression }, { effect: effect3, cleanup: c
     }
   };
   el._x_forceModelUpdate = (value) => {
-    value = value === void 0 ? getValue() : value;
     if (value === void 0 && typeof expression === "string" && expression.match(/\./))
       value = "";
     window.fromModel = true;
@@ -2794,7 +2855,7 @@ directive("html", (el, { expression }, { effect: effect3, evaluateLater: evaluat
 
 // packages/alpinejs/src/directives/x-bind.js
 mapAttributes(startingWith(":", into(prefix("bind:"))));
-directive("bind", (el, { value, modifiers, expression, original }, { effect: effect3 }) => {
+var handler2 = (el, { value, modifiers, expression, original }, { effect: effect3 }) => {
   if (!value) {
     let bindingProviders = {};
     injectBindingProviders(bindingProviders);
@@ -2806,6 +2867,9 @@ directive("bind", (el, { value, modifiers, expression, original }, { effect: eff
   }
   if (value === "key")
     return storeKeyForXFor(el, expression);
+  if (el._x_inlineBindings && el._x_inlineBindings[value] && el._x_inlineBindings[value].extract) {
+    return;
+  }
   let evaluate2 = evaluateLater(el, expression);
   effect3(() => evaluate2((result) => {
     if (result === void 0 && typeof expression === "string" && expression.match(/\./)) {
@@ -2813,14 +2877,24 @@ directive("bind", (el, { value, modifiers, expression, original }, { effect: eff
     }
     mutateDom(() => bind(el, value, result, modifiers));
   }));
-});
+};
+handler2.inline = (el, { value, modifiers, expression }) => {
+  if (!value)
+    return;
+  if (!el._x_inlineBindings)
+    el._x_inlineBindings = {};
+  el._x_inlineBindings[value] = { expression, extract: false };
+};
+directive("bind", handler2);
 function storeKeyForXFor(el, expression) {
   el._x_keyExpression = expression;
 }
 
 // packages/alpinejs/src/directives/x-data.js
 addRootSelector(() => `[${prefix("data")}]`);
-directive("data", skipDuringClone((el, { expression }, { cleanup: cleanup2 }) => {
+directive("data", (el, { expression }, { cleanup: cleanup2 }) => {
+  if (shouldSkipRegisteringDataDuringClone(el))
+    return;
   expression = expression === "" ? "{}" : expression;
   let magicContext = {};
   injectMagics(magicContext, el);
@@ -2831,14 +2905,14 @@ directive("data", skipDuringClone((el, { expression }, { cleanup: cleanup2 }) =>
     data2 = {};
   injectMagics(data2, el);
   let reactiveData = reactive(data2);
-  initInterceptors(reactiveData);
+  initInterceptors2(reactiveData);
   let undo = addScopeToNode(el, reactiveData);
   reactiveData["init"] && evaluate(el, reactiveData["init"]);
   cleanup2(() => {
     reactiveData["destroy"] && evaluate(el, reactiveData["destroy"]);
     undo();
   });
-}));
+});
 
 // packages/alpinejs/src/directives/x-show.js
 directive("show", (el, { modifiers, expression }, { effect: effect3 }) => {
@@ -3067,16 +3141,16 @@ function isNumeric3(subject) {
 }
 
 // packages/alpinejs/src/directives/x-ref.js
-function handler2() {
+function handler3() {
 }
-handler2.inline = (el, { expression }, { cleanup: cleanup2 }) => {
+handler3.inline = (el, { expression }, { cleanup: cleanup2 }) => {
   let root = closestRoot(el);
   if (!root._x_refs)
     root._x_refs = {};
   root._x_refs[expression] = el;
   cleanup2(() => delete root._x_refs[expression]);
 };
-directive("ref", handler2);
+directive("ref", handler3);
 
 // packages/alpinejs/src/directives/x-if.js
 directive("if", (el, { expression }, { effect: effect3, cleanup: cleanup2 }) => {
