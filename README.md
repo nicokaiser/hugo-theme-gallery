@@ -23,6 +23,8 @@ A very simple and opinionated photo gallery theme for Hugo built with Tailwind C
 
 ## Installation
 
+This theme requires Hugo >= 0.112.
+
 ### As a Hugo Module
 
 Requires the Go binary installed.
