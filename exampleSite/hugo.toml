@@ -11,6 +11,10 @@ theme = "github.com/nicokaiser/hugo-theme-gallery"
   title = "My Gallery"
   description = "Example site for hugo-theme-gallery"
   defaultTheme = "dark"
+  [params.assets]
+    faviconSvg = "images/favicon.svg"
+    faviconPng = "images/favicon.png"
+    appleTouchIcon = "images/apple-touch-icon.png"
 
 [author]
   name = "Your Name"
