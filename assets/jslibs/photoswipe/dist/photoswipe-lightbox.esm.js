@@ -1,5 +1,5 @@
 /*!
-  * PhotoSwipe Lightbox 5.4.0 - https://photoswipe.com
+  * PhotoSwipe Lightbox 5.4.2 - https://photoswipe.com
   * (c) 2023 Dmytro Semenov
   */
 /** @typedef {import('../photoswipe.js').Point} Point */
@@ -307,14 +307,16 @@ function isSafari() {
  * https://photoswipe.com/filters/#uielement
  *
  * @prop {(thumbnail: HTMLElement | null | undefined, itemData: SlideData, index: number) => HTMLElement} thumbEl
- * Modify the thubmnail element from which opening zoom animation starts or ends.
+ * Modify the thumbnail element from which opening zoom animation starts or ends.
  * https://photoswipe.com/filters/#thumbel
  *
  * @prop {(thumbBounds: Bounds | undefined, itemData: SlideData, index: number) => Bounds} thumbBounds
- * Modify the thubmnail bounds from which opening zoom animation starts or ends.
+ * Modify the thumbnail bounds from which opening zoom animation starts or ends.
  * https://photoswipe.com/filters/#thumbbounds
  *
  * @prop {(srcsetSizesWidth: number, content: Content) => number} srcsetSizesWidth
+ *
+ * @prop {(preventPointerEvent: boolean, event: PointerEvent, pointerType: string) => boolean} preventPointerEvent
  *
  */
 
@@ -1779,7 +1781,7 @@ class PhotoSwipeLightbox extends PhotoSwipeBase {
    * Load and open PhotoSwipe
    *
    * @param {number} index
-   * @param {DataSource} dataSource
+   * @param {DataSource} [dataSource]
    * @param {Point | null} [initialPoint]
    * @returns {boolean}
    */
@@ -1787,8 +1789,19 @@ class PhotoSwipeLightbox extends PhotoSwipeBase {
 
   loadAndOpen(index, dataSource, initialPoint) {
     // Check if the gallery is already open
-    if (window.pswp) {
+    if (window.pswp || !this.options) {
       return false;
+    } // Use the first gallery element if dataSource is not provided
+
+
+    if (!dataSource && this.options.gallery && this.options.children) {
+      const galleryElements = getElementsFromOption(this.options.gallery);
+
+      if (galleryElements[0]) {
+        dataSource = {
+          gallery: galleryElements[0]
+        };
+      }
     } // set initial index
 
 

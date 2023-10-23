@@ -1,5 +1,5 @@
 /*!
-  * PhotoSwipe 5.4.0 - https://photoswipe.com
+  * PhotoSwipe 5.4.2 - https://photoswipe.com
   * (c) 2023 Dmytro Semenov
   */
 /** @typedef {import('../photoswipe.js').Point} Point */
@@ -2276,7 +2276,7 @@ class Gestures {
       pswp.mouseDetected(); // preventDefault mouse event to prevent
       // browser image drag feature
 
-      this._preventPointerEventBehaviour(e);
+      this._preventPointerEventBehaviour(e, 'down');
     }
 
     pswp.animations.stopAll();
@@ -2305,7 +2305,7 @@ class Gestures {
 
 
   onPointerMove(e) {
-    e.preventDefault(); // always preventDefault move event
+    this._preventPointerEventBehaviour(e, 'move');
 
     if (!this._numActivePoints) {
       return;
@@ -2568,13 +2568,16 @@ class Gestures {
   /**
    * @private
    * @param {PointerEvent} e
+   * @param {'up' | 'down' | 'move'} pointerType Normalized pointer type
    */
 
 
-  _preventPointerEventBehaviour(e) {
-    // TODO find a way to disable e.preventDefault on some elements
-    //      via event or some class or something
-    e.preventDefault();
+  _preventPointerEventBehaviour(e, pointerType) {
+    const preventPointerEvent = this.pswp.applyFilters('preventPointerEvent', true, e, pointerType);
+
+    if (preventPointerEvent) {
+      e.preventDefault();
+    }
   }
   /**
    * Parses and normalizes points from the touch, mouse or pointer event.
@@ -3123,17 +3126,20 @@ class Keyboard {
 
     this._wasFocused = false;
     pswp.on('bindEvents', () => {
-      // Dialog was likely opened by keyboard if initial point is not defined
-      if (!pswp.options.initialPointerPos) {
-        // focus causes layout,
-        // which causes lag during the animation,
-        // that's why we delay it until the opener transition ends
-        this._focusRoot();
+      if (pswp.options.trapFocus) {
+        // Dialog was likely opened by keyboard if initial point is not defined
+        if (!pswp.options.initialPointerPos) {
+          // focus causes layout,
+          // which causes lag during the animation,
+          // that's why we delay it until the opener transition ends
+          this._focusRoot();
+        }
+
+        pswp.events.add(document, 'focusin',
+        /** @type EventListener */
+        this._onFocusIn.bind(this));
       }
 
-      pswp.events.add(document, 'focusin',
-      /** @type EventListener */
-      this._onFocusIn.bind(this));
       pswp.events.add(document, 'keydown',
       /** @type EventListener */
       this._onKeyDown.bind(this));
@@ -4557,14 +4563,16 @@ function getThumbBounds(index, itemData, instance) {
  * https://photoswipe.com/filters/#uielement
  *
  * @prop {(thumbnail: HTMLElement | null | undefined, itemData: SlideData, index: number) => HTMLElement} thumbEl
- * Modify the thubmnail element from which opening zoom animation starts or ends.
+ * Modify the thumbnail element from which opening zoom animation starts or ends.
  * https://photoswipe.com/filters/#thumbel
  *
  * @prop {(thumbBounds: Bounds | undefined, itemData: SlideData, index: number) => Bounds} thumbBounds
- * Modify the thubmnail bounds from which opening zoom animation starts or ends.
+ * Modify the thumbnail bounds from which opening zoom animation starts or ends.
  * https://photoswipe.com/filters/#thumbbounds
  *
  * @prop {(srcsetSizesWidth: number, content: Content) => number} srcsetSizesWidth
+ *
+ * @prop {(preventPointerEvent: boolean, event: PointerEvent, pointerType: string) => boolean} preventPointerEvent
  *
  */
 
@@ -6352,6 +6360,9 @@ class Opener {
  * @prop {boolean} arrowKeys
  * Left/right arrow keys for navigation.
  *
+ * @prop {boolean} trapFocus
+ * Trap focus within PhotoSwipe element while it's open.
+ *
  * @prop {boolean} returnFocus
  * Restore focus the last active element after PhotoSwipe is closed.
  *
@@ -6471,6 +6482,7 @@ const defaultOptions = {
   zoomAnimationDuration: 333,
   escKey: true,
   arrowKeys: true,
+  trapFocus: true,
   returnFocus: true,
   maxWidthToAnimate: 4000,
   clickToCloseNonZoomable: true,
