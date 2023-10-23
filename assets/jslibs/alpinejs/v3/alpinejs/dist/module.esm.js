@@ -386,52 +386,48 @@ function closestDataStack(node) {
   return closestDataStack(node.parentNode);
 }
 function mergeProxies(objects) {
-  let thisProxy = new Proxy({}, {
-    ownKeys: () => {
-      return Array.from(new Set(objects.flatMap((i) => Object.keys(i))));
-    },
-    has: (target, name) => {
-      return objects.some((obj) => obj.hasOwnProperty(name));
-    },
-    get: (target, name) => {
-      return (objects.find((obj) => {
-        if (obj.hasOwnProperty(name)) {
-          let descriptor = Object.getOwnPropertyDescriptor(obj, name);
-          if (descriptor.get && descriptor.get._x_alreadyBound || descriptor.set && descriptor.set._x_alreadyBound) {
-            return true;
-          }
-          if ((descriptor.get || descriptor.set) && descriptor.enumerable) {
-            let getter = descriptor.get;
-            let setter = descriptor.set;
-            let property = descriptor;
-            getter = getter && getter.bind(thisProxy);
-            setter = setter && setter.bind(thisProxy);
-            if (getter)
-              getter._x_alreadyBound = true;
-            if (setter)
-              setter._x_alreadyBound = true;
-            Object.defineProperty(obj, name, {
-              ...property,
-              get: getter,
-              set: setter
-            });
-          }
-          return true;
-        }
-        return false;
-      }) || {})[name];
-    },
-    set: (target, name, value) => {
-      let closestObjectWithKey = objects.find((obj) => obj.hasOwnProperty(name));
-      if (closestObjectWithKey) {
-        closestObjectWithKey[name] = value;
-      } else {
-        objects[objects.length - 1][name] = value;
-      }
-      return true;
-    }
-  });
-  return thisProxy;
+  return new Proxy({ objects }, mergeProxyTrap);
+}
+var mergeProxyTrap = {
+  ownKeys({ objects }) {
+    return Array.from(
+      new Set(objects.flatMap((i) => Object.keys(i)))
+    );
+  },
+  has({ objects }, name) {
+    if (name == Symbol.unscopables)
+      return false;
+    return objects.some(
+      (obj) => Object.prototype.hasOwnProperty.call(obj, name)
+    );
+  },
+  get({ objects }, name, thisProxy) {
+    if (name == "toJSON")
+      return collapseProxies;
+    return Reflect.get(
+      objects.find(
+        (obj) => Object.prototype.hasOwnProperty.call(obj, name)
+      ) || {},
+      name,
+      thisProxy
+    );
+  },
+  set({ objects }, name, value, thisProxy) {
+    const target = objects.find(
+      (obj) => Object.prototype.hasOwnProperty.call(obj, name)
+    ) || objects[objects.length - 1];
+    const descriptor = Object.getOwnPropertyDescriptor(target, name);
+    if (descriptor?.set && descriptor?.get)
+      return Reflect.set(target, name, value, thisProxy);
+    return Reflect.set(target, name, value);
+  }
+};
+function collapseProxies() {
+  let keys = Reflect.ownKeys(this);
+  return keys.reduce((acc, key) => {
+    acc[key] = Reflect.get(this, key);
+    return acc;
+  }, {});
 }
 
 // packages/alpinejs/src/interceptor.js
@@ -588,7 +584,14 @@ function generateFunctionFromString(expression, el) {
   let rightSideSafeExpression = /^[\n\s]*if.*\(.*\)/.test(expression.trim()) || /^(let|const)\s/.test(expression.trim()) ? `(async()=>{ ${expression} })()` : expression;
   const safeAsyncFunction = () => {
     try {
-      return new AsyncFunction(["__self", "scope"], `with (scope) { __self.result = ${rightSideSafeExpression} }; __self.finished = true; return __self.result;`);
+      let func2 = new AsyncFunction(
+        ["__self", "scope"],
+        `with (scope) { __self.result = ${rightSideSafeExpression} }; __self.finished = true; return __self.result;`
+      );
+      Object.defineProperty(func2, "name", {
+        value: `[Alpine] ${expression}`
+      });
+      return func2;
     } catch (error2) {
       handleError(error2, el, expression);
       return Promise.resolve();
@@ -761,7 +764,7 @@ var alpineAttributeRegex = () => new RegExp(`^${prefixAsString}([^:^.]+)\\b`);
 function toParsedDirectives(transformedAttributeMap, originalAttributeOverride) {
   return ({ name, value }) => {
     let typeMatch = name.match(alpineAttributeRegex());
-    let valueMatch = name.match(/:([a-zA-Z0-9\-:]+)/);
+    let valueMatch = name.match(/:([a-zA-Z0-9\-_:]+)/);
     let modifiers = name.match(/\.[^.\]]+(?=[^\]]*$)/g) || [];
     let original = originalAttributeOverride || transformedAttributeMap[name] || name;
     return {
@@ -1454,34 +1457,33 @@ function throttle(func, limit) {
 // packages/alpinejs/src/entangle.js
 function entangle({ get: outerGet, set: outerSet }, { get: innerGet, set: innerSet }) {
   let firstRun = true;
-  let outerHash, innerHash, outerHashLatest, innerHashLatest;
+  let outerHash;
   let reference = effect(() => {
-    let outer, inner;
+    const outer = outerGet();
+    const inner = innerGet();
     if (firstRun) {
-      outer = outerGet();
-      innerSet(JSON.parse(JSON.stringify(outer)));
-      inner = innerGet();
+      innerSet(cloneIfObject(outer));
       firstRun = false;
+      outerHash = JSON.stringify(outer);
     } else {
-      outer = outerGet();
-      inner = innerGet();
-      outerHashLatest = JSON.stringify(outer);
-      innerHashLatest = JSON.stringify(inner);
+      const outerHashLatest = JSON.stringify(outer);
       if (outerHashLatest !== outerHash) {
-        inner = innerGet();
-        innerSet(outer);
-        inner = outer;
+        innerSet(cloneIfObject(outer));
+        outerHash = outerHashLatest;
       } else {
-        outerSet(JSON.parse(innerHashLatest ?? null));
-        outer = inner;
+        outerSet(cloneIfObject(inner));
+        outerHash = JSON.stringify(inner);
       }
     }
-    outerHash = JSON.stringify(outer);
-    innerHash = JSON.stringify(inner);
+    JSON.stringify(innerGet());
+    JSON.stringify(outerGet());
   });
   return () => {
     release(reference);
   };
+}
+function cloneIfObject(value) {
+  return typeof value === "object" ? JSON.parse(JSON.stringify(value)) : value;
 }
 
 // packages/alpinejs/src/plugin.js
@@ -1593,7 +1595,7 @@ var Alpine = {
   get raw() {
     return raw;
   },
-  version: "3.13.0",
+  version: "3.13.1",
   flushAndStopDeferringMutations,
   dontAutoEvaluateFunctions,
   disableEffectScheduling,
@@ -2446,7 +2448,7 @@ magic("el", (el) => el);
 warnMissingPluginMagic("Focus", "focus", "focus");
 warnMissingPluginMagic("Persist", "persist", "persist");
 function warnMissingPluginMagic(name, magicName, slug) {
-  magic(magicName, (el) => warn(`You can't use [$${directiveName}] without first installing the "${name}" plugin here: https://alpinejs.dev/plugins/${slug}`, el));
+  magic(magicName, (el) => warn(`You can't use [$${magicName}] without first installing the "${name}" plugin here: https://alpinejs.dev/plugins/${slug}`, el));
 }
 
 // packages/alpinejs/src/directives/x-modelable.js
@@ -2491,20 +2493,15 @@ directive("modelable", (el, { expression }, { effect: effect3, evaluateLater: ev
 });
 
 // packages/alpinejs/src/directives/x-teleport.js
-var teleportContainerDuringClone = document.createElement("div");
 directive("teleport", (el, { modifiers, expression }, { cleanup: cleanup2 }) => {
   if (el.tagName.toLowerCase() !== "template")
     warn("x-teleport can only be used on a <template> tag", el);
-  let target = skipDuringClone(() => {
-    return document.querySelector(expression);
-  }, () => {
-    return teleportContainerDuringClone;
-  })();
-  if (!target)
-    warn(`Cannot find x-teleport element for selector: "${expression}"`);
+  let target = getTarget(expression);
   let clone2 = el.content.cloneNode(true).firstElementChild;
   el._x_teleport = clone2;
   clone2._x_teleportBack = el;
+  el.setAttribute("data-teleport-template", true);
+  clone2.setAttribute("data-teleport-target", true);
   if (el._x_forwardEvents) {
     el._x_forwardEvents.forEach((eventName) => {
       clone2.addEventListener(eventName, (e) => {
@@ -2514,19 +2511,39 @@ directive("teleport", (el, { modifiers, expression }, { cleanup: cleanup2 }) => 
     });
   }
   addScopeToNode(clone2, {}, el);
-  mutateDom(() => {
-    if (modifiers.includes("prepend")) {
-      target.parentNode.insertBefore(clone2, target);
-    } else if (modifiers.includes("append")) {
-      target.parentNode.insertBefore(clone2, target.nextSibling);
+  let placeInDom = (clone3, target2, modifiers2) => {
+    if (modifiers2.includes("prepend")) {
+      target2.parentNode.insertBefore(clone3, target2);
+    } else if (modifiers2.includes("append")) {
+      target2.parentNode.insertBefore(clone3, target2.nextSibling);
     } else {
-      target.appendChild(clone2);
+      target2.appendChild(clone3);
     }
+  };
+  mutateDom(() => {
+    placeInDom(clone2, target, modifiers);
     initTree(clone2);
     clone2._x_ignore = true;
   });
+  el._x_teleportPutBack = () => {
+    let target2 = getTarget(expression);
+    mutateDom(() => {
+      placeInDom(el._x_teleport, target2, modifiers);
+    });
+  };
   cleanup2(() => clone2.remove());
 });
+var teleportContainerDuringClone = document.createElement("div");
+function getTarget(expression) {
+  let target = skipDuringClone(() => {
+    return document.querySelector(expression);
+  }, () => {
+    return teleportContainerDuringClone;
+  })();
+  if (!target)
+    warn(`Cannot find x-teleport element for selector: "${expression}"`);
+  return target;
+}
 
 // packages/alpinejs/src/directives/x-ignore.js
 var handler = () => {
@@ -2779,7 +2796,7 @@ directive("model", (el, { modifiers, expression }, { effect: effect3, cleanup: c
 function getInputValue(el, modifiers, event, currentValue) {
   return mutateDom(() => {
     if (event instanceof CustomEvent && event.detail !== void 0)
-      return event.detail ?? event.target.value;
+      return event.detail !== null && event.detail !== void 0 ? event.detail : event.target.value;
     else if (el.type === "checkbox") {
       if (Array.isArray(currentValue)) {
         let newValue = modifiers.includes("number") ? safeParseNumber(event.target.value) : event.target.value;
@@ -3154,6 +3171,8 @@ directive("ref", handler3);
 
 // packages/alpinejs/src/directives/x-if.js
 directive("if", (el, { expression }, { effect: effect3, cleanup: cleanup2 }) => {
+  if (el.tagName.toLowerCase() !== "template")
+    warn("x-if can only be used on a <template> tag", el);
   let evaluate2 = evaluateLater(el, expression);
   let show = () => {
     if (el._x_currentIfEl)
@@ -3217,8 +3236,8 @@ warnMissingPluginDirective("Collapse", "collapse", "collapse");
 warnMissingPluginDirective("Intersect", "intersect", "intersect");
 warnMissingPluginDirective("Focus", "trap", "focus");
 warnMissingPluginDirective("Mask", "mask", "mask");
-function warnMissingPluginDirective(name, directiveName2, slug) {
-  directive(directiveName2, (el) => warn(`You can't use [x-${directiveName2}] without first installing the "${name}" plugin here: https://alpinejs.dev/plugins/${slug}`, el));
+function warnMissingPluginDirective(name, directiveName, slug) {
+  directive(directiveName, (el) => warn(`You can't use [x-${directiveName}] without first installing the "${name}" plugin here: https://alpinejs.dev/plugins/${slug}`, el));
 }
 
 // packages/alpinejs/src/index.js
