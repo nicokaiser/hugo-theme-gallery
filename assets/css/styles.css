@@ -1,10 +1,10 @@
 @font-face {
-  font-family: "Inter var";
+  font-family: "InterVariable";
   font-weight: 100 900;
   font-display: auto;
   font-style: normal;
   font-named-instance: "Regular";
-  src: url("../fonts/Inter-roman.var.woff2") format("woff2");
+  src: url("../fonts/InterVariable.woff2") format("woff2");
 }
 
 @tailwind base;
