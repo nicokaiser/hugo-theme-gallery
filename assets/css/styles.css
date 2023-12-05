@@ -34,3 +34,39 @@ html.dark {
 img.lazyload:not([src]) {
   visibility: hidden;
 }
+
+/* Estilo para a div que envolve os botões */
+.button-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+/* Fixed Buttons */
+.floating-button {
+  background-color: #e2e6eb;
+  border-radius: 50%;
+  padding: 15px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 10px;
+  opacity: 0.9;
+  text-decoration: none;
+}
+
+/* Fixed Button Icon */
+.icon {
+  width: 50px;
+  height: auto;
+  border-radius: 10%; 
+  display: block;
+  margin: auto;
+}
+
+/* Button Hover Style */
+.floating-button:hover {
+  background-color: #a2c6f3;
+  transition: background-color 0.3s ease;
+}

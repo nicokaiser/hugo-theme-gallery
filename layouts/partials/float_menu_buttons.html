@@ -1,0 +1,9 @@
+<div class="button-container">
+  {{ range .Site.RegularPages }}
+    {{ if eq .Section "buttons" }}
+    <a class="floating-button" href="{{ .Params.link }}" target="_blank" title="{{ .Params.hover }}">
+      <img src="{{ .Params.image | relURL }}" alt="icone" class="icon">
+    </a>
+    {{ end }}
+  {{ end }}
+</div>
