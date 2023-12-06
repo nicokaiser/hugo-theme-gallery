@@ -1,9 +1,17 @@
 <div class="button-container">
   {{ range .Site.RegularPages }}
     {{ if eq .Section "buttons" }}
-    <a class="floating-button" href="{{ .Params.link }}" target="_blank" title="{{ .Params.hover }}">
-      <img src="{{ .Params.image | relURL }}" alt="icone" class="icon">
-    </a>
+      {{if ne .Title "whatsapp"}}
+      <a class="floating-button" href="{{ .Params.link }}" target="_blank" title="{{ .Params.hover }}">
+        <img src="{{ .Params.image | relURL }}" alt="icone" class="icon">
+      </a>
+      {{ else }}
+      {{ $numeroTelefone := .Params.phone }}
+      {{ $mensagem := .Params.message }}
+      <a class="floating-button" href="{{ printf "https://api.whatsapp.com/send?phone=%s&text=%s" $numeroTelefone $mensagem }}" target="_blank" title="Iniciar conversa no WhatsApp">
+        <img src="{{ "images/whatsapp.png" | relURL }}" alt="Ícone do WhatsApp" class="icon">
+      </a>
+      {{ end }}
     {{ end }}
   {{ end }}
 </div>
