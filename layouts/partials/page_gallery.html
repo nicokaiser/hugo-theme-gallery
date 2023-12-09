@@ -1,4 +1,4 @@
-<div class="mb-12 mt-9 sm:px-6">
+<div class="mb-5 mt-5 sm:px-1">
   <div class="fj-gallery" style="visibility: hidden; height: 650px;">
     {{ $photos := sort (.Resources.ByType "image") (index .Params "sort_by" | default "Name") (.Params.sort_order | default "asc") }}
     {{ range $index, $original := $photos }}
@@ -22,7 +22,7 @@
         {{ $color := index $thumbnail.Colors 0 | default "transparent" }}
         <a
           href="{{ $original.RelPermalink }}"
-          class="fj-gallery-item cursor-zoom-in"
+          class="fj-gallery-item cursor-zoom-in fj-gallery-item-animation"
           data-src="{{ $original.RelPermalink }}"
           data-pswp-src="{{ $full.RelPermalink }}"
           data-pswp-width="{{ $full.Width }}"
@@ -41,7 +41,7 @@
           <img
             width="{{ $thumbnail.Width }}"
             height="{{ $thumbnail.Height }}"
-            class="lazyload"
+            class="lazyload fj-gallery-item-animation"
             data-src="{{ $thumbnail.RelPermalink }}"
             {{ with $metadata }}
               {{ if .ImageDescription }}

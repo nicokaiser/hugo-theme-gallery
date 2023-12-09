@@ -17,3 +17,7 @@
   width: 100%;
   height: auto;
 }
+
+.fj-gallery-item-animation:hover {
+  transform: scale(1.02); /* Aumente o tamanho ao passar o mouse */
+}

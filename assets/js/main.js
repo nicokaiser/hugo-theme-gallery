@@ -18,7 +18,7 @@ if (gallery) {
     showHideAnimationType: "zoom",
     bgOpacity: 1,
     pswpModule: PhotoSwipe,
-    imageClickAction: "close",
+    imageClickAction: "zoom",
     paddingFn: (viewportSize) => {
       return viewportSize.x < 700
         ? {

@@ -45,6 +45,12 @@ img.lazyload:not([src]) {
   align-items: flex-end;
 }
 
+/* Estilo para a div que envolve os botões */
+.menu {
+  position: fixed;
+  display: flex;
+}
+
 /* Fixed Buttons */
 .floating-button {
   background-color: #e2e6eb;
@@ -69,4 +75,65 @@ img.lazyload:not([src]) {
 .floating-button:hover {
   background-color: #a2c6f3;
   transition: background-color 0.3s ease;
+}
+
+.header {
+  position: relative;
+  background-image: url('../images/background.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 35vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff; /* Adapte a cor do texto conforme necessário */
+  text-align: center;
+  overflow: hidden; /* Para garantir que o filtro escuro não ultrapasse a borda da div */
+}
+
+.header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.1); /* Ajuste a opacidade conforme necessário */
+  z-index: 1;
+}
+.header-content {
+  position: relative;
+  z-index: 2;
+}
+
+
+.container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden; /* Oculta qualquer transbordamento da div */
+}
+
+.background-video {
+  position: relative;
+  width: 300vw; /* Ajuste a largura conforme necessário para aumentar o tamanho do vídeo */
+  height: 300vh; /* Ajuste a altura conforme necessário para aumentar o tamanho do vídeo */
+  top: 0; /* Ajuste conforme necessário para centralizar o vídeo na tela */
+  left: 0; /* Ajuste conforme necessário para centralizar o vídeo na tela */
+  z-index: 1;
+}
+
+.content {
+  position: absolute;
+  z-index: 1;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 1000px) {
+  .background-video {
+      display: none;
+  }
 }
