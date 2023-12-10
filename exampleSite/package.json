@@ -13,11 +13,11 @@
   "dependencies": {},
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.10",
-    "autoprefixer": "^10.4.15",
-    "postcss": "^8.4.29",
-    "postcss-cli": "^10.1.0",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.32",
+    "postcss-cli": "^11.0.0",
     "postcss-import": "^15.1.0",
-    "tailwindcss": "^3.3.3"
+    "tailwindcss": "^3.3.6"
   },
   "private": "true",
   "scripts": {
