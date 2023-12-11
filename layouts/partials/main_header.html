@@ -1,11 +1,18 @@
 {{ if .Title }}
 <div class="header">
-  <iframe class="background-video" src="https://player.vimeo.com/video/192764867?autoplay=1&loop=1&muted=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
-  <div class="mx-auto mb-16 mt-9 max-w-screen-lg px-6 text-center header-content content">
-    <h1 class="text-3xl font-semibold md:text-4xl">{{ .Title }}</h1>
-    {{ if .Params.Description }}
-    <p class="mt-6 text-neutral-200 dark:text-neutral-400 md:text-lg">{{ .Params.Description }}</p>
+  {{ if .Params.viemo_code }}
+    <iframe class="background-video" src="https://player.vimeo.com/video/{{ .Params.viemo_code}}?autoplay=1&loop=1&muted=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+  {{ end }} 
+  {{ if .Params.background_image }}
+    <img src="{{ .Params.background_image | relURL }}" alt="background image" class="background-image">
+  {{ end }}
+  <div class="content">
+    {{ if .Params.profile_image }}
+      <div class="profile-container">
+        <img src="{{ .Params.profile_image | relURL }}" alt="profile picture" class="profile-picture">
+      </div>
     {{ end }}
+    <h1 class="text-3xl font-semibold md:text-4xl">{{ .Title }}</h1>
   </div>
 </div>
 {{ end }}
