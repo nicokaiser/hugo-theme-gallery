@@ -1,5 +1,5 @@
 
-.header {
+.home-header {
     position: relative;
     background-size: cover;
     background-position: center;
@@ -12,7 +12,7 @@
     overflow: hidden; /* Para garantir que o filtro escuro não ultrapasse a borda da div */
   }
   
-  .header::before {
+  .home-header::before {
     content: "";
     position: absolute;
     top: 0;
@@ -85,4 +85,24 @@
     top: 0;
     left: 0;
     z-index: -1; /* Coloca a imagem de fundo atrás do conteúdo */
+  }
+
+  .home-button {
+    display: inline-block;
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    background-color: #e9b454;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    margin-top: 1.5rem; /* Adiciona margem superior de 1.5 rem */
+  }
+
+  .home-button:hover {
+  background-color: #e9b454;
+  transform: scale(1.1); /* Aumente o tamanho ao passar o mouse */
+  transition: background-color 0.3s ease;
   }

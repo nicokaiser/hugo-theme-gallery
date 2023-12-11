@@ -1,5 +1,5 @@
 {{ if .Title }}
-<div class="header">
+<div class="home-header">
   {{ if .Params.viemo_code }}
     <iframe class="background-video" src="https://player.vimeo.com/video/{{ .Params.viemo_code}}?autoplay=1&loop=1&muted=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
   {{ end }} 
@@ -13,6 +13,9 @@
       </div>
     {{ end }}
     <h1 class="text-3xl font-semibold md:text-4xl">{{ .Title }}</h1>
+    {{if .Params.button_url}}
+      <a href="{{.Params.button_url}}" class="home-button ">{{.Params.button_desc}}</a>
+    {{ end }}
   </div>
 </div>
 {{ end }}
