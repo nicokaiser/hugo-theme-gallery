@@ -36,7 +36,7 @@ $ hugo mod init github.com/<your_user>/<your_project>
 Add the theme to your `hugo.toml`
 
 ```
-theme = ["github.com/nicokaiser/hugo-theme-gallery"]
+theme = ["github.com/nicokaiser/hugo-theme-gallery/v2"]
 ```
 
 ### As Git Submodule

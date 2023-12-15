@@ -5,7 +5,7 @@ disableKinds = ["taxonomy", "term"]
 defaultContentLanguage = "en"
 enableRobotsTXT = true
 timeZone = "Europe/Berlin"
-theme = "github.com/nicokaiser/hugo-theme-gallery"
+theme = "github.com/nicokaiser/hugo-theme-gallery/v2"
 
 [params]
   title = "My Gallery"
@@ -32,9 +32,6 @@ theme = "github.com/nicokaiser/hugo-theme-gallery"
   [module.hugoVersion]
     extended = false
     min = "0.112.0"
-
-[build]
-  writeStats = true
 
 [menu]
 [[menu.footer]]
