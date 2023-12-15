@@ -67,5 +67,6 @@
       "from": "node_modules/photoswipe-dynamic-caption-plugin/photoswipe-dynamic-caption-plugin.css",
       "to": "assets/lib/photoswipe-dynamic-caption-plugin/photoswipe-dynamic-caption-plugin.css"
     }
-  ]
+  ],
+  "version": "2.0.0"
 }
