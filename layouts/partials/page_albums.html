@@ -7,6 +7,7 @@
       {{ $color := index $thumbnail.Colors 0 | default "transparent" }}
       {{ $counts := partial "get_counts.html" . }}
 
+
       <a href="{{ .RelPermalink }}" class="rounded-2xl bg-neutral-100 transition-[filter] hover:brightness-90 dark:bg-neutral-800 dark:hover:brightness-110" title="{{ .Title }}">
         <div class="h-100">
           <div class="w-full overflow-hidden rounded-2xl" style="background-color: {{ $color }}">
