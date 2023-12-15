@@ -1,24 +1,71 @@
 {
-  "comments": {
-    "dependencies": {},
-    "devDependencies": {
-      "@tailwindcss/typography": "project",
-      "autoprefixer": "project",
-      "postcss": "project",
-      "postcss-cli": "project",
-      "postcss-import": "project",
-      "tailwindcss": "project"
-    }
-  },
-  "dependencies": {},
   "devDependencies": {
+    "@alpinejs/collapse": "^3.13.3",
     "@tailwindcss/typography": "^0.5.10",
+    "alpinejs": "^3.13.3",
     "autoprefixer": "^10.4.16",
+    "flickr-justified-gallery": "^2.1.2",
+    "lazysizes": "^5.3.2",
+    "photoswipe": "^5.4.3",
+    "photoswipe-dynamic-caption-plugin": "^1.2.7",
     "postcss": "^8.4.32",
     "postcss-cli": "^11.0.0",
     "postcss-import": "^15.1.0",
-    "tailwindcss": "^3.3.6"
+    "prettier": "^3.1.1",
+    "prettier-plugin-go-template": "^0.0.15",
+    "rimraf": "^5.0.5",
+    "tailwindcss": "^3.3.6",
+    "vendor-copy": "^3.0.1"
   },
   "private": "true",
-  "scripts": {}
+  "scripts": {
+    "preinstall": "rimraf assets/lib",
+    "postinstall": "vendor-copy",
+    "assets": "rimraf assets/lib && vendor-copy",
+    "dev": "postcss ./assets/css/styles.css -o ./assets/css/compiled/styles.css --watch",
+    "build": "postcss ./assets/css/styles.css -o ./assets/css/compiled/styles.css"
+  },
+  "vendorCopy": [],
+  "devVendorCopy": [
+    {
+      "from": "node_modules/alpinejs/dist/module.esm.js",
+      "to": "assets/lib/alpinejs/module.esm.js"
+    },
+    {
+      "from": "node_modules/@alpinejs/collapse/dist/module.esm.js",
+      "to": "assets/lib/alpinejs-collapse/module.esm.js"
+    },
+    {
+      "from": "node_modules/flickr-justified-gallery/dist/fjGallery.esm.js",
+      "to": "assets/lib/flickr-justified-gallery/fjGallery.esm.js"
+    },
+    {
+      "from": "node_modules/flickr-justified-gallery/dist/fjGallery.css",
+      "to": "assets/lib/flickr-justified-gallery/fjGallery.css"
+    },
+    {
+      "from": "node_modules/lazysizes/lazysizes.js",
+      "to": "assets/lib/lazysizes/lazysizes.js"
+    },
+    {
+      "from": "node_modules/photoswipe/dist/photoswipe-lightbox.esm.js",
+      "to": "assets/lib/photoswipe/photoswipe-lightbox.esm.js"
+    },
+    {
+      "from": "node_modules/photoswipe/dist/photoswipe.esm.js",
+      "to": "assets/lib/photoswipe/photoswipe.esm.js"
+    },
+    {
+      "from": "node_modules/photoswipe/dist/photoswipe.css",
+      "to": "assets/lib/photoswipe/photoswipe.css"
+    },
+    {
+      "from": "node_modules/photoswipe-dynamic-caption-plugin/dist/photoswipe-dynamic-caption-plugin.esm.min.js",
+      "to": "assets/lib/photoswipe-dynamic-caption-plugin/photoswipe-dynamic-caption-plugin.esm.min.js"
+    },
+    {
+      "from": "node_modules/photoswipe-dynamic-caption-plugin/photoswipe-dynamic-caption-plugin.css",
+      "to": "assets/lib/photoswipe-dynamic-caption-plugin/photoswipe-dynamic-caption-plugin.css"
+    }
+  ]
 }

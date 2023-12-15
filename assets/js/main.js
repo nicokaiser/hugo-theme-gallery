@@ -1,10 +1,10 @@
-import fjGallery from "jslibs/flickr-justified-gallery/dist/fjGallery.esm.js";
-import PhotoSwipeLightbox from "jslibs/photoswipe/dist/photoswipe-lightbox.esm.js";
-import PhotoSwipe from "jslibs/photoswipe/dist/photoswipe.esm.js";
-import PhotoSwipeDynamicCaption from "jslibs/photoswipe-dynamic-caption-plugin/dist/photoswipe-dynamic-caption-plugin.esm.min.js";
-import Alpine from "jslibs/alpinejs/v3/alpinejs/dist/module.esm.js";
-import collapse from "jslibs/alpinejs/v3/collapse/dist/module.esm.js";
-import lazysizes from "jslibs/lazysizes/lazysizes.js";
+import fjGallery from "lib/flickr-justified-gallery/fjGallery.esm.js";
+import PhotoSwipeLightbox from "lib/photoswipe/photoswipe-lightbox.esm.js";
+import PhotoSwipe from "lib/photoswipe/photoswipe.esm.js";
+import PhotoSwipeDynamicCaption from "lib/photoswipe-dynamic-caption-plugin/photoswipe-dynamic-caption-plugin.esm.min.js";
+import Alpine from "lib/alpinejs/module.esm.js";
+import collapse from "lib/alpinejs-collapse/module.esm.js";
+import lazysizes from "lib/lazysizes/lazysizes.js";
 
 Alpine.plugin(collapse);
 Alpine.start();
