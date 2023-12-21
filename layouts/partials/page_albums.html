@@ -1,4 +1,4 @@
-<div class="mb-12 mt-9 grid grid-cols-1 gap-6 px-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 3xl:grid-cols-5">
+<div class="mb-12 mt-9 grid grid-cols-1 gap-x-6 gap-y-9 px-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 3xl:grid-cols-5">
   {{ range where .Pages.ByDate.Reverse "Params.private" "ne" true }}
     {{ $images := .Resources.ByType "image" }}
     {{ if gt (len $images) 0 }}
@@ -8,9 +8,9 @@
       {{ $counts := partial "get_counts.html" . }}
 
 
-      <a href="{{ .RelPermalink }}" class="rounded-2xl bg-neutral-100 transition-[filter] hover:brightness-90 dark:bg-neutral-850 dark:hover:brightness-110" title="{{ .Title }}">
+      <a href="{{ .RelPermalink }}" class="transition-[filter] hover:brightness-90  dark:hover:brightness-110" title="{{ .Title }}">
         <div class="h-100">
-          <div class="w-full overflow-hidden rounded-t-2xl" style="background-color: {{ $color }}">
+          <div class="w-full overflow-hidden rounded-2xl" style="background-color: {{ $color }}">
             <img class="lazyload aspect-[3/2] w-full" data-src="{{ $thumbnail.RelPermalink }}" alt="{{ .Title }}" />
           </div>
           <div class="p-5">
