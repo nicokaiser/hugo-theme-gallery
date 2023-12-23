@@ -1,7 +1,7 @@
-<ul class="my-12 text-center text-xl font-medium text-zinc-500 dark:text-zinc-500">
+<ul class="my-12 text-center text-xl font-medium text-neutral-500 dark:text-neutral-500">
   {{ with .Site.Home }}
     <li itemscope itemtype="http://www.schema.org/SiteNavigationElement">
-      <a class="{{ if $.IsHome }}text-black dark:text-white{{ end }} block py-2 transition-colors hover:text-black dark:hover:text-zinc-200" href="{{ .RelPermalink }}" itemprop="url">
+      <a class="{{ if $.IsHome }}text-black dark:text-white{{ end }} block py-2 transition-colors hover:text-black dark:hover:text-neutral-200" href="{{ .RelPermalink }}" itemprop="url">
         <span itemprop="name">{{ .LinkTitle | default (i18n "home") }}</span>
       </a>
     </li>
@@ -12,7 +12,7 @@
           {{ $active = true }}
         {{ end }}
         <li itemscope itemtype="http://www.schema.org/SiteNavigationElement">
-          <a class="{{ if $active }}text-black dark:text-white{{ end }} block py-2 hover:text-black dark:hover:text-zinc-200" href="{{ .RelPermalink }}" itemprop="url">
+          <a class="{{ if $active }}text-black dark:text-white{{ end }} block py-2 hover:text-black dark:hover:text-neutral-200" href="{{ .RelPermalink }}" itemprop="url">
             <span itemprop="name">{{ .LinkTitle }}</span>
           </a>
         </li>
@@ -20,7 +20,7 @@
         {{ $count := (len (.Resources.ByType "image")) }}
         {{ if gt $count 0 }}
           <li itemscope itemtype="http://www.schema.org/SiteNavigationElement">
-            <a class="{{ if (eq . page.Page) }}text-black dark:text-white{{ end }} block py-2 hover:text-black dark:hover:text-zinc-200" href="{{ .RelPermalink }}" itemprop="url">
+            <a class="{{ if (eq . page.Page) }}text-black dark:text-white{{ end }} block py-2 hover:text-black dark:hover:text-neutral-200" href="{{ .RelPermalink }}" itemprop="url">
               <span itemprop="name">{{ .LinkTitle }}</span>
             </a>
           </li>
@@ -30,7 +30,7 @@
   {{ end }}
   {{- range site.Menus.main }}
     <li itemscope itemtype="http://www.schema.org/SiteNavigationElement">
-      <a class="{{ if page.IsMenuCurrent .Menu . }}text-black dark:text-white{{ end }} block py-2 transition-colors hover:text-black dark:hover:text-zinc-200" href="{{ .URL }}" itemprop="url">
+      <a class="{{ if page.IsMenuCurrent .Menu . }}text-black dark:text-white{{ end }} block py-2 transition-colors hover:text-black dark:hover:text-neutral-200" href="{{ .URL }}" itemprop="url">
         <span itemprop="name">{{ .Name }}</span>
       </a>
     </li>
