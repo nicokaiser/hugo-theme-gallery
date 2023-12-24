@@ -9,9 +9,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        neutral: {
-          850: "#1f1f1f",
-        },
+        primary: 'var(--color-primary)',
+        secondary: 'var(--color-secondary)',
+        background: 'var(--color-background)',
       },
       fontFamily: {
         sans: ["InterVariable", ...defaultTheme.fontFamily.sans],

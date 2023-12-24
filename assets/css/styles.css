@@ -15,10 +15,6 @@
   src: url("../../fonts/InterVariable.woff2") format("woff2");
 }
 
-html.dark {
-  color-scheme: dark;
-}
-
 [x-cloak] {
   display: none !important;
 }
@@ -33,4 +29,17 @@ html.dark {
 }
 img.lazyload:not([src]) {
   visibility: hidden;
+}
+
+:root {
+  --color-primary: #171717; /* neutral-900 */
+  --color-secondary: #737373; /* neutral-500 */
+  --color-background: #ffffff; /* white */
+}
+
+html.dark {
+  color-scheme: dark;
+  --color-primary: #f5f5f5; /* neutral-100 */
+  --color-secondary: #a3a3a3; /* neutral-400 */
+  --color-background: #171717; /* neutral-900 */
 }
