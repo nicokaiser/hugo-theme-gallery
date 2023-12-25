@@ -1,2 +1,3 @@
 node_modules/
 .hugo_build.lock
+exampleSite/assets/jsconfig.json

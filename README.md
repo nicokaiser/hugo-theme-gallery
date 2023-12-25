@@ -80,6 +80,26 @@ contents
 - Albums without an image are not shown.
 - Images in a sub-directory are not shown (here: `nature/images/tree.jpg`). This can be used to provide an album thumbnail that is not shown in the album itself.
 
+### Custom CSS
+
+This theme uses Tailwind CSS and comes with a pre-built `styles.css`, so installing Node.js, PostCSS, etc. is not required. Some CSS variables can be used to create a customized look:
+
+Add a `assets/css/custom.css` to your site and adjust the values to your needs:
+
+```css
+:root {
+  --color-primary: #171717; /* neutral-900 */
+  --color-secondary: #737373; /* neutral-500 */
+  --color-background: #ffffff; /* white */
+}
+
+html.dark {
+  --color-primary: #f5f5f5; /* neutral-100 */
+  --color-secondary: #a3a3a3; /* neutral-400 */
+  --color-background: #171717; /* neutral-900 */
+}
+```
+
 ### Albums with images and sub-albums
 
 In some cases it might be desirable to show images _and_ sub-albums on one page. To achive this, a local version of `list.html` needs to be added with something like this:
