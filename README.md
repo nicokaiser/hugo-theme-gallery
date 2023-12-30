@@ -80,6 +80,18 @@ contents
 - Albums without an image are not shown.
 - Images in a sub-directory are not shown (here: `nature/images/tree.jpg`). This can be used to provide an album thumbnail that is not shown in the album itself.
 
+### Front matter
+
+- `title` -- title of the album, shown in the album list and on the album page.
+- `date` -- album date, used for sorting (newest first).
+- `description` -- description shown on the album page.
+- `featured_image` -- name of the image file used for the album thumbnail. If not set, the first image which contains `feature` in its filename is used, otherwise the first image in the album.
+- `weight` -- can be used to adjust sort order.
+- `private` -- if set to `true`, this album is not shown in the album overview and is excluded from RSS feeds.
+- `featured` -- if set to `true`, this album is listed on the homepage (even if private).
+- `sort_by` -- property used for sorting images in an album. Default is `Name` (filename), but can also be `Exif.Date` (only works if all images have EXIF tags).
+- `sort_order` -- sort order. Default is `asc`.
+
 ### Custom CSS
 
 This theme uses Tailwind CSS and comes with a pre-built `styles.css`, so installing Node.js, PostCSS, etc. is not required. Some CSS variables can be used to create a customized look:
