@@ -1503,7 +1503,7 @@ div.pswp__img--placeholder,
   font-display: auto;
   font-style: normal;
   font-named-instance: "Regular";
-  src: url("/fonts/InterVariable.woff2") format("woff2");
+  src: url("../fonts/InterVariable.woff2") format("woff2");
 }
 [x-cloak] {
   display: none !important;
