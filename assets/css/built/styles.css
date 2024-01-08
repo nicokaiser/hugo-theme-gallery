@@ -1,5 +1,5 @@
 /*
-! tailwindcss v3.4.0 | MIT License | https://tailwindcss.com
+! tailwindcss v3.4.1 | MIT License | https://tailwindcss.com
 *//*
 1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
 2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
@@ -393,7 +393,7 @@ video {
   display: none;
 }
 
-.filter, .hover\:brightness-90, :is(:where(.dark) .dark\:hover\:brightness-110:hover) {
+.filter, .hover\:brightness-90, :is(.dark .dark\:hover\:brightness-110:hover) {
   --tw-blur:  ;
   --tw-brightness:  ;
   --tw-contrast:  ;
@@ -1530,7 +1530,7 @@ html.dark {
   --color-secondary: #a3a3a3; /* neutral-400 */
   --color-background: #171717; /* neutral-900 */
 }
-:is(:where(.dark) .dark\:prose-invert) {
+:is(.dark .dark\:prose-invert) {
   --tw-prose-body: var(--tw-prose-invert-body);
   --tw-prose-headings: var(--tw-prose-invert-headings);
   --tw-prose-lead: var(--tw-prose-invert-lead);
@@ -1555,6 +1555,10 @@ html.dark {
 }
 .hover\:brightness-90:hover {
   --tw-brightness: brightness(.9);
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+:is(.dark .dark\:hover\:brightness-110:hover) {
+  --tw-brightness: brightness(1.1);
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 @media (min-width: 640px) {
@@ -1607,8 +1611,4 @@ html.dark {
   .\33xl\:grid-cols-5 {
     grid-template-columns: repeat(5, minmax(0, 1fr));
   }
-}
-:is(:where(.dark) .dark\:hover\:brightness-110:hover) {
-  --tw-brightness: brightness(1.1);
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
