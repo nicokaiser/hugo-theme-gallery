@@ -1,5 +1,5 @@
 <header class="w-full">
-  <div class="mx-auto flex max-w-screen-3xl flex-wrap justify-between px-6" x-data="{ expanded: false }">
+  <div class="mx-auto flex max-w-screen-3xl flex-wrap justify-between px-6" x-data="{ menu: false }">
     <div class="flex h-16 w-full justify-between">
       {{ $scratch := newScratch }}
       {{ if .Parent }}
@@ -22,17 +22,19 @@
       {{ end }}
 
 
-      <button @click="expanded = !expanded" type="button" class="group -me-4 ml-3 inline-flex items-center p-3 text-s" title="{{ i18n "albums" }}">
-        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" x-show="!expanded">
-          <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-        </svg>
-        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" x-cloak="x-cloak" x-show="expanded">
-          <path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-        </svg>
-      </button>
+      <div class="ml-3 -me-4 inline-flex items-center">
+        <button @click="menu = !menu" type="button" class="p-3 text-s" title="{{ i18n "albums" }}">
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" x-show="!menu">
+            <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+          </svg>
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" x-cloak="x-cloak" x-show="menu">
+            <path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+          </svg>
+        </button>
+      </div>
     </div>
 
-    <div x-cloak x-show="expanded" x-collapse class="w-full">
+    <div x-cloak x-show="menu" x-collapse class="w-full">
       {{- partial "menu" . -}}
     </div>
   </div>
