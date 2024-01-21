@@ -5,7 +5,7 @@
     <ul class="my-2 flex flex-wrap justify-center">
       {{ range .Site.Menus.footer }}
         <li>
-          <a {{ with .Params.rel -}} rel="{{ . }}" {{ end -}} href="{{ .URL }}" class="mx-2">
+          <a {{ with .Params.rel -}}rel="{{ . }}"{{ end -}} href="{{ .URL }}" class="mx-2">
             {{ .Name }}
           </a>
         </li>
