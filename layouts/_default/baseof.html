@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ site.LanguageCode | default "en" }}" class="{{ if (eq .Site.Params.defaultTheme "light") }}light{{ else if (eq .Site.Params.defaultTheme "dark") }}dark{{ end }} h-full">
+<html class="{{ if (eq .Site.Params.defaultTheme "light") }}light{{ else if (eq .Site.Params.defaultTheme "dark") }}dark{{ end }} h-full" lang="{{ site.LanguageCode | default "en" }}">
   {{- partial "site_head.html" . -}}
   <body class="flex min-h-full flex-col bg-background text-primary antialiased">
     {{- partial "site_header.html" . -}}

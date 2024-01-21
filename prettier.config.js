@@ -2,7 +2,8 @@
 module.exports = {
   plugins: [
     "prettier-plugin-go-template",
-    "prettier-plugin-tailwindcss"
+    "prettier-plugin-tailwindcss",
+    "prettier-plugin-organize-attributes"
   ],
   printWidth: 1000,
   tabWidth: 2,

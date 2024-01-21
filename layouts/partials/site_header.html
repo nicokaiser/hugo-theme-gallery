@@ -24,7 +24,7 @@
       </div>
 
       <div class="inline-flex items-center gap-1">
-        <button @click="menu = !menu" type="button" class="p-2" title="{{ i18n "albums" }}">
+        <button class="p-2" @click="menu = !menu" type="button" title="{{ i18n "albums" }}">
           <svg class="h-6 w-6" x-show="!menu" data-slot="icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path clip-rule="evenodd" fill-rule="evenodd" d="M3 6.75A.75.75 0 0 1 3.75 6h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 6.75ZM3 12a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 12Zm0 5.25a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75Z"></path>
           </svg>
@@ -35,7 +35,7 @@
       </div>
     </div>
 
-    <div x-cloak x-show="menu" x-collapse class="w-full">
+    <div class="w-full" x-cloak x-show="menu" x-collapse>
       {{- partial "menu" . -}}
     </div>
   </div>
