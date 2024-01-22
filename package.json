@@ -25,7 +25,8 @@
     "postinstall": "vendor-copy",
     "assets": "rimraf assets/lib && vendor-copy",
     "dev": "postcss ./assets/css/styles.css -o ./assets/css/built/styles.css --watch",
-    "build": "postcss ./assets/css/styles.css -o ./assets/css/built/styles.css"
+    "build": "postcss ./assets/css/styles.css -o ./assets/css/built/styles.css",
+    "prettier": "prettier layouts --write"
   },
   "vendorCopy": [],
   "devVendorCopy": [
