@@ -1,11 +1,11 @@
 <!doctype html>
 <html class="{{ if (eq .Site.Params.defaultTheme "light") }}light{{ else if (eq .Site.Params.defaultTheme "dark") }}dark{{ end }} h-full" lang="{{ site.LanguageCode | default "en" }}">
-  {{- partial "site_head.html" . -}}
+  {{- partial "head.html" . -}}
   <body class="flex min-h-full flex-col bg-background text-primary antialiased">
-    {{- partial "site_header.html" . -}}
+    {{- partial "header.html" . -}}
     <main class="mx-auto w-full max-w-screen-3xl grow">
       {{- block "main" . }}{{- end }}
     </main>
-    {{- partial "site_footer.html" . -}}
+    {{- partial "footer.html" . -}}
   </body>
 </html>

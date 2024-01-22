@@ -118,9 +118,9 @@ In some cases it might be desirable to show images _and_ sub-albums on one page.
 
 ```diff
   {{ define "main" }}
-    {{- partial "page_header.html" . -}}
-    {{- partial "page_albums.html" . -}}
-+   {{- partial "page_gallery.html" . -}}
+    {{- partial "title.html" . -}}
+    {{- partial "albums.html" . -}}
++   {{- partial "gallery.html" . -}}
   {{ end }}
 ```
 
