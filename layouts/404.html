@@ -1,9 +1,9 @@
 {{ define "main" }}
-  <div class="mx-6 my-12 text-center md:my-20">
-    <h1 class="mx-auto mt-6 max-w-screen-md font-semibold">404</h1>
-    <h2 class="my-6 text-3xl font-semibold sm:text-5xl">{{ i18n "pageNotFound" }}</h2>
+  <div class="mx-6 my-12 text-center md:my-20 font-semibold">
+    <h1 class="mx-auto mt-6 max-w-screen-md">404</h1>
+    <h2 class="my-6 text-3xl sm:text-5xl">{{ i18n "pageNotFound" }}</h2>
     <div class="mx-6 my-12">
-      <a class="font-semibold" href="{{ .Site.Home.RelPermalink }}">
+      <a href="{{ .Site.Home.RelPermalink }}">
         <span aria-hidden="true">←</span>
         {{ i18n "toHomepage" }}
       </a>

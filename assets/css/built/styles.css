@@ -950,9 +950,6 @@ video {
 .max-w-screen-md {
   max-width: 768px;
 }
-.flex-none {
-  flex: none;
-}
 .grow {
   flex-grow: 1;
 }
@@ -1035,9 +1032,6 @@ video {
 }
 .font-medium {
   font-weight: 500;
-}
-.font-normal {
-  font-weight: 400;
 }
 .font-semibold {
   font-weight: 600;
