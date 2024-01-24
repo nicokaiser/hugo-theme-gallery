@@ -15,7 +15,7 @@
       {{ $color := index $thumbnail.Colors 0 | default "transparent" }}
       {{ $counts := partial "get_counts.html" . }}
       <a class="transition-[filter] hover:brightness-90 dark:hover:brightness-110" href="{{ .RelPermalink }}" title="{{ .Title }}">
-        <div class="w-full overflow-hidden rounded-2xl" style="background-color: {{ $color }}">
+        <div class="w-full overflow-hidden rounded-xl" style="background-color: {{ $color }}">
           <img class="lazyload aspect-[3/2] w-full" data-src="{{ $thumbnail.RelPermalink }}" alt="{{ .Title }}" />
         </div>
         <div class="p-5">

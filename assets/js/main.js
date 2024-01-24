@@ -87,5 +87,8 @@ if (gallery) {
     },
     transitionDuration: false,
     calculateItemsHeight: true,
+    gutter: 10,
+    rowHeight: 288,
+    rowHeightTolerance: 0.25,
   });
 }

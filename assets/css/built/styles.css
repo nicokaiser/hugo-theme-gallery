@@ -987,8 +987,8 @@ video {
 .overflow-hidden {
   overflow: hidden;
 }
-.rounded-2xl {
-  border-radius: 1rem;
+.rounded-xl {
+  border-radius: 0.75rem;
 }
 .bg-background {
   background-color: var(--color-background);
