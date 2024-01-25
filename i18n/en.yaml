@@ -1,0 +1,11 @@
+albumCount:
+  one: 1 album
+  other: "{{ . }} albums"
+albums: Albums
+in: in
+home: Home
+pageNotFound: Page not found
+photoCount:
+  one: 1 photo
+  other: "{{ . }} photos"
+toHomepage: Go to homepage
