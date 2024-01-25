@@ -23,8 +23,8 @@
             {{ .Title }}
           </h5>
           <p class="text-sm text-secondary">
-            {{- i18n "photoCount" $counts.images }}
-            {{ if gt $counts.albums 0 }}{{ i18n "in" }} {{ i18n "albumCount" $counts.albums }}{{ end -}}
+            {{- i18n "photoCount" ($counts.images | lang.FormatNumber 0) }}
+            {{ if gt $counts.albums 0 }}{{ i18n "in" }} {{ i18n "albumCount" ($counts.albums | lang.FormatNumber 0) }}{{ end -}}
           </p>
         </div>
       </a>
