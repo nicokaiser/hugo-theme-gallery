@@ -1,4 +1,4 @@
-<div class="my-12 sm:px-6">
+<div class="mt-8 mb-16 sm:px-6">
   <div class="fj-gallery" style="visibility: hidden; height: 650px;">
     {{ $photos := sort (.Resources.ByType "image") (index .Params "sort_by" | default "Name") (.Params.sort_order | default "asc") }}
     {{ range $index, $original := $photos }}

@@ -1,8 +1,6 @@
 {{ define "main" }}
   {{- partial "title.html" . -}}
-  <div class="my-12 px-6">
-    <div class="prose prose-neutral mx-auto max-w-screen-md dark:prose-invert">
-      {{ .Content }}
-    </div>
+  <div class="mt-8 mb-16 px-6 prose prose-neutral mx-auto max-w-screen-md dark:prose-invert">
+    {{ .Content }}
   </div>
 {{ end }}
