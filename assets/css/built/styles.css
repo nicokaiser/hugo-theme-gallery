@@ -1039,11 +1039,6 @@ video {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
-.transition-colors {
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-}
 /*! PhotoSwipe main CSS by Dmytro Semenov | photoswipe.com */
 .pswp {
   --pswp-bg: #000;
@@ -1518,6 +1513,9 @@ html.dark {
 .hover\:brightness-90:hover {
   --tw-brightness: brightness(.9);
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+.aria-\[current\=true\]\:text-primary[aria-current=true] {
+  color: var(--color-primary);
 }
 :is(.dark .dark\:hover\:brightness-110:hover) {
   --tw-brightness: brightness(1.1);

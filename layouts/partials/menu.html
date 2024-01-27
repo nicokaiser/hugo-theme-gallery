@@ -1,36 +1,24 @@
 <ul class="mt-8 mb-16 text-center text-xl font-medium text-secondary">
   {{ with .Site.Home }}
     <li itemscope itemtype="http://www.schema.org/SiteNavigationElement">
-      <a class="{{ if $.IsHome }}text-primary{{ end }} block py-2 transition-colors hover:text-primary" href="{{ .RelPermalink }}" itemprop="url">
+      <a class="aria-[current=true]:text-primary block py-2 hover:text-primary" aria-current="{{ $.IsHome }}" href="{{ .RelPermalink }}" itemprop="url">
         <span itemprop="name">{{ .LinkTitle | default (i18n "home") }}</span>
       </a>
     </li>
     {{ range where .Pages.ByDate.Reverse "Params.private" "ne" true }}
-      {{ if .IsSection }}
-        {{ $active := false }}
-        {{ if or (eq . page.Page) (.IsAncestor page.Page) }}
-          {{ $active = true }}
-        {{ end }}
+      {{ if or .IsSection (gt (len (.Resources.ByType "image")) 0) }}
+        {{ $active := or (eq . page.Page) (.IsAncestor page.Page) }}
         <li itemscope itemtype="http://www.schema.org/SiteNavigationElement">
-          <a class="{{ if $active }}text-primary{{ end }} block py-2 hover:text-primary" href="{{ .RelPermalink }}" itemprop="url">
+          <a class="aria-[current=true]:text-primary block py-2 hover:text-primary" aria-current="{{ $active }}" href="{{ .RelPermalink }}" itemprop="url">
             <span itemprop="name">{{ .LinkTitle }}</span>
           </a>
         </li>
-      {{ else }}
-        {{ $count := (len (.Resources.ByType "image")) }}
-        {{ if gt $count 0 }}
-          <li itemscope itemtype="http://www.schema.org/SiteNavigationElement">
-            <a class="{{ if (eq . page.Page) }}text-primary{{ end }} block py-2 hover:text-primary" href="{{ .RelPermalink }}" itemprop="url">
-              <span itemprop="name">{{ .LinkTitle }}</span>
-            </a>
-          </li>
-        {{ end }}
       {{ end }}
     {{ end }}
   {{ end }}
   {{- range site.Menus.main }}
     <li itemscope itemtype="http://www.schema.org/SiteNavigationElement">
-      <a class="{{ if page.IsMenuCurrent .Menu . }}text-primary{{ end }} block py-2 transition-colors hover:text-primary" href="{{ .URL }}" itemprop="url">
+      <a class="aria-[current=true]:text-primary block py-2 hover:text-primary" aria-current="{{ page.IsMenuCurrent .Menu . }}" href="{{ .URL }}" itemprop="url">
         <span itemprop="name">{{ .Name }}</span>
       </a>
     </li>
