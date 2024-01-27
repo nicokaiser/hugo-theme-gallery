@@ -1,8 +1,8 @@
 {{ define "main" }}
-  <div class="mx-6 my-12 text-center md:my-20 font-semibold">
-    <h1 class="mx-auto mt-6 max-w-screen-md">404</h1>
+  <div class="px-6 my-12 text-center md:my-20 font-semibold">
+    <h1 class="mx-auto my-6 max-w-screen-md text-secondary">404</h1>
     <h2 class="my-6 text-3xl sm:text-5xl">{{ i18n "pageNotFound" }}</h2>
-    <div class="mx-6 my-12">
+    <div class="my-12">
       <a href="{{ .Site.Home.RelPermalink }}">
         <span aria-hidden="true">←</span>
         {{ i18n "toHomepage" }}

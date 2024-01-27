@@ -864,10 +864,6 @@ video {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
 }
-.mx-6 {
-  margin-left: 1.5rem;
-  margin-right: 1.5rem;
-}
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -884,12 +880,6 @@ video {
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
 }
-.mb-12 {
-  margin-bottom: 3rem;
-}
-.mb-16 {
-  margin-bottom: 4rem;
-}
 .mb-2 {
   margin-bottom: 0.5rem;
 }
@@ -901,9 +891,6 @@ video {
 }
 .mt-6 {
   margin-top: 1.5rem;
-}
-.mt-9 {
-  margin-top: 2.25rem;
 }
 .block {
   display: block;
@@ -981,8 +968,8 @@ video {
   -moz-column-gap: 1.5rem;
        column-gap: 1.5rem;
 }
-.gap-y-9 {
-  row-gap: 2.25rem;
+.gap-y-8 {
+  row-gap: 2rem;
 }
 .overflow-hidden {
   overflow: hidden;
