@@ -1,7 +1,7 @@
 <!doctype html>
 <html class="{{ if (eq .Site.Params.defaultTheme "light") }}light{{ else if (eq .Site.Params.defaultTheme "dark") }}dark{{ end }} h-full" lang="{{ site.LanguageCode | default "en" }}">
   {{- partial "head.html" . -}}
-  <body class="flex min-h-full flex-col bg-background text-primary antialiased">
+  <body class="flex min-h-full flex-col antialiased">
     {{- partial "header.html" . -}}
     <main class="mx-auto w-full max-w-screen-3xl grow">
       {{- block "main" . }}{{- end }}

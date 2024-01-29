@@ -1,7 +1,7 @@
-<ul class="mt-8 mb-16 text-center text-xl font-medium text-secondary">
+<ul class="mt-8 mb-16 text-center text-lg font-semibold text-base-content/60">
   {{ with .Site.Home }}
     <li itemscope itemtype="http://www.schema.org/SiteNavigationElement">
-      <a class="aria-[current=true]:text-primary block py-2 hover:text-primary" aria-current="{{ $.IsHome }}" href="{{ .RelPermalink }}" itemprop="url">
+      <a class="aria-[current=true]:text-base-content block py-2 hover:text-base-content" aria-current="{{ $.IsHome }}" href="{{ .RelPermalink }}" itemprop="url">
         <span itemprop="name">{{ .LinkTitle | default (i18n "home") }}</span>
       </a>
     </li>
@@ -9,7 +9,7 @@
       {{ if or .IsSection (gt (len (.Resources.ByType "image")) 0) }}
         {{ $active := or (eq . page.Page) (.IsAncestor page.Page) }}
         <li itemscope itemtype="http://www.schema.org/SiteNavigationElement">
-          <a class="aria-[current=true]:text-primary block py-2 hover:text-primary" aria-current="{{ $active }}" href="{{ .RelPermalink }}" itemprop="url">
+          <a class="aria-[current=true]:text-base-content block py-3 hover:text-base-content" aria-current="{{ $active }}" href="{{ .RelPermalink }}" itemprop="url">
             <span itemprop="name">{{ .LinkTitle }}</span>
           </a>
         </li>
@@ -18,7 +18,7 @@
   {{ end }}
   {{- range site.Menus.main }}
     <li itemscope itemtype="http://www.schema.org/SiteNavigationElement">
-      <a class="aria-[current=true]:text-primary block py-2 hover:text-primary" aria-current="{{ page.IsMenuCurrent .Menu . }}" href="{{ .URL }}" itemprop="url">
+      <a class="aria-[current=true]:text-base-content block py-2 hover:text-base-content" aria-current="{{ page.IsMenuCurrent .Menu . }}" href="{{ .URL }}" itemprop="url">
         <span itemprop="name">{{ .Name }}</span>
       </a>
     </li>

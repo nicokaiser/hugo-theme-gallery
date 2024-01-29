@@ -1,14 +1,10 @@
-<footer class="mx-auto mb-8 mt-6 flex max-w-screen-3xl flex-wrap justify-center px-6 text-sm text-secondary">
-  <span class="m-2">{{ .Site.Copyright }}</span>
-  {{ if .Site.Menus.footer }}
-    <ul class="my-2 flex flex-wrap justify-center">
-      {{ range .Site.Menus.footer }}
-        <li>
-          <a class="mx-2" {{ with .Params.rel -}}rel="{{ . }}"{{ end -}} href="{{ .URL }}">
-            {{ .Name }}
-          </a>
-        </li>
-      {{ end }}
-    </ul>
-  {{ end }}
+<footer class="footer footer-center opacity-60 p-10 max-w-screen-3xl">
+  <nav class="grid grid-flow-col gap-4">
+    {{ .Site.Copyright }}
+    {{ range .Site.Menus.footer }}
+      <a class="link link-hover" {{ with .Params.rel -}}rel="{{ . }}"{{ end -}} href="{{ .URL }}">
+        {{ .Name }}
+      </a>
+    {{ end }}
+  </nav>
 </footer>

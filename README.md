@@ -100,15 +100,15 @@ Add a `assets/css/custom.css` to your site and adjust the values to your needs:
 
 ```css
 :root {
-  --color-primary: #171717; /* neutral-900 */
-  --color-secondary: #737373; /* neutral-500 */
-  --color-background: #ffffff; /* white */
+  --b1: 0 0% 100%; /* Base color of page */
+  --b2: 0 0% 96.08%; /* Base color, a little darker */
+  --bc: 0 0% 9.02%; /* Foreground content color */
 }
 
 html.dark {
-  --color-primary: #f5f5f5; /* neutral-100 */
-  --color-secondary: #a3a3a3; /* neutral-400 */
-  --color-background: #171717; /* neutral-900 */
+  --b1: 0 0% 9.02%;
+  --b2: 0 0% 14.9%;
+  --bc: 0 0% 96.08%;
 }
 ```
 

@@ -10,9 +10,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: 'var(--color-primary)',
-        secondary: 'var(--color-secondary)',
-        background: 'var(--color-background)',
+        "base-100": "hsl(var(--b1) / <alpha-value>)",
+        "base-200": "hsl(var(--b2) / <alpha-value>)",
+        "base-content": "hsl(var(--bc) / <alpha-value>)",
       },
       fontFamily: {
         sans: ["InterVariable", ...defaultTheme.fontFamily.sans],
