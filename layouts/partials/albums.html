@@ -19,7 +19,7 @@
           <img class="lazyload aspect-[3/2] w-full" data-src="{{ $thumbnail.RelPermalink }}" alt="{{ .Title }}" />
         </figure>
         <div class="card-body">
-          <h2 class="card-title text-lg">{{ .Title }}</h2>
+          <h2 class="card-title text-lg leading-6">{{ .Title }}</h2>
           <p class="text-base-content/60">
             {{- i18n "photoCount" ($counts.images | lang.FormatNumber 0) }}
             {{ if gt $counts.albums 0 }}{{ i18n "in" }} {{ i18n "albumCount" ($counts.albums | lang.FormatNumber 0) }}{{ end -}}
