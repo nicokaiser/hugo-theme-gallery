@@ -1820,6 +1820,10 @@ video {
   font-weight: 600;
 }
 
+.leading-6 {
+  line-height: 1.5rem;
+}
+
 .text-base-content\/60 {
   color: hsl(var(--bc) / 0.6);
 }
