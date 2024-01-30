@@ -1,13 +1,12 @@
-{{ $scratch := newScratch }}
-{{ $scratch.Set "albums" slice }}
+{{ $albums := slice }}
 {{ if .IsHome }}
-  {{ $scratch.Add "albums" (where site.Pages.ByDate.Reverse "Params.featured" "=" true) }}
+  {{ $albums = $albums | append (where site.Pages.ByDate.Reverse "Params.featured" "=" true) }}
 {{ end }}
-{{ $scratch.Add "albums" (where .Pages.ByDate.Reverse "Params.private" "ne" true) }}
+{{ $albums = $albums | append (where .Pages.ByDate.Reverse "Params.private" "ne" true) }}
 
 
 <div class="mb-16 mt-8 grid grid-cols-1 gap-x-6 gap-y-8 px-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 3xl:grid-cols-5">
-  {{ range $scratch.Get "albums" | uniq }}
+  {{ range $albums | uniq }}
     {{ $images := .Resources.ByType "image" }}
     {{ if gt (len $images) 0 }}
       {{ $featured := ($images.GetMatch (.Params.featured_image | default "*feature*")) | default (index $images 0) }}
