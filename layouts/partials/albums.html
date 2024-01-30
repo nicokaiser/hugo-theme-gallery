@@ -6,7 +6,7 @@
 {{ $scratch.Add "albums" (where .Pages.ByDate.Reverse "Params.private" "ne" true) }}
 
 
-<div class="mt-8 mb-16 grid grid-cols-1 gap-x-6 gap-y-8 px-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 3xl:grid-cols-5">
+<div class="mb-16 mt-8 grid grid-cols-1 gap-x-6 gap-y-8 px-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 3xl:grid-cols-5">
   {{ range $scratch.Get "albums" | uniq }}
     {{ $images := .Resources.ByType "image" }}
     {{ if gt (len $images) 0 }}
@@ -15,14 +15,14 @@
       {{ $color := index $thumbnail.Colors 0 | default "transparent" }}
       {{ $counts := partial "get_counts.html" . }}
       <a class="card card-compact group" href="{{ .RelPermalink }}" title="{{ .Title }}">
-        <figure class="shadow-sm transition-all duration-300 group-hover:scale-[1.02] hover:shadow-lg rounded-2xl" style="background-color: {{ $color }}">
+        <figure class="rounded-2xl shadow-sm transition-all duration-300 hover:shadow-lg group-hover:scale-[1.02]" style="background-color: {{ $color }}">
           <img class="lazyload aspect-[3/2] w-full" data-src="{{ $thumbnail.RelPermalink }}" alt="{{ .Title }}" />
         </figure>
         <div class="card-body">
           <h2 class="card-title text-lg leading-6">{{ .Title }}</h2>
           <p class="text-base-content/60">
-            {{- i18n "photoCount" ($counts.images | lang.FormatNumber 0) }}
-            {{ if gt $counts.albums 0 }}{{ i18n "in" }} {{ i18n "albumCount" ($counts.albums | lang.FormatNumber 0) }}{{ end -}}
+            {{ i18n "photoCount" ($counts.images | lang.FormatNumber 0) }}
+            {{ if gt $counts.albums 0 }}{{ i18n "in" }} {{ i18n "albumCount" ($counts.albums | lang.FormatNumber 0) }}{{ end }}
           </p>
         </div>
       </a>

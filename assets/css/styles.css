@@ -1,10 +1,10 @@
-@import "../lib/photoswipe/photoswipe.css";
-@import "../lib/photoswipe-dynamic-caption-plugin/photoswipe-dynamic-caption-plugin.css";
-@import "../lib/flickr-justified-gallery/fjGallery.css";
-
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+@import "../lib/photoswipe/photoswipe.css";
+@import "../lib/photoswipe-dynamic-caption-plugin/photoswipe-dynamic-caption-plugin.css";
+@import "../lib/flickr-justified-gallery/fjGallery.css";
 
 @layer base {
   :root {

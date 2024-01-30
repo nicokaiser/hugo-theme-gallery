@@ -1,11 +1,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  {{ if .IsHome -}}
-    <title>{{ block "title" . }}{{ .Site.Title }}{{ end }}</title>
-  {{- else -}}
-    <title>{{ .Title }} – {{ .Site.Title }}</title>
-  {{- end }}
+  <title>{{ if not .IsHome }}{{ .Title }} –{{ end }} {{ .Site.Title }}</title>
   <link rel="canonical" href="{{ .Permalink }}" />
   <link rel="icon" type="image/svg+xml" href="{{ "images/favicon.svg" | relURL }}" />
   <link rel="icon" type="image/png" href="{{ "images/favicon.png" | relURL }}" />
