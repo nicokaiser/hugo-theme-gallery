@@ -15,18 +15,11 @@
 
 @layer components {
   .btn {
-    border-radius: 0.5rem;
-    @apply inline-flex h-12 min-h-[3rem] shrink-0 cursor-pointer select-none flex-wrap items-center justify-center border-transparent px-4 text-center;
-    font-size: 0.875rem;
-    line-height: 1em;
-    @apply gap-2 font-semibold no-underline duration-200 ease-out;
-    border-width: 1px;
+    @apply inline-flex h-12 min-h-[3rem] shrink-0 cursor-pointer select-none flex-wrap items-center justify-center gap-2 rounded-lg border-transparent px-4 text-center text-sm font-semibold leading-4 duration-200 ease-out;
     animation: button-pop 0.25s ease-out;
-    transition-property: color, background-color, border-color, opacity, box-shadow, transform;
+    transition-property: color, background-color, box-shadow, transform;
     & {
-      @apply text-base-content outline-base-content no-underline shadow-sm;
-      background-color: hsl(var(--b2));
-      border-color: hsl(var(--b2));
+      @apply bg-base-200 text-base-content shadow-sm outline-base-content;
     }
     &:active:hover,
     &:active:focus {
@@ -37,12 +30,7 @@
       @apply h-12 w-12 p-0;
     }
     &-ghost {
-      @apply border border-transparent bg-transparent text-current shadow-none outline-current;
-      @media (hover: hover) {
-        &:hover {
-          @apply bg-base-content/20 border-transparent;
-        }
-      }
+      @apply bg-transparent text-current shadow-none outline-current hover:bg-base-content/20;
     }
   }
 
@@ -85,12 +73,9 @@
     &-body {
       @apply flex flex-auto flex-col gap-2;
       padding: 2rem;
-      :where(p) {
-        @apply flex-grow;
-      }
     }
     &-title {
-      @apply flex items-center gap-2 text-xl font-semibold;
+      @apply text-xl font-semibold;
     }
   }
 
@@ -112,7 +97,7 @@
   .link {
     @apply cursor-pointer underline;
     &-hover {
-      @apply no-underline [@media(hover:hover)]:hover:underline;
+      @apply no-underline hover:underline;
     }
     &:focus-visible {
       outline: 2px solid currentColor;
@@ -121,10 +106,7 @@
   }
 
   .navbar {
-    @apply flex items-center;
-    padding: 0.5rem;
-    min-height: 4rem;
-    @apply w-full;
+    @apply flex min-h-16 w-full items-center p-2;
   }
   :where(.navbar > *) {
     @apply inline-flex items-center;

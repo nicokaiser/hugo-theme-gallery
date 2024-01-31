@@ -867,41 +867,39 @@ video {
   --tw-prose-invert-td-borders: #404040;
 }
 .btn {
-    border-radius: 0.5rem;
-    display: inline-flex;
-    height: 3rem;
-    min-height: 3rem;
-    flex-shrink: 0;
-    cursor: pointer;
-    -webkit-user-select: none;
-       -moz-user-select: none;
-            user-select: none;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    border-color: transparent;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    text-align: center;
-    font-size: 0.875rem;
-    line-height: 1em;
-    gap: 0.5rem;
-    font-weight: 600;
-    transition-duration: 200ms;
-    transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
-    border-width: 1px;
+  display: inline-flex;
+  height: 3rem;
+  min-height: 3rem;
+  flex-shrink: 0;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 0.5rem;
+  border-color: transparent;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  text-align: center;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1rem;
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
     animation: button-pop 0.25s ease-out;
-    transition-property: color, background-color, border-color, opacity, box-shadow, transform;
+    transition-property: color, background-color, box-shadow, transform;
+    --tw-bg-opacity: 1;
+    background-color: hsl(var(--b2) / var(--tw-bg-opacity));
     --tw-text-opacity: 1;
     color: hsl(var(--bc) / var(--tw-text-opacity));
-    text-decoration-line: none;
     --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
     --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
     outline-color: hsl(var(--bc) / 1);
-      background-color: hsl(var(--b2));
-      border-color: hsl(var(--b2));
-  }
+}
 .btn:active:hover,
     .btn:active:focus {
       animation: button-pop 0s ease-out;
@@ -913,8 +911,6 @@ video {
   padding: 0px;
 }
 .btn-ghost {
-  border-width: 1px;
-  border-color: transparent;
   background-color: transparent;
   color: currentColor;
   --tw-shadow: 0 0 #0000;
@@ -922,12 +918,9 @@ video {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   outline-color: currentColor;
 }
-@media (hover: hover) {
-        .btn-ghost:hover {
-    border-color: transparent;
-    background-color: hsl(var(--bc) / 0.2);
-  }
-      }
+.btn-ghost:hover {
+  background-color: hsl(var(--bc) / 0.2);
+}
 @keyframes button-pop {
     0% {
       transform: scale(0.98);
@@ -974,13 +967,7 @@ video {
   gap: 0.5rem;
       padding: 2rem;
 }
-.card-body :where(p) {
-  flex-grow: 1;
-}
 .card-title {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
   font-size: 1.25rem;
   line-height: 1.75rem;
   font-weight: 600;
@@ -1015,11 +1002,8 @@ video {
 .link-hover {
   text-decoration-line: none;
 }
-@media(hover:hover) {
-
-  .link-hover:hover {
-    text-decoration-line: underline;
-  }
+.link-hover:hover {
+  text-decoration-line: underline;
 }
 .link:focus-visible {
       outline: 2px solid currentColor;
@@ -1027,10 +1011,10 @@ video {
     }
 .navbar {
   display: flex;
+  min-height: 4rem;
+  width: 100%;
   align-items: center;
-    padding: 0.5rem;
-    min-height: 4rem;
-    width: 100%;
+  padding: 0.5rem;
 }
 :where(.navbar > *) {
   display: inline-flex;
@@ -1124,6 +1108,10 @@ video {
 }
 .rounded-2xl {
   border-radius: 1rem;
+}
+.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 .p-10 {
   padding: 2.5rem;
