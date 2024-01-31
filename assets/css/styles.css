@@ -97,7 +97,7 @@
   .link {
     @apply cursor-pointer underline;
     &-hover {
-      @apply [@media(hover:hover)]:no-underline hover:underline;
+      @apply no-underline [@media(hover:hover)]:hover:underline;
     }
     &:focus-visible {
       outline: 2px solid currentColor;
