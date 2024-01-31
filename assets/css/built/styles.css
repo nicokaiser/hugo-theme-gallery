@@ -1109,10 +1109,6 @@ video {
 .rounded-2xl {
   border-radius: 1rem;
 }
-.bg-white {
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
 .p-10 {
   padding: 2.5rem;
 }
