@@ -30,7 +30,7 @@
       @apply h-12 w-12 p-0;
     }
     &-ghost {
-      @apply bg-transparent text-current shadow-none outline-current hover:bg-base-content/20;
+      @apply bg-transparent text-current shadow-none outline-current [@media(hover:hover)]:hover:bg-base-content/20;
     }
   }
 
@@ -97,7 +97,7 @@
   .link {
     @apply cursor-pointer underline;
     &-hover {
-      @apply no-underline hover:underline;
+      @apply [@media(hover:hover)]:no-underline hover:underline;
     }
     &:focus-visible {
       outline: 2px solid currentColor;
