@@ -918,8 +918,11 @@ video {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   outline-color: currentColor;
 }
-.btn-ghost:hover {
-  background-color: hsl(var(--bc) / 0.2);
+@media(hover:hover) {
+
+  .btn-ghost:hover {
+    background-color: hsl(var(--bc) / 0.2);
+  }
 }
 @keyframes button-pop {
     0% {
@@ -999,11 +1002,14 @@ video {
   cursor: pointer;
   text-decoration-line: underline;
 }
-.link-hover {
-  text-decoration-line: none;
-}
 .link-hover:hover {
   text-decoration-line: underline;
+}
+@media(hover:hover) {
+
+  .link-hover {
+    text-decoration-line: none;
+  }
 }
 .link:focus-visible {
       outline: 2px solid currentColor;
@@ -1080,6 +1086,11 @@ video {
 }
 .cursor-zoom-in {
   cursor: zoom-in;
+}
+.select-none {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 .grid-flow-col {
   grid-auto-flow: column;
