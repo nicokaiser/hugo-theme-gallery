@@ -5,7 +5,7 @@
 
 {{ if .IsSection }}
   {{ range where .Pages "Params.private" "ne" true }}
-    {{ $sub := partial "get_counts.html" . }}
+    {{ $sub := partial "get-counts.html" . }}
     {{ $albums = add $albums 1 }}
     {{ $albums = add $albums $sub.albums }}
     {{ $images = add $images $sub.images }}

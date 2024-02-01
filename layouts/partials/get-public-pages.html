@@ -1,0 +1,10 @@
+{{/* Return all descendant pages, omit private pages and descendants of private pages. */}}
+
+{{ $pages := slice }}
+{{- range where .Pages "Params.private" "ne" true -}}
+  {{- $private := gt (len (where .Ancestors "Params.private" "eq" true)) 0 -}}
+  {{- if not $private -}}
+    {{- $pages = $pages | append . }}
+  {{- end -}}
+{{- end -}}
+{{- return $pages -}}

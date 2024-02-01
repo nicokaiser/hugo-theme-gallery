@@ -1,5 +1,5 @@
 title = "Gallery"
-languageCode = "en-us"
+languageCode = "en"
 copyright = "© Your Name"
 disableKinds = ["taxonomy", "term"]
 defaultContentLanguage = "en"
@@ -11,9 +11,9 @@ theme = "github.com/nicokaiser/hugo-theme-gallery/v2"
   title = "My Gallery"
   description = "Example site for hugo-theme-gallery"
   defaultTheme = "dark"
-
-[author]
-  name = "Your Name"
+  [params.author]
+    name = "Your Name"
+    email = "user@example.com"
 
 [outputs]
   page = ["HTML"]
@@ -34,7 +34,11 @@ theme = "github.com/nicokaiser/hugo-theme-gallery/v2"
     min = "0.112.0"
 
 [menu]
-[[menu.footer]]
-  name = "GitHub"
-  url = "https://github.com/nicokaiser/hugo-theme-gallery/"
-  weight = 3
+  [[menu.footer]]
+    name = "GitHub"
+    url = "https://github.com/nicokaiser/hugo-theme-gallery/"
+    weight = 3
+
+[services]
+  [services.rss]
+    limit = 100
