@@ -44,10 +44,10 @@
         <media:content url="{{ $thumbnail.Permalink }}" type="image/jpeg"/>
         <description>
           &lt;img src=&quot;{{ $thumbnail.Permalink }}&quot; /&gt;
-          &lt;p&gt;{{ .Params.description | transform.XMLEscape | safeHTML }}&lt;/p&gt;
+          &lt;p&gt;{{ .Params.description | html }}&lt;/p&gt;
         </description>
       {{- else -}}
-        <description>{{ .Params.description | transform.XMLEscape | safeHTML }}</description>
+        <description>{{ .Params.description | html }}</description>
       {{- end -}}
     </item>
     {{- end }}
