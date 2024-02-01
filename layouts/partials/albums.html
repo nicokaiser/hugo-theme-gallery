@@ -10,12 +10,12 @@
     {{ $images := .Resources.ByType "image" }}
     {{ if gt (len $images) 0 }}
       {{ $featured := ($images.GetMatch (.Params.featured_image | default "*feature*")) | default (index $images 0) }}
-      {{ $thumbnail := $featured.Fill "900x600" }}
+      {{ $thumbnail := $featured.Fit "600x600" }}
       {{ $color := index $thumbnail.Colors 0 | default "transparent" }}
       {{ $counts := partial "get-counts.html" . }}
       <a class="card card-compact group" href="{{ .RelPermalink }}" title="{{ .Title }}">
         <figure class="rounded-2xl shadow-sm transition-all duration-300 hover:shadow-lg group-hover:scale-[1.02]" style="background-color: {{ $color }}">
-          <img class="lazyload aspect-[3/2] w-full" data-src="{{ $thumbnail.RelPermalink }}" alt="{{ .Title }}" />
+          <img class="lazyload aspect-[3/2] w-full object-cover" data-src="{{ $thumbnail.RelPermalink }}" alt="{{ .Title }}" />
         </figure>
         <div class="card-body">
           <h2 class="card-title text-lg leading-6">{{ .Title }}</h2>

@@ -17,7 +17,7 @@
             {{ $rotation = " r270" }}
           {{ end }}
         {{ end }}
-        {{ $thumbnail := ($original.Fit (printf "%s %s" "800x800" $rotation)) }}
+        {{ $thumbnail := ($original.Fit (printf "%s %s" "600x600" $rotation)) }}
         {{ $full := ($original.Fit (printf "%s %s" "1600x1600" $rotation)) }}
         {{ $color := index $thumbnail.Colors 0 | default "transparent" }}
         <a
