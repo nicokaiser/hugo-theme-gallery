@@ -6,6 +6,7 @@
 {{- else -}}
 {{- $pages = $pctx.Pages -}}
 {{- end -}}
+{{- $pages = where $pages "Params.private" "ne" true -}}
 {{- $limit := .Site.Config.Services.RSS.Limit -}}
 {{- if ge $limit 1 -}}
 {{- $pages = $pages | first $limit -}}
@@ -26,11 +27,7 @@
     {{ printf "<atom:link href=%q rel=\"self\" type=%q />" .Permalink .MediaType | safeHTML }}
     {{- end -}}
     {{ range where $pages "Params.rss_ignore" "!=" true }}
-    {{- $private := false -}}
-    {{- if .Params.private -}}{{- $private = true -}}{{- end -}}
-    {{- range $value := .Ancestors.Reverse -}}
-      {{- if .Params.private -}}{{- $private = true -}}{{- end -}}
-    {{- end -}}
+    {{- $private := gt (len (where .Ancestors "Params.private" "eq" true)) 0 -}}
     {{- if not $private -}}
     <item>
       <title>{{ .Title }}</title>

@@ -1,12 +1,10 @@
 {{ printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  {{ range .Data.Pages }}
-    {{- $private := false -}}
-    {{- if .Params.private -}}{{- $private = true -}}{{- end -}}
-    {{- range $value := .Ancestors.Reverse -}}
-      {{- if .Params.private -}}{{- $private = true -}}{{- end -}}
-    {{- end -}}
+  {{- $pages := .Data.Pages -}}
+  {{- $pages = where $pages "Params.private" "ne" true -}}
+  {{- range $pages -}}
+    {{- $private := gt (len (where .Ancestors "Params.private" "eq" true)) 0 -}}
     {{- if not $private -}}
         {{- if .Permalink -}}
   <url>
