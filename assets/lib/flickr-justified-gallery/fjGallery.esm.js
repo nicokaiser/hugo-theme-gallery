@@ -511,7 +511,7 @@ function createNewRow(layoutConfig, layoutData) {
     targetRowHeight: layoutConfig.targetRowHeight,
     targetRowHeightTolerance: layoutConfig.targetRowHeightTolerance,
     edgeCaseMinRowHeight: 0.5 * layoutConfig.targetRowHeight,
-    edgeCaseMaxRowHeight: 2 * layoutConfig.targetRowHeight,
+    edgeCaseMaxRowHeight: 3 * layoutConfig.targetRowHeight,
     rightToLeft: false,
     isBreakoutRow: isBreakoutRow,
     widowLayoutStyle: layoutConfig.widowLayoutStyle
@@ -1009,7 +1009,6 @@ class FJGallery {
       boxSpacing: self.options.gutter,
       targetRowHeight: self.options.rowHeight,
       targetRowHeightTolerance: self.options.rowHeightTolerance,
-      edgeCaseMaxRowHeight: 3 * self.options.rowHeight,
       maxNumRows: self.options.maxRowsCount,
       showWidows: 'hide' !== self.options.lastRow
     };
