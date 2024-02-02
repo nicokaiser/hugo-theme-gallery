@@ -125,11 +125,10 @@
 }
 
 @font-face {
-  font-family: "InterVariable";
+  font-family: InterVariable;
   font-weight: 100 900;
-  font-display: auto;
+  font-display: swap;
   font-style: normal;
-  font-named-instance: "Regular";
   src: url("../fonts/InterVariable.woff2") format("woff2");
 }
 
@@ -161,4 +160,8 @@ html.dark {
   --b1: 0 0% 9%; /* neutral-900 */
   --b2: 0 0% 14.9%; /* neutral-800 */
   --bc: 0 0% 96.1%; /* neutral-100 */
+}
+
+.fj-gallery .fj-gallery-item {
+  overflow: hidden;
 }

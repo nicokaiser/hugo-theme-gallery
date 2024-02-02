@@ -1059,7 +1059,6 @@ class FJGallery {
           transform: `translateX(${justifiedData.boxes[i].left}px) translateY(${justifiedData.boxes[i].top + additionalTopOffset}px) translateZ(0)`,
           width: `${justifiedData.boxes[i].width}px`,
           height: `${justifiedData.boxes[i].height}px`,
-          overflow: 'hidden',
         }); // calculate actual items height.
 
         if (self.options.calculateItemsHeight) {
