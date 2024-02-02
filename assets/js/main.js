@@ -86,7 +86,7 @@ if (gallery) {
       }
     },
     transitionDuration: false,
-    calculateItemsHeight: true,
+    calculateItemsHeight: false,
     gutter: 10,
     rowHeight: 288,
     rowHeightTolerance: 0.25,
