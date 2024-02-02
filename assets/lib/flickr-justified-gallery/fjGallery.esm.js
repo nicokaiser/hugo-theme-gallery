@@ -1009,6 +1009,7 @@ class FJGallery {
       boxSpacing: self.options.gutter,
       targetRowHeight: self.options.rowHeight,
       targetRowHeightTolerance: self.options.rowHeightTolerance,
+      edgeCaseMaxRowHeight: 3 * self.options.rowHeight,
       maxNumRows: self.options.maxRowsCount,
       showWidows: 'hide' !== self.options.lastRow
     };
@@ -1057,8 +1058,7 @@ class FJGallery {
           display: '',
           position: 'absolute',
           transform: `translateX(${justifiedData.boxes[i].left}px) translateY(${justifiedData.boxes[i].top + additionalTopOffset}px) translateZ(0)`,
-          width: `${justifiedData.boxes[i].width}px`,
-          height: `${justifiedData.boxes[i].height}px`,
+          width: `${justifiedData.boxes[i].width}px`
         }); // calculate actual items height.
 
         if (self.options.calculateItemsHeight) {
