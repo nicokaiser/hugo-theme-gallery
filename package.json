@@ -1,7 +1,6 @@
 {
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.10",
-    "alpinejs": "^3.13.5",
     "autoprefixer": "^10.4.17",
     "flickr-justified-gallery": "^2.1.2",
     "lazysizes": "^5.3.2",
@@ -29,10 +28,6 @@
   },
   "vendorCopy": [],
   "devVendorCopy": [
-    {
-      "from": "node_modules/alpinejs/dist/module.esm.js",
-      "to": "assets/lib/alpinejs/module.esm.js"
-    },
     {
       "from": "node_modules/flickr-justified-gallery/dist/fjGallery.esm.js",
       "to": "assets/lib/flickr-justified-gallery/fjGallery.esm.js"

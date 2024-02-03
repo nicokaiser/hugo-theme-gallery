@@ -1616,9 +1616,6 @@ div.pswp__img--placeholder,
   font-style: normal;
   src: url("../fonts/InterVariable.woff2") format("woff2");
 }
-[x-cloak] {
-  display: none !important;
-}
 .lazyload,
 .lazyloading {
   opacity: 0;
@@ -1679,6 +1676,12 @@ html.dark {
 .aria-\[current\=true\]\:text-base-content[aria-current=true] {
   --tw-text-opacity: 1;
   color: hsl(var(--bc) / var(--tw-text-opacity));
+}
+.group[aria-expanded="true"] .group-aria-expanded\:block {
+  display: block;
+}
+.group[aria-expanded="true"] .group-aria-expanded\:hidden {
+  display: none;
 }
 @media (min-width: 640px) {
 

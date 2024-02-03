@@ -132,10 +132,6 @@
   src: url("../fonts/InterVariable.woff2") format("woff2");
 }
 
-[x-cloak] {
-  display: none !important;
-}
-
 .lazyload,
 .lazyloading {
   opacity: 0;

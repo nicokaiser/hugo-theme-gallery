@@ -2,10 +2,8 @@ import fjGallery from "lib/flickr-justified-gallery/fjGallery.esm.js";
 import PhotoSwipeLightbox from "lib/photoswipe/photoswipe-lightbox.esm.js";
 import PhotoSwipe from "lib/photoswipe/photoswipe.esm.js";
 import PhotoSwipeDynamicCaption from "lib/photoswipe-dynamic-caption-plugin/photoswipe-dynamic-caption-plugin.esm.min.js";
-import Alpine from "lib/alpinejs/module.esm.js";
 import "lib/lazysizes/lazysizes.js";
-
-Alpine.start();
+import "./menu.js";
 
 const gallery = document.querySelector(".fj-gallery");
 
