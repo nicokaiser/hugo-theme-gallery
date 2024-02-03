@@ -3,7 +3,7 @@
   {{ partial "head.html" . }}
   <body class="flex min-h-full flex-col antialiased">
     {{ partial "header.html" . }}
-    <main class="mx-auto h-full w-full max-w-screen-3xl grow">
+    <main class="h-full w-full grow">
       {{ block "main" . }}{{ end }}
     </main>
     {{ partialCached "footer.html" . }}

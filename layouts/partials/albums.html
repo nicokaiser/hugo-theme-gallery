@@ -5,7 +5,7 @@
 {{ $albums = $albums | append (where .Pages.ByDate.Reverse "Params.private" "ne" true) }}
 
 
-<div class="mb-16 mt-8 grid grid-cols-1 gap-x-6 gap-y-8 px-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 3xl:grid-cols-5">
+<div class="mx-auto mb-16 mt-8 grid max-w-screen-2xl grid-cols-1 gap-x-6 gap-y-8 px-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
   {{ range $albums | uniq }}
     {{ $images := .Resources.ByType "image" }}
     {{ if gt (len $images) 0 }}

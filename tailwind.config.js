@@ -17,9 +17,6 @@ module.exports = {
       fontFamily: {
         sans: ["InterVariable", ...defaultTheme.fontFamily.sans],
       },
-      screens: {
-        "3xl": "1792px",
-      },
     },
   },
   plugins: [require("@tailwindcss/typography")],
