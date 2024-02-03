@@ -1,4 +1,4 @@
-<div class="mx-auto max-w-screen-2xl mb-16 mt-8 sm:px-6">
+<div class="mx-auto mb-16 mt-8 max-w-screen-2xl sm:px-6">
   <div class="gallery" style="visibility: hidden">
     {{ $photos := sort (.Resources.ByType "image") (index .Params "sort_by" | default "Name") (.Params.sort_order | default "asc") }}
     {{ range $index, $original := $photos }}
@@ -18,6 +18,7 @@
           {{ end }}
         {{ end }}
         {{ $thumbnail := ($original.Fit (printf "%s %s" "600x600" $rotation)) }}
+        {{ $webpThumbnail := ($original.Fit (printf "%s %s" "600x600 webp" $rotation)) }}
         {{ $full := ($original.Fit (printf "%s %s" "1600x1600" $rotation)) }}
         {{ $color := index $thumbnail.Colors 0 | default "transparent" }}
         <a
@@ -37,21 +38,25 @@
           itemtype="https://schema.org/ImageObject"
           style="background-color: {{ $color }}; aspect-ratio: {{ $thumbnail.Width }} / {{ $thumbnail.Height }}"
         >
-          <img
-            loading="lazy"
-            width="{{ $thumbnail.Width }}"
-            height="{{ $thumbnail.Height }}"
-            src="{{ $thumbnail.RelPermalink }}"
-            {{ with $metadata }}
-              {{ if .ImageDescription }}
-                alt="{{ .ImageDescription }}"
-              {{ else }}
-                {{ if .Title }}
-                  alt="{{ .Title }}"
+          <picture>
+            <source srcset="{{ $webpThumbnail.RelPermalink }}" type="image/webp" />
+            <source srcset="{{ $thumbnail.RelPermalink }}" type="image/jpeg" />
+            <img
+              loading="lazy"
+              width="{{ $thumbnail.Width }}"
+              height="{{ $thumbnail.Height }}"
+              src="{{ $thumbnail.RelPermalink }}"
+              {{ with $metadata }}
+                {{ if .ImageDescription }}
+                  alt="{{ .ImageDescription }}"
+                {{ else }}
+                  {{ if .Title }}
+                    alt="{{ .Title }}"
+                  {{ end }}
                 {{ end }}
               {{ end }}
-            {{ end }}
-          />
+            />
+          </picture>
           <meta itemprop="contentUrl" content="{{ $original.RelPermalink }}" />
           {{ with $.Site.Author }}
             <span itemprop="creator" itemtype="https://schema.org/Person" itemscope>
