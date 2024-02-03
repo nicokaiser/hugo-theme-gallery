@@ -38,10 +38,10 @@
           style="background-color: {{ $color }}; aspect-ratio: {{ $thumbnail.Width }} / {{ $thumbnail.Height }}"
         >
           <img
-            class="lazyload"
+            loading="lazy"
             width="{{ $thumbnail.Width }}"
             height="{{ $thumbnail.Height }}"
-            data-src="{{ $thumbnail.RelPermalink }}"
+            src="{{ $thumbnail.RelPermalink }}"
             {{ with $metadata }}
               {{ if .ImageDescription }}
                 alt="{{ .ImageDescription }}"

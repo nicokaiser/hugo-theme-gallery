@@ -3,7 +3,6 @@
     "@tailwindcss/typography": "^0.5.10",
     "autoprefixer": "^10.4.17",
     "justified-layout": "^4.1.0",
-    "lazysizes": "^5.3.2",
     "photoswipe": "^5.4.3",
     "photoswipe-dynamic-caption-plugin": "^1.2.7",
     "postcss": "^8.4.33",
@@ -35,10 +34,6 @@
     {
       "from": "node_modules/justified-layout/lib/row.js",
       "to": "assets/lib/justified-layout/row.js"
-    },
-    {
-      "from": "node_modules/lazysizes/lazysizes.js",
-      "to": "assets/lib/lazysizes/lazysizes.js"
     },
     {
       "from": "node_modules/photoswipe/dist/photoswipe-lightbox.esm.js",
