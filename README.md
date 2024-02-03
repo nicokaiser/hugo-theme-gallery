@@ -17,7 +17,7 @@ A very simple and opinionated photo gallery theme for Hugo built with Tailwind C
 - Dark theme
 - Private albums
 - Automatic (or manual) selection of feature images
-- Justified album views with [Flickr's Justified Gallery](https://github.com/nk-o/flickr-justified-gallery)
+- Justified album views with [Flickr's Justified Layout](https://github.com/flickr/justified-layout)
 - Lightbox with [PhotoSwipe](https://photoswipe.com/)
 - SEO with Open Graph tags
 
