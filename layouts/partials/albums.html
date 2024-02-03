@@ -16,10 +16,10 @@
       {{ $counts := partial "get-counts.html" . }}
       <a class="card card-compact group" href="{{ .RelPermalink }}" title="{{ .Title }}">
         <figure class="rounded-2xl shadow-sm transition-all duration-300 hover:shadow-lg group-hover:scale-[1.02]" style="background-color: {{ $color }}">
-          <picture>
+          <picture class="aspect-[3/2] w-full object-cover">
             <source srcset="{{ $webpThumbnail.RelPermalink }}" type="image/webp" />
             <source srcset="{{ $thumbnail.RelPermalink }}" type="image/jpeg" />
-            <img class="aspect-[3/2] w-full h-full object-cover" loading="lazy" width="{{ $thumbnail.Width }}" height="{{ $thumbnail.Height }}" src="{{ $thumbnail.RelPermalink }}" alt="{{ .Title }}" />
+            <img class="aspect-[3/2] w-full object-cover" loading="lazy" width="{{ $thumbnail.Width }}" height="{{ $thumbnail.Height }}" src="{{ $thumbnail.RelPermalink }}" alt="{{ .Title }}" />
           </picture>
         </figure>
         <div class="card-body">
