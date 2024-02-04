@@ -1,7 +1,7 @@
 ---
-title: Imprint
-rss_ignore: true
 layout: page
+rss_ignore: true
+title: Imprint
 menu:
   footer:
     weight: 1
