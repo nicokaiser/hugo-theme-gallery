@@ -36,7 +36,7 @@
           {{ end }}
           itemscope
           itemtype="https://schema.org/ImageObject"
-          style="background-color: {{ $color }}; aspect-ratio: {{ $thumbnail.Width }} / {{ $thumbnail.Height }}"
+          style="aspect-ratio: {{ $thumbnail.Width }} / {{ $thumbnail.Height }}"
         >
           <picture>
             <source srcset="{{ $webpThumbnail.RelPermalink }}" type="image/webp" />
@@ -46,6 +46,7 @@
               width="{{ $thumbnail.Width }}"
               height="{{ $thumbnail.Height }}"
               src="{{ $thumbnail.RelPermalink }}"
+              style="background-color: {{ $color }}"
               {{ with $metadata }}
                 {{ if .ImageDescription }}
                   alt="{{ .ImageDescription }}"

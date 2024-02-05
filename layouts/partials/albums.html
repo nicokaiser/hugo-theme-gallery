@@ -15,11 +15,11 @@
       {{ $color := index $thumbnail.Colors 0 | default "transparent" }}
       {{ $counts := partial "get-counts.html" . }}
       <a class="card card-compact group" href="{{ .RelPermalink }}" title="{{ .Title }}">
-        <figure class="rounded-2xl shadow-sm transition-all duration-300 hover:shadow-lg group-hover:scale-[1.02]" style="background-color: {{ $color }}">
+        <figure class="rounded-2xl shadow-sm transition-all duration-300 hover:shadow-lg group-hover:scale-[1.02]">
           <picture>
             <source srcset="{{ $webpThumbnail.RelPermalink }}" type="image/webp" />
             <source srcset="{{ $thumbnail.RelPermalink }}" type="image/jpeg" />
-            <img class="aspect-[3/2] h-auto w-full object-cover" loading="lazy" width="{{ $thumbnail.Width }}" height="{{ $thumbnail.Height }}" src="{{ $thumbnail.RelPermalink }}" alt="{{ .Title }}" />
+            <img class="aspect-[3/2] h-auto w-full object-cover" loading="lazy" width="{{ $thumbnail.Width }}" height="{{ $thumbnail.Height }}" src="{{ $thumbnail.RelPermalink }}" style="background-color: {{ $color }}" alt="{{ .Title }}" />
           </picture>
         </figure>
         <div class="card-body">
