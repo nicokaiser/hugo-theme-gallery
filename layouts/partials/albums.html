@@ -15,7 +15,7 @@
       {{ $color := index $thumbnail.Colors 0 | default "transparent" }}
       {{ $counts := partial "get-counts.html" . }}
       <a class="card card-compact group" href="{{ .RelPermalink }}" title="{{ .Title }}">
-        <figure class="rounded-2xl shadow-sm transition-all duration-300 hover:shadow-lg group-hover:scale-[1.02]">
+        <figure class="rounded-2xl shadow-sm transition-all duration-300 group-hover:scale-[1.02] group-hover:shadow-lg">
           <picture>
             <source srcset="{{ $webpThumbnail.RelPermalink }}" type="image/webp" />
             <source srcset="{{ $thumbnail.RelPermalink }}" type="image/jpeg" />
