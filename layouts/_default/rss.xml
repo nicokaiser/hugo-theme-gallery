@@ -5,10 +5,9 @@
 {{- if .IsHome -}}{{ $pctx = .Site }}{{- end -}}
 {{- $pages := slice -}}
 {{- if or $.IsHome $.IsSection -}}
-{{- $pages = partial "get-public-pages.html" $pctx }}
-{{- $pages = where $pages "Kind" "eq" "page" }}
+{{- $pages = where $pctx.RegularPages "Params.private" "ne" true }}
 {{- else -}}
-{{- $pages = partial "get-public-pages.html" $pctx }}
+{{- $pages = where $pctx.Pages "Params.private" "ne" true }}
 {{- end -}}
 {{- $pages = where $pages "Params.rss_ignore" "ne" true -}}
 {{- $limit := .Site.Config.Services.RSS.Limit -}}
