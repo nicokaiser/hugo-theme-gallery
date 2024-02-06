@@ -2,9 +2,9 @@
 layout: page
 rss_ignore: true
 title: About
-menu:
+menus:
   main:
-    weight: 1
+    weight: 90
 ---
 
 This is a demonstration site for the Hugo Gallery theme.
