@@ -1,5 +1,5 @@
 <ul class="mx-auto mb-16 mt-8 max-w-screen-md select-none text-center text-lg font-semibold text-base-content/60">
-  {{ with .Site.Home }}
+  {{ with site.Home }}
     <li itemscope itemtype="http://www.schema.org/SiteNavigationElement">
       <a class="block py-2 hover:text-base-content aria-[current=true]:text-base-content" aria-current="{{ $.IsHome }}" href="{{ .RelPermalink }}" itemprop="url">
         <span itemprop="name">{{ .LinkTitle | default (i18n "home") }}</span>

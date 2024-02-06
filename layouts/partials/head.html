@@ -10,9 +10,10 @@
   {{ if .Params.keywords }}
     <meta name="keywords" content="{{ delimit .Params.keywords `, ` }}" />
   {{ end }}
-  {{ hugo.Generator }}
   {{ if .Params.private }}
     <meta name="robots" content="noindex, nofollow" />
+  {{ else }}
+    <meta name="robots" content="index, follow" />
   {{ end }}
   {{ range .AlternativeOutputFormats -}}
     {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
