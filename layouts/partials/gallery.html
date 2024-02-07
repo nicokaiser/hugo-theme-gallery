@@ -18,7 +18,6 @@
           {{ end }}
         {{ end }}
         {{ $thumbnail := ($original.Fit (printf "%s %s" "600x600" $rotation)) }}
-        {{ $webpThumbnail := ($original.Fit (printf "%s %s" "600x600 webp" $rotation)) }}
         {{ $full := ($original.Fit (printf "%s %s" "1600x1600" $rotation)) }}
         {{ $color := index $thumbnail.Colors 0 | default "transparent" }}
         <a
@@ -38,26 +37,22 @@
           itemtype="https://schema.org/ImageObject"
           style="aspect-ratio: {{ $thumbnail.Width }} / {{ $thumbnail.Height }}"
         >
-          <picture>
-            <source srcset="{{ $webpThumbnail.RelPermalink }}" type="image/webp" />
-            <source srcset="{{ $thumbnail.RelPermalink }}" type="image/jpeg" />
-            <img
-              loading="lazy"
-              width="{{ $thumbnail.Width }}"
-              height="{{ $thumbnail.Height }}"
-              src="{{ $thumbnail.RelPermalink }}"
-              style="background-color: {{ $color }}"
-              {{ with $metadata }}
-                {{ if .ImageDescription }}
-                  alt="{{ .ImageDescription }}"
-                {{ else }}
-                  {{ if .Title }}
-                    alt="{{ .Title }}"
-                  {{ end }}
+          <img
+            loading="lazy"
+            width="{{ $thumbnail.Width }}"
+            height="{{ $thumbnail.Height }}"
+            src="{{ $thumbnail.RelPermalink }}"
+            style="background-color: {{ $color }}"
+            {{ with $metadata }}
+              {{ if .ImageDescription }}
+                alt="{{ .ImageDescription }}"
+              {{ else }}
+                {{ if .Title }}
+                  alt="{{ .Title }}"
                 {{ end }}
               {{ end }}
-            />
-          </picture>
+            {{ end }}
+          />
           <meta itemprop="contentUrl" content="{{ $original.RelPermalink }}" />
           {{ with $.Site.Author }}
             <span itemprop="creator" itemtype="https://schema.org/Person" itemscope>
