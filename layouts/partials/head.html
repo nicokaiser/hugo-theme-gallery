@@ -1,7 +1,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>{{ if not .IsHome }}{{ .Title }} –{{ end }} {{ .Site.Title }}</title>
+  <title>{{ with .Title }}{{ . }} -{{ end }} {{ .Site.Title }}</title>
   <link rel="canonical" href="{{ .Permalink }}" />
   <link rel="icon" type="image/svg+xml" href="{{ "images/favicon.svg" | relURL }}" />
   <link rel="icon" type="image/png" href="{{ "images/favicon.png" | relURL }}" />
@@ -23,4 +23,5 @@
   <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
   {{ $js := resources.Get "js/main.js" | js.Build (dict "minify" true) | resources.Fingerprint }}
   <script src="{{ $js.RelPermalink }}" defer></script>
+  {{- partial "head-custom.html" . -}}
 </head>

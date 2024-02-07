@@ -2,10 +2,10 @@
 <html class="{{ if (eq .Site.Params.defaultTheme "light") }}light{{ else if (eq .Site.Params.defaultTheme "dark") }}dark{{ end }} h-full" lang="{{ site.LanguageCode | default "en" }}">
   {{ partial "head.html" . }}
   <body class="flex min-h-full flex-col antialiased">
-    {{ partial "header.html" . }}
+    {{ block "header" . }}{{ partial "header.html" . }}{{ end }}
     <main class="h-full w-full grow">
       {{ block "main" . }}{{ end }}
     </main>
-    {{ partialCached "footer.html" . }}
+    {{ block "footer" . }}{{ partialCached "footer.html" . }}{{ end }}
   </body>
 </html>
