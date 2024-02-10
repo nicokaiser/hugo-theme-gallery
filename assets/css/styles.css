@@ -141,7 +141,7 @@
 
 html.dark {
   color-scheme: dark;
-  --b1: 0 0% 6%; /* neutral-11 */
+  --b1: 0 0% 10%; /* neutral-10 */
   --b2: 0 0% 15%; /* neutral-9 */
   --bc: 0 0% 98%; /* neutral-0 */
   --nc: 0 0% 56%; /* neutral-6 */
