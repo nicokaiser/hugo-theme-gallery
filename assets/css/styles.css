@@ -134,13 +134,15 @@
 :root {
   color-scheme: light;
   --b1: 0 0% 100%; /* white */
-  --b2: 0 0% 96.1%; /* neutral-100 */
-  --bc: 0 0% 9%; /* neutral-900 */
+  --b2: 0 0% 98; /* neutral-0 */
+  --bc: 0 0% 6%; /* neutral-11 */
+  --nc: 0 0% 56%; /* neutral-6 */
 }
 
 html.dark {
   color-scheme: dark;
-  --b1: 0 0% 9%; /* neutral-900 */
-  --b2: 0 0% 14.9%; /* neutral-800 */
-  --bc: 0 0% 96.1%; /* neutral-100 */
+  --b1: 0 0% 6%; /* neutral-11 */
+  --b2: 0 0% 15%; /* neutral-9 */
+  --bc: 0 0% 98%; /* neutral-0 */
+  --nc: 0 0% 56%; /* neutral-6 */
 }

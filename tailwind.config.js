@@ -13,6 +13,7 @@ module.exports = {
         "base-100": "hsl(var(--b1) / <alpha-value>)",
         "base-200": "hsl(var(--b2) / <alpha-value>)",
         "base-content": "hsl(var(--bc) / <alpha-value>)",
+        "neutral-content": "hsl(var(--nc) / <alpha-value>)",
       },
       fontFamily: {
         sans: ["InterVariable", ...defaultTheme.fontFamily.sans],

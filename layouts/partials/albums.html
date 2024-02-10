@@ -26,7 +26,7 @@
         </figure>
         <div class="card-body">
           <h2 class="card-title text-lg leading-6">{{ .Title }}</h2>
-          <p class="text-base-content/60">
+          <p class="text-neutral-content">
             {{ i18n "photoCount" ($imageCount | lang.FormatNumber 0) }}
             {{ if gt $albumCount 0 }}{{ i18n "in" }} {{ i18n "albumCount" ($albumCount | lang.FormatNumber 0) }}{{ end }}
           </p>
