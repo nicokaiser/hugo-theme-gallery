@@ -393,7 +393,7 @@ video {
   display: none;
 }
 
-.group-hover\:scale-\[1\.02\] {
+figure {
   --tw-translate-x: 0;
   --tw-translate-y: 0;
   --tw-rotate: 0;
@@ -403,7 +403,7 @@ video {
   --tw-scale-y: 1;
 }
 
-.btn, .btn-ghost, .shadow-sm, .group-hover\:shadow-lg {
+.btn, .btn-ghost, figure {
   --tw-ring-offset-shadow: 0 0 #0000;
   --tw-ring-shadow: 0 0 #0000;
   --tw-shadow: 0 0 #0000;
@@ -920,9 +920,9 @@ video {
   border-radius: 1rem;
 }
 .card:focus {
-  outline: 2px solid transparent;
-  outline-offset: 2px;
-}
+      outline: 2px solid transparent;
+      outline-offset: 2px;
+    }
 .card:focus-visible {
       outline: 2px solid currentColor;
       outline-offset: 2px;
@@ -946,6 +946,31 @@ video {
   --tw-text-opacity: 1;
   color: hsl(var(--nc) / var(--tw-text-opacity));
 }
+.card figure {
+  overflow: hidden;
+  border-radius: 1rem;
+  --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+.card img {
+      aspect-ratio: 3/2;
+      height: auto;
+      width: 100%;
+      -o-object-fit: cover;
+         object-fit: cover;
+    }
+.card:hover figure {
+  --tw-scale-x: 1.02;
+  --tw-scale-y: 1.02;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
 .navbar {
   display: flex;
   min-height: 4rem;
@@ -954,9 +979,9 @@ video {
   padding: 0.5rem;
 }
 :where(.navbar > *) {
-  display: inline-flex;
-  align-items: center;
-}
+    display: inline-flex;
+    align-items: center;
+  }
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -979,14 +1004,8 @@ video {
 .hidden {
   display: none;
 }
-.aspect-\[3\/2\] {
-  aspect-ratio: 3/2;
-}
 .h-6 {
   height: 1.5rem;
-}
-.h-auto {
-  height: auto;
 }
 .h-full {
   height: 100%;
@@ -1036,16 +1055,6 @@ video {
 .gap-y-8 {
   row-gap: 2rem;
 }
-.overflow-hidden {
-  overflow: hidden;
-}
-.rounded-2xl {
-  border-radius: 1rem;
-}
-.object-cover {
-  -o-object-fit: cover;
-     object-fit: cover;
-}
 .px-6 {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
@@ -1085,19 +1094,6 @@ video {
 .antialiased {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-.shadow-sm {
-  --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-.transition-all {
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-}
-.duration-300 {
-  transition-duration: 300ms;
 }
 /*! PhotoSwipe main CSS by Dmytro Semenov | photoswipe.com */
 .pswp {
@@ -1502,7 +1498,7 @@ div.pswp__img--placeholder,
   font-style: normal;
   src: url("../fonts/InterVariable-Roman.woff2") format("woff2");
 }
-html {
+:root {
   background-color: hsl(var(--b1) / 1);
   color: hsl(var(--bc) / 1);
   color-scheme: light;
@@ -1600,16 +1596,6 @@ footer a:focus-visible {
 .hover\:text-base-content:hover {
   --tw-text-opacity: 1;
   color: hsl(var(--bc) / var(--tw-text-opacity));
-}
-.group:hover .group-hover\:scale-\[1\.02\] {
-  --tw-scale-x: 1.02;
-  --tw-scale-y: 1.02;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-.group:hover .group-hover\:shadow-lg {
-  --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 .aria-\[current\=true\]\:text-base-content[aria-current=true] {
   --tw-text-opacity: 1;
