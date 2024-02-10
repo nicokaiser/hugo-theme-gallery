@@ -20,12 +20,12 @@
           {{ $imageCount = add $imageCount (len (.Resources.ByType "image")) }}
         {{ end }}
       {{ end }}
-      <a class="card card-compact group" href="{{ .RelPermalink }}" title="{{ .Title }}">
-        <figure class="rounded-2xl shadow-sm transition-all duration-300 group-hover:scale-[1.02] group-hover:shadow-lg">
+      <a class="card group" href="{{ .RelPermalink }}" title="{{ .Title }}">
+        <figure class="overflow-hidden rounded-2xl shadow-sm transition-all duration-300 group-hover:scale-[1.02] group-hover:shadow-lg">
           <img class="aspect-[3/2] h-auto w-full object-cover" loading="lazy" width="{{ $thumbnail.Width }}" height="{{ $thumbnail.Height }}" src="{{ $thumbnail.RelPermalink }}" style="background-color: {{ $color }}" alt="{{ .Title }}" />
         </figure>
         <div class="card-body">
-          <h2 class="card-title text-lg leading-6">{{ .Title }}</h2>
+          <h2 class="card-title">{{ .Title }}</h2>
           <p class="text-neutral-content">
             {{ i18n "photoCount" ($imageCount | lang.FormatNumber 0) }}
             {{ if gt $albumCount 0 }}{{ i18n "in" }} {{ i18n "albumCount" ($albumCount | lang.FormatNumber 0) }}{{ end }}

@@ -392,10 +392,6 @@ video {
 [hidden] {
   display: none;
 }
-  :root {
-    background-color: hsl(var(--b1) / 1);
-    color: hsl(var(--bc) / 1);
-  }
 
 .group-hover\:scale-\[1\.02\] {
   --tw-translate-x: 0;
@@ -888,8 +884,6 @@ video {
   font-weight: 600;
   line-height: 1rem;
   transition-duration: 200ms;
-  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
-    animation: button-pop 0.25s ease-out;
     transition-property: color, background-color, box-shadow, transform;
     --tw-bg-opacity: 1;
     background-color: hsl(var(--b2) / var(--tw-bg-opacity));
@@ -900,11 +894,6 @@ video {
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
     outline-color: hsl(var(--bc) / 1);
 }
-.btn:active:hover,
-    .btn:active:focus {
-      animation: button-pop 0s ease-out;
-      transform: scale(0.97);
-    }
 .btn-square {
   height: 3rem;
   width: 3rem;
@@ -921,39 +910,14 @@ video {
 @media(hover:hover) {
 
   .btn-ghost:hover {
-    background-color: hsl(var(--bc) / 0.2);
+    background-color: hsl(var(--bc) / 0.1);
   }
 }
-@keyframes button-pop {
-    0% {
-      transform: scale(0.98);
-    }
-    40% {
-      transform: scale(1.02);
-    }
-    100% {
-      transform: scale(1);
-    }
-  }
 .card {
   position: relative;
   display: flex;
   flex-direction: column;
-    border-radius: 1rem;
-}
-.card :where(figure:first-child) {
-  overflow: hidden;
-      border-start-start-radius: inherit;
-      border-start-end-radius: inherit;
-      border-end-start-radius: unset;
-      border-end-end-radius: unset;
-}
-.card :where(figure:last-child) {
-  overflow: hidden;
-      border-start-start-radius: unset;
-      border-start-end-radius: unset;
-      border-end-start-radius: inherit;
-      border-end-end-radius: inherit;
+  border-radius: 1rem;
 }
 .card:focus {
   outline: 2px solid transparent;
@@ -968,53 +932,44 @@ video {
   flex: 1 1 auto;
   flex-direction: column;
   gap: 0.5rem;
-      padding: 2rem;
+  padding: 1rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 }
 .card-title {
-  font-size: 1.25rem;
-  line-height: 1.75rem;
+  margin-bottom: 0.25rem;
+  font-size: 1.125rem;
   font-weight: 600;
+  line-height: 1.5rem;
 }
 .footer {
   display: grid;
   width: 100%;
   grid-auto-flow: row;
-  place-items: start;
+  place-items: center;
+  text-align: center;
   -moz-column-gap: 1rem;
        column-gap: 1rem;
   row-gap: 2.5rem;
+  padding: 2.5rem;
   font-size: 0.875rem;
   line-height: 1.25rem;
 }
 .footer > * {
   display: grid;
-  place-items: start;
+  place-items: center;
   gap: 0.5rem;
-}
-.footer-center {
-  place-items: center;
-  text-align: center;
-}
-.footer-center > * {
-  place-items: center;
-}
-.link {
-  cursor: pointer;
-  text-decoration-line: underline;
-}
-.link-hover {
-  text-decoration-line: none;
 }
 @media(hover:hover) {
 
-  .link-hover:hover {
+  .footer a:hover {
     text-decoration-line: underline;
   }
 }
-.link:focus-visible {
-      outline: 2px solid currentColor;
-      outline-offset: 2px;
-    }
+.footer a:focus-visible {
+        outline: 2px solid currentColor;
+        outline-offset: 2px;
+      }
 .navbar {
   display: flex;
   min-height: 4rem;
@@ -1120,6 +1075,9 @@ video {
 .gap-y-8 {
   row-gap: 2rem;
 }
+.overflow-hidden {
+  overflow: hidden;
+}
 .rounded-2xl {
   border-radius: 1rem;
 }
@@ -1159,9 +1117,6 @@ video {
 .font-semibold {
   font-weight: 600;
 }
-.leading-6 {
-  line-height: 1.5rem;
-}
 .text-base-content\/60 {
   color: hsl(var(--bc) / 0.6);
 }
@@ -1185,14 +1140,6 @@ video {
 }
 .duration-300 {
   transition-duration: 300ms;
-}
-.card-compact .card-body {
-  padding: 1rem;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-}
-.card-compact .card-title {
-  margin-bottom: 0.25rem;
 }
 /*! PhotoSwipe main CSS by Dmytro Semenov | photoswipe.com */
 .pswp {
@@ -1597,7 +1544,9 @@ div.pswp__img--placeholder,
   font-style: normal;
   src: url("../fonts/InterVariable-Roman.woff2") format("woff2");
 }
-:root {
+html {
+  background-color: hsl(var(--b1) / 1);
+  color: hsl(var(--bc) / 1);
   color-scheme: light;
   --b1: 0 0% 100%; /* white */
   --b2: 0 0% 98; /* neutral-0 */
