@@ -1,9 +1,9 @@
 <!doctype html>
-<html class="{{ if (eq .Site.Params.defaultTheme "light") }}light{{ else if (eq .Site.Params.defaultTheme "dark") }}dark{{ end }} h-full" lang="{{ site.LanguageCode | default "en" }}">
+<html class="{{ if (eq .Site.Params.defaultTheme "light") }}light{{ else if (eq .Site.Params.defaultTheme "dark") }}dark{{ end }}" lang="{{ site.LanguageCode | default "en" }}">
   {{ partial "head.html" . }}
-  <body class="flex min-h-full flex-col antialiased">
+  <body>
     {{ block "header" . }}{{ partial "header.html" . }}{{ end }}
-    <main class="h-full w-full grow">
+    <main>
       {{ block "main" . }}{{ end }}
     </main>
     {{ block "footer" . }}{{ partialCached "footer.html" . }}{{ end }}

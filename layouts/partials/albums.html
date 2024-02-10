@@ -21,9 +21,7 @@
         {{ end }}
       {{ end }}
       <a class="card" href="{{ .RelPermalink }}" title="{{ .Title }}">
-        <figure>
-          <img loading="lazy" width="{{ $thumbnail.Width }}" height="{{ $thumbnail.Height }}" src="{{ $thumbnail.RelPermalink }}" style="background-color: {{ $color }}" alt="{{ .Title }}" />
-        </figure>
+        <img loading="lazy" width="{{ $thumbnail.Width }}" height="{{ $thumbnail.Height }}" src="{{ $thumbnail.RelPermalink }}" style="background-color: {{ $color }}" alt="{{ .Title }}" />
         <div class="card-body">
           <h2>{{ .Title }}</h2>
           <p>

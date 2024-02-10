@@ -393,7 +393,7 @@ video {
   display: none;
 }
 
-figure {
+img {
   --tw-translate-x: 0;
   --tw-translate-y: 0;
   --tw-rotate: 0;
@@ -403,7 +403,7 @@ figure {
   --tw-scale-y: 1;
 }
 
-.btn, .btn-ghost, figure {
+.btn, .btn-ghost, img {
   --tw-ring-offset-shadow: 0 0 #0000;
   --tw-ring-shadow: 0 0 #0000;
   --tw-shadow: 0 0 #0000;
@@ -914,7 +914,6 @@ figure {
   }
 }
 .card {
-  position: relative;
   display: flex;
   flex-direction: column;
   border-radius: 1rem;
@@ -946,7 +945,7 @@ figure {
   --tw-text-opacity: 1;
   color: hsl(var(--nc) / var(--tw-text-opacity));
 }
-.card figure {
+.card img {
   overflow: hidden;
   border-radius: 1rem;
   --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
@@ -955,15 +954,13 @@ figure {
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 300ms;
-}
-.card img {
       aspect-ratio: 3/2;
       height: auto;
       width: 100%;
       -o-object-fit: cover;
          object-fit: cover;
-    }
-.card:hover figure {
+}
+.card:hover img {
   --tw-scale-x: 1.02;
   --tw-scale-y: 1.02;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
@@ -995,9 +992,6 @@ figure {
 .block {
   display: block;
 }
-.flex {
-  display: flex;
-}
 .grid {
   display: grid;
 }
@@ -1006,12 +1000,6 @@ figure {
 }
 .h-6 {
   height: 1.5rem;
-}
-.h-full {
-  height: 100%;
-}
-.min-h-full {
-  min-height: 100%;
 }
 .w-6 {
   width: 1.5rem;
@@ -1031,9 +1019,6 @@ figure {
 .flex-none {
   flex: none;
 }
-.grow {
-  flex-grow: 1;
-}
 .cursor-zoom-in {
   cursor: zoom-in;
 }
@@ -1044,9 +1029,6 @@ figure {
 }
 .grid-cols-1 {
   grid-template-columns: repeat(1, minmax(0, 1fr));
-}
-.flex-col {
-  flex-direction: column;
 }
 .gap-x-6 {
   -moz-column-gap: 1.5rem;
@@ -1090,10 +1072,6 @@ figure {
 .text-neutral-content {
   --tw-text-opacity: 1;
   color: hsl(var(--nc) / var(--tw-text-opacity));
-}
-.antialiased {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 /*! PhotoSwipe main CSS by Dmytro Semenov | photoswipe.com */
 .pswp {
@@ -1514,6 +1492,17 @@ html.dark {
   --bc: 0 0% 98%; /* neutral-0 */
   --nc: 0 0% 56%; /* neutral-6 */
 }
+html {
+  height: 100%;
+}
+body {
+  width: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
 header {
   margin-left: auto;
   margin-right: auto;
@@ -1550,6 +1539,11 @@ header p {
     font-size: 1.125rem;
     line-height: 1.75rem;
   }
+}
+main {
+  width: 100%;
+  height: 100%;
+  flex-grow: 1;
 }
 footer {
   margin-left: auto;
