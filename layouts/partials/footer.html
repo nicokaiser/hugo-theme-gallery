@@ -1,4 +1,4 @@
-<footer class="footer">
+<footer>
   {{ .Site.Copyright }}
   {{ range .Site.Menus.footer }}
     <a {{ with .Params.rel -}}rel="{{ . }}"{{ end -}} href="{{ .URL }}">

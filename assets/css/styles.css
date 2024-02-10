@@ -32,19 +32,11 @@
     &-body {
       @apply flex flex-auto flex-col gap-2 p-4 text-sm;
     }
-    &-title {
+    h2 {
       @apply mb-1 text-lg font-semibold leading-6;
     }
-  }
-
-  .footer {
-    @apply mx-auto grid grid-flow-col gap-4 p-10 text-sm text-neutral-content;
-    a {
-      @apply [@media(hover:hover)]:hover:underline;
-      &:focus-visible {
-        outline: 2px solid currentColor;
-        outline-offset: 2px;
-      }
+    p {
+      @apply text-neutral-content;
     }
   }
 
@@ -80,4 +72,25 @@ html.dark {
   --b2: 0 0% 15%; /* neutral-9 */
   --bc: 0 0% 98%; /* neutral-0 */
   --nc: 0 0% 56%; /* neutral-6 */
+}
+
+header {
+  @apply mx-auto mb-16 mt-8 flex max-w-screen-lg flex-col items-center gap-6 px-6 text-center;
+  h1 {
+    @apply text-3xl font-bold md:text-4xl;
+  }
+  p {
+    @apply text-neutral-content md:text-lg;
+  }
+}
+
+footer {
+  @apply mx-auto grid grid-flow-col gap-4 p-10 text-sm text-neutral-content;
+  a {
+    @apply [@media(hover:hover)]:hover:underline;
+    &:focus-visible {
+      outline: 2px solid currentColor;
+      outline-offset: 2px;
+    }
+  }
 }

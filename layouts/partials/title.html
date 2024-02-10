@@ -1,8 +1,8 @@
 {{ if .Title }}
-  <div class="mx-auto mb-16 mt-8 flex max-w-screen-lg flex-col items-center gap-6 px-6 text-center">
-    <h1 class="text-3xl font-bold md:text-4xl">{{ .Title }}</h1>
-    {{ if .Params.Description }}
-      <p class="text-neutral-content md:text-lg">{{ .Params.Description }}</p>
+  <header>
+    <h1>{{ .Title }}</h1>
+    {{ with .Params.Description }}
+      <p>{{ . }}</p>
     {{ end }}
-  </div>
+  </header>
 {{ end }}
