@@ -1,10 +1,8 @@
-<footer class="footer p-10 text-neutral-content">
-  <nav class="grid grid-flow-col gap-4">
-    {{ .Site.Copyright }}
-    {{ range .Site.Menus.footer }}
-      <a {{ with .Params.rel -}}rel="{{ . }}"{{ end -}} href="{{ .URL }}">
-        {{ .Name }}
-      </a>
-    {{ end }}
-  </nav>
+<footer class="footer">
+  {{ .Site.Copyright }}
+  {{ range .Site.Menus.footer }}
+    <a {{ with .Params.rel -}}rel="{{ . }}"{{ end -}} href="{{ .URL }}">
+      {{ .Name }}
+    </a>
+  {{ end }}
 </footer>
