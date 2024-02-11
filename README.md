@@ -96,21 +96,7 @@ contents
 
 This theme uses Tailwind CSS and comes with a pre-built `styles.css`, so installing Node.js, PostCSS, etc. is not required. Some CSS variables can be used to create a customized look:
 
-Add a `assets/css/custom.css` to your site and adjust the values to your needs:
-
-```css
-:root {
-  --b1: 0 0% 100%; /* Base color of page */
-  --b2: 0 0% 96.08%; /* Base color, a little darker */
-  --bc: 0 0% 9.02%; /* Foreground content color */
-}
-
-html[data-theme="dark"] {
-  --b1: 0 0% 9.02%;
-  --b2: 0 0% 14.9%;
-  --bc: 0 0% 96.08%;
-}
-```
+Add a `assets/css/custom.css` to your site and adjust the values to your needs (see the example in `exampleSite`).
 
 ### Albums with images and sub-albums
 

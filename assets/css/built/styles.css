@@ -873,21 +873,19 @@ img {
   align-items: center;
   justify-content: center;
   border-radius: 0.5rem;
-  --tw-bg-opacity: 1;
-  background-color: hsl(var(--b2) / var(--tw-bg-opacity));
   padding-left: 1rem;
   padding-right: 1rem;
   font-size: 0.875rem;
   font-weight: 600;
   line-height: 1rem;
-  --tw-text-opacity: 1;
-  color: hsl(var(--bc) / var(--tw-text-opacity));
   --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
+    background-color: var(--surface-2);
+    color: var(--text-1);
 }
 .btn-square {
   height: 3rem;
@@ -900,12 +898,6 @@ img {
   --tw-shadow: 0 0 #0000;
   --tw-shadow-colored: 0 0 #0000;
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-@media(hover:hover) {
-
-  .btn-ghost:hover {
-    background-color: hsl(var(--bc) / 0.1);
-  }
 }
 .card {
   display: flex;
@@ -928,9 +920,8 @@ img {
   line-height: 1.5rem;
 }
 .card p {
-  --tw-text-opacity: 1;
-  color: hsl(var(--nc) / var(--tw-text-opacity));
-}
+      color: var(--text-2);
+    }
 .card img {
   aspect-ratio: 3/2;
   height: 100%;
@@ -1052,12 +1043,8 @@ img {
 .font-semibold {
   font-weight: 600;
 }
-.text-base-content\/60 {
-  color: hsl(var(--bc) / 0.6);
-}
-.text-neutral-content {
-  --tw-text-opacity: 1;
-  color: hsl(var(--nc) / var(--tw-text-opacity));
+.text-\[--text-2\] {
+  color: var(--text-2);
 }
 /*! PhotoSwipe main CSS by Dmytro Semenov | photoswipe.com */
 .pswp {
@@ -1463,23 +1450,23 @@ div.pswp__img--placeholder,
   font-display: swap;
 }
 :root {
-  background-color: hsl(var(--b1) / 1);
-  color: hsl(var(--bc) / 1);
+  background-color: var(--surface-1);
+  color: var(--text-1);
   color-scheme: light;
-  --b1: 0 0% 100%; /* white */
-  --b2: 0 0% 98; /* neutral-0 */
-  --bc: 0 0% 6%; /* neutral-11 */
-  --nc: 0 0% 56%; /* neutral-6 */
+  --surface-1: #ffffff;
+  --surface-2: #ededed;
+  --text-1: #0f0f0f;
+  --text-2: #8f8f8f;
 }
 html {
   height: 100%;
 }
 html[data-theme="dark"] {
   color-scheme: dark;
-  --b1: 0 0% 10%; /* neutral-10 */
-  --b2: 0 0% 15%; /* neutral-9 */
-  --bc: 0 0% 98%; /* neutral-0 */
-  --nc: 0 0% 56%; /* neutral-6 */
+  --surface-1: #1a1a1a;
+  --surface-2: #3b3b3b;
+  --text-1: #fafafa;
+  --text-2: #8f8f8f;
 }
 body {
   display: flex;
@@ -1516,9 +1503,8 @@ header h1 {
   }
 }
 header p {
-  --tw-text-opacity: 1;
-  color: hsl(var(--nc) / var(--tw-text-opacity));
-}
+    color: var(--text-2);
+  }
 @media (min-width: 768px) {
 
   header p {
@@ -1532,6 +1518,7 @@ main {
   flex-grow: 1;
 }
 footer {
+  color: var(--text-2);
   margin-left: auto;
   margin-right: auto;
   display: grid;
@@ -1540,8 +1527,6 @@ footer {
   padding: 2.5rem;
   font-size: 0.875rem;
   line-height: 1.25rem;
-  --tw-text-opacity: 1;
-  color: hsl(var(--nc) / var(--tw-text-opacity));
 }
 @media(hover:hover) {
 
@@ -1569,13 +1554,11 @@ footer {
   --tw-prose-th-borders: var(--tw-prose-invert-th-borders);
   --tw-prose-td-borders: var(--tw-prose-invert-td-borders);
 }
-.hover\:text-base-content:hover {
-  --tw-text-opacity: 1;
-  color: hsl(var(--bc) / var(--tw-text-opacity));
+.hover\:text-\[--text-1\]:hover {
+  color: var(--text-1);
 }
-.aria-\[current\=true\]\:text-base-content[aria-current=true] {
-  --tw-text-opacity: 1;
-  color: hsl(var(--bc) / var(--tw-text-opacity));
+.aria-\[current\=true\]\:text-\[--text-1\][aria-current=true] {
+  color: var(--text-1);
 }
 .group[aria-expanded="true"] .group-aria-expanded\:block {
   display: block;

@@ -8,12 +8,14 @@
 @layer components {
   .btn {
     @apply inline-flex h-12 min-h-[3rem] cursor-pointer select-none items-center justify-center rounded-lg 
-    px-4 text-sm font-semibold leading-4 bg-base-200 text-base-content shadow-sm transition-colors;
+    px-4 text-sm font-semibold leading-4 shadow-sm transition-colors;
+    background-color: var(--surface-2);
+    color: var(--text-1);
     &-square {
       @apply h-12 w-12 p-0;
     }
     &-ghost {
-      @apply bg-transparent text-current shadow-none [@media(hover:hover)]:hover:bg-base-content/10;
+      @apply bg-transparent text-current shadow-none;
     }
   }
 
@@ -26,7 +28,7 @@
       @apply mb-1 text-lg font-semibold leading-6;
     }
     p {
-      @apply text-neutral-content;
+      color: var(--text-2);
     }
     img {
       @apply overflow-hidden rounded-2xl shadow-sm transition-all duration-300 w-full h-full object-cover aspect-[3/2];
@@ -56,13 +58,13 @@
 }
 
 :root {
-  background-color: theme(colors.base-100);
-  color: theme(colors.base-content);
+  background-color: var(--surface-1);
+  color: var(--text-1);
   color-scheme: light;
-  --b1: 0 0% 100%; /* white */
-  --b2: 0 0% 98; /* neutral-0 */
-  --bc: 0 0% 6%; /* neutral-11 */
-  --nc: 0 0% 56%; /* neutral-6 */
+  --surface-1: #ffffff;
+  --surface-2: #ededed;
+  --text-1: #0f0f0f;
+  --text-2: #8f8f8f;
 }
 
 html {
@@ -71,10 +73,10 @@ html {
 
 html[data-theme="dark"] {
   color-scheme: dark;
-  --b1: 0 0% 10%; /* neutral-10 */
-  --b2: 0 0% 15%; /* neutral-9 */
-  --bc: 0 0% 98%; /* neutral-0 */
-  --nc: 0 0% 56%; /* neutral-6 */
+  --surface-1: #1a1a1a;
+  --surface-2: #3b3b3b;
+  --text-1: #fafafa;
+  --text-2: #8f8f8f;
 }
 
 body {
@@ -87,7 +89,8 @@ header {
     @apply text-3xl font-bold md:text-4xl;
   }
   p {
-    @apply text-neutral-content md:text-lg;
+    color: var(--text-2);
+    @apply md:text-lg;
   }
 }
 
@@ -96,7 +99,8 @@ main {
 }
 
 footer {
-  @apply mx-auto grid grid-flow-col gap-4 p-10 text-sm text-neutral-content;
+  color: var(--text-2);
+  @apply mx-auto grid grid-flow-col gap-4 p-10 text-sm;
   a {
     @apply [@media(hover:hover)]:hover:underline;
   }
