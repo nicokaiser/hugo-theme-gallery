@@ -1,7 +1,7 @@
 albumCount:
   one: 1 album
   other: "{{ . }} albums"
-albums: Albums
+menu: Menu
 in: dans
 home: Accueil
 pageNotFound: Page non trouvée
