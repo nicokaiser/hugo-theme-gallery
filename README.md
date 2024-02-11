@@ -105,7 +105,7 @@ Add a `assets/css/custom.css` to your site and adjust the values to your needs:
   --bc: 0 0% 9.02%; /* Foreground content color */
 }
 
-html.dark {
+html[data-theme="dark"] {
   --b1: 0 0% 9.02%;
   --b2: 0 0% 14.9%;
   --bc: 0 0% 96.08%;

@@ -5,7 +5,7 @@
   --bc: 0 0% 9%;
 }
 
-html.dark {
+html[data-theme="dark"] {
   --b1: 0 0% 9%;
   --b2: 0 0% 14.9%;
   --bc: 0 0% 96.08%;
