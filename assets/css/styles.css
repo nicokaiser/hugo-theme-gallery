@@ -7,11 +7,8 @@
 
 @layer components {
   .btn {
-    @apply inline-flex h-12 min-h-[3rem] cursor-pointer select-none items-center justify-center gap-2 rounded-lg border-transparent px-4 text-center text-sm font-semibold leading-4 duration-200;
-    transition-property: color, background-color;
-    & {
-      @apply bg-base-200 text-base-content shadow-sm;
-    }
+    @apply inline-flex h-12 min-h-[3rem] cursor-pointer select-none items-center justify-center rounded-lg 
+    px-4 text-sm font-semibold leading-4 bg-base-200 text-base-content shadow-sm transition-colors;
     &-square {
       @apply h-12 w-12 p-0;
     }
