@@ -1,0 +1,11 @@
+albumCount:
+  one: 1 album
+  other: "{{ . }} albummer"
+albums: albummer
+in: i
+home: Hjem
+pageNotFound: Siden blev ikke fundet
+photoCount:
+  one: 1 billede
+  other: "{{ . }} billeder"
+toHomepage: Til forsiden
