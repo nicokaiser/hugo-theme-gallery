@@ -1,5 +1,5 @@
 <div class="mx-auto mb-16 mt-8 max-w-screen-2xl sm:px-6">
-  <div class="gallery" style="visibility: hidden">
+  <div class="gallery" style="visibility: hidden; height: 1px; overflow: hidden">
     {{ $photos := sort (.Resources.ByType "image") (index .Params "sort_by" | default "Name") (.Params.sort_order | default "asc") }}
     {{ range $index, $original := $photos }}
       {{ if eq $original.ResourceType "image" }}
