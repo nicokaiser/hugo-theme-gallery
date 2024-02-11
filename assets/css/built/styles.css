@@ -866,12 +866,10 @@ img {
   display: inline-flex;
   height: 3rem;
   min-height: 3rem;
-  flex-shrink: 0;
   cursor: pointer;
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
@@ -884,7 +882,7 @@ img {
   font-weight: 600;
   line-height: 1rem;
   transition-duration: 200ms;
-    transition-property: color, background-color, box-shadow, transform;
+    transition-property: color, background-color;
     --tw-bg-opacity: 1;
     background-color: hsl(var(--b2) / var(--tw-bg-opacity));
     --tw-text-opacity: 1;
@@ -892,7 +890,6 @@ img {
     --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
     --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-    outline-color: hsl(var(--bc) / 1);
 }
 .btn-square {
   height: 3rem;
@@ -905,7 +902,6 @@ img {
   --tw-shadow: 0 0 #0000;
   --tw-shadow-colored: 0 0 #0000;
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-  outline-color: currentColor;
 }
 @media(hover:hover) {
 
@@ -918,14 +914,6 @@ img {
   flex-direction: column;
   border-radius: 1rem;
 }
-.card:focus {
-      outline: 2px solid transparent;
-      outline-offset: 2px;
-    }
-.card:focus-visible {
-      outline: 2px solid currentColor;
-      outline-offset: 2px;
-    }
 .card-body {
   display: flex;
   flex: 1 1 auto;
@@ -955,8 +943,8 @@ img {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 300ms;
       aspect-ratio: 3/2;
-      height: auto;
       width: 100%;
+      height: auto;
       -o-object-fit: cover;
          object-fit: cover;
 }
@@ -1470,11 +1458,11 @@ div.pswp__img--placeholder,
   left: 0 !important;
 }
 @font-face {
-  font-family: InterVariable;
-  font-weight: 100 900;
-  font-display: swap;
   font-style: normal;
+  font-weight: 100 900;
   src: url("../fonts/InterVariable-Roman.woff2") format("woff2");
+  font-family: InterVariable;
+  font-display: swap;
 }
 :root {
   background-color: hsl(var(--b1) / 1);
@@ -1499,9 +1487,9 @@ body {
   width: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  min-height: 100%;
   display: flex;
   flex-direction: column;
+  min-height: 100%;
 }
 header {
   margin-left: auto;
@@ -1541,9 +1529,9 @@ header p {
   }
 }
 main {
+  flex-grow: 1;
   width: 100%;
   height: 100%;
-  flex-grow: 1;
 }
 footer {
   margin-left: auto;
@@ -1563,10 +1551,6 @@ footer {
     text-decoration-line: underline;
   }
 }
-footer a:focus-visible {
-      outline: 2px solid currentColor;
-      outline-offset: 2px;
-    }
 :is(.dark .dark\:prose-invert) {
   --tw-prose-body: var(--tw-prose-invert-body);
   --tw-prose-headings: var(--tw-prose-invert-headings);
