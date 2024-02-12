@@ -7,12 +7,12 @@
 
 @layer components {
   .btn {
-    @apply inline-flex h-12 min-h-[3rem] cursor-pointer select-none items-center justify-center rounded-lg 
+    @apply inline-flex h-12 min-h-[3rem] select-none items-center justify-center rounded-lg 
     px-4 text-sm font-semibold leading-4 shadow-sm transition-colors;
     background-color: var(--surface-2);
     color: var(--text-1);
     &-square {
-      @apply h-12 w-12 p-0;
+      @apply w-12 p-0;
     }
     &-ghost {
       @apply bg-transparent text-current shadow-none;
@@ -38,14 +38,6 @@
         @apply scale-[1.02] shadow-lg;
       }
     }
-  }
-
-  .navbar {
-    @apply flex min-h-16 w-full items-center p-2;
-  }
-  :where(.navbar > *) {
-    display: inline-flex;
-    align-items: center;
   }
 }
 
@@ -104,4 +96,8 @@ footer {
   a {
     @apply [@media(hover:hover)]:hover:underline;
   }
+}
+
+.navbar {
+  @apply flex min-h-16 w-full items-center p-2 justify-between;
 }
