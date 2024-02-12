@@ -54,9 +54,9 @@
   color: var(--text-1);
   color-scheme: light;
   --surface-1: #ffffff;
-  --surface-2: #ededed;
+  --surface-2: #ececec;
   --text-1: #0f0f0f;
-  --text-2: #8f8f8f;
+  --text-2: #8e8e8e;
 }
 
 html {
@@ -65,10 +65,10 @@ html {
 
 html[data-theme="dark"] {
   color-scheme: dark;
-  --surface-1: #1a1a1a;
-  --surface-2: #3b3b3b;
-  --text-1: #fafafa;
-  --text-2: #8f8f8f;
+  --surface-1: #191919;
+  --surface-2: #3a3a3a;
+  --text-1: #f9f9f9;
+  --text-2: #8e8e8e;
 }
 
 body {
