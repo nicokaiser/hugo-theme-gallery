@@ -922,7 +922,6 @@ img {
     }
 .card img {
   aspect-ratio: 3/2;
-  height: 100%;
   width: 100%;
   overflow: hidden;
   border-radius: 1rem;

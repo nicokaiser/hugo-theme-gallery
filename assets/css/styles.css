@@ -31,7 +31,7 @@
       color: var(--text-2);
     }
     img {
-      @apply overflow-hidden rounded-2xl shadow-sm transition-all duration-300 w-full h-full object-cover aspect-[3/2];
+      @apply overflow-hidden rounded-2xl shadow-sm transition-all duration-300 w-full object-cover aspect-[3/2];
     }
     &:hover {
       img {
