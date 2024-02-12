@@ -100,4 +100,7 @@ footer {
 
 .navbar {
   @apply flex min-h-16 w-full items-center p-2 justify-between;
+  :where(.navbar > *) {
+    display: inline-flex;
+  }
 }

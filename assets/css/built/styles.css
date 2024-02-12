@@ -1523,6 +1523,9 @@ footer {
   justify-content: space-between;
   padding: 0.5rem;
 }
+.navbar :where(.navbar > *) {
+    display: inline-flex;
+  }
 :is([data-theme="dark"] .dark\:prose-invert) {
   --tw-prose-body: var(--tw-prose-invert-body);
   --tw-prose-headings: var(--tw-prose-invert-headings);
