@@ -7,26 +7,15 @@
 
 <div class="mx-auto mb-16 mt-8 grid max-w-screen-2xl grid-cols-1 gap-x-6 gap-y-8 px-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
   {{ range $albums | uniq }}
-    {{ $images := .Resources.ByType "image" }}
-    {{ if gt (len $images) 0 }}
-      {{ $featured := ($images.GetMatch (.Params.featured_image | default "*feature*")) | default (index $images 0) }}
-      {{ $thumbnail := $featured.Fit "600x600" }}
-      {{ $color := index $thumbnail.Colors 0 | default "transparent" }}
-      {{ $imageCount := len $images }}
-      {{ $albumCount := 0 }}
-      {{ if .IsSection }}
-        {{ range where .RegularPagesRecursive "Params.private" "ne" true }}
-          {{ $albumCount = add $albumCount 1 }}
-          {{ $imageCount = add $imageCount (len (.Resources.ByType "image")) }}
-        {{ end }}
-      {{ end }}
-      <a class="card" href="{{ .RelPermalink }}" title="{{ .Title }}">
-        <img loading="lazy" width="{{ $thumbnail.Width }}" height="{{ $thumbnail.Height }}" src="{{ $thumbnail.RelPermalink }}" style="background-color: {{ $color }}" alt="{{ .Title }}" />
+    {{ $gallery := partial "get-gallery.html" . }}
+    {{ with $gallery }}
+      <a class="card" href="{{ .page.RelPermalink }}" title="{{ .page.Title }}">
+        <img loading="lazy" width="{{ .thumbnail.Width }}" height="{{ .thumbnail.Height }}" src="{{ .thumbnail.RelPermalink }}" style="background-color: {{ .color }}" alt="{{ .page.Title }}" />
         <div class="card-body">
-          <h2>{{ .Title }}</h2>
+          <h2>{{ .page.Title }}</h2>
           <p>
-            {{ i18n "photoCount" ($imageCount | lang.FormatNumber 0) }}
-            {{ if gt $albumCount 0 }}{{ i18n "in" }} {{ i18n "albumCount" ($albumCount | lang.FormatNumber 0) }}{{ end }}
+            {{ i18n "photoCount" (.imageCount | lang.FormatNumber 0) }}
+            {{ if gt .albumCount 0 }}{{ i18n "in" }} {{ i18n "albumCount" (.albumCount | lang.FormatNumber 0) }}{{ end }}
           </p>
         </div>
       </a>

@@ -1,0 +1,24 @@
+{{ $gallery := "" }}
+{{ $images := .Resources.ByType "image" }}
+{{ if gt (len $images) 0 }}
+  {{ $featured := ($images.GetMatch (.Params.featured_image | default "*feature*")) | default (index $images 0) }}
+  {{ $thumbnail := $featured.Fit "600x600" }}
+  {{ $color := index $thumbnail.Colors 0 | default "transparent" }}
+  {{ $imageCount := len $images }}
+  {{ $albumCount := 0 }}
+  {{ if .IsSection }}
+    {{ range where .RegularPagesRecursive "Params.private" "ne" true }}
+      {{ $albumCount = add $albumCount 1 }}
+      {{ $imageCount = add $imageCount (len (.Resources.ByType "image")) }}
+    {{ end }}
+  {{ end }}
+  {{ $gallery = dict
+    "page" $
+    "images" $images
+    "thumbnail" $thumbnail
+    "color" $color
+    "albumCount" $albumCount
+    "imageCount" $imageCount
+}}
+{{ end }}
+{{ return $gallery }}
