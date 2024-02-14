@@ -1,6 +1,6 @@
-# hugo-theme-gallery
+# Hugo Gallery Theme
 
-A very simple and opinionated photo gallery theme for Hugo built with Tailwind CSS.
+A very simple and opinionated photo gallery theme for Hugo.
 
 - [Demo](https://hugo-gallery-example.netlify.com)
 - [Example site source](exampleSite)
@@ -50,27 +50,27 @@ $ git submodule add --depth=1 https://github.com/nicokaiser/hugo-theme-gallery.g
 Page bundles which contain at least one image are listed as album or gallery:
 
 ```
-contents
-|-- _index.md
-|-- about.md             <-- not listed in album list
-|-- animals
-|   |-- _index.md
-|   |-- cats
-|   |   |-- index.md
-|   |   |-- cat1.jpg
-|   |   `-- feature.jpg  <-- album thumbnail
-|   |-- dogs
-|   |   |-- index.md
-|   |   |-- dog1.jpg     <-- album thumbnail
-|   |   `-- dog2.jpg
-|   `-- feature.jpg
-|-- bridge.jpg           <-- site thumbnail (OpenGraph, etc.)
-`-- nature
-    |-- index.md         <-- contains `featured_image: images/tree.jpg`
-    |-- images
-    |   `-- tree.jpg     <-- album thumbnail, not shown in gallery
-    |-- nature1.jpg
-    `-- nature2.jpg
+content/
+├── _index.md
+├── about.md             <-- not listed in album list
+├── animals/
+│   ├── _index.md
+│   ├── cats/
+│   |   ├── index.md
+│   |   ├── cat1.jpg
+│   |   └── feature.jpg  <-- album thumbnail
+│   ├── dogs/
+│   |   ├── index.md
+│   |   ├── dog1.jpg     <-- album thumbnail
+│   |   └── dog2.jpg
+│   └── feature.jpg
+├── bridge.jpg           <-- site thumbnail (OpenGraph, etc.)
+└──  nature/
+    ├── index.md         <-- contains `featured_image: images/tree.jpg`
+    ├── images/
+    |   └── tree.jpg     <-- album thumbnail
+    ├── nature1.jpg
+    └── nature2.jpg
 ```
 
 - `/about.md` is not a Page Bundle and does not have image resources. It is not displayed in the album list.
@@ -78,7 +78,6 @@ contents
 - `/animals` is a Branch Bundle (has `_index.md` and has children) => displayed as album list (`list` layout).
 - The image resource with `*feature*` in its name or the first image found is used as thumbnail image for album lists.
 - Albums without an image are not shown.
-- Images in a sub-directory are not shown (here: `nature/images/tree.jpg`). This can be used to provide an album thumbnail that is not shown in the album itself.
 
 ### Front matter
 
