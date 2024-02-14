@@ -1,7 +1,7 @@
-<ul class="menu hidden" id="menu">
+<ul class="mx-auto mb-16 mt-8 hidden w-full max-w-screen-md select-none text-center text-lg font-semibold text-[--text-2]" id="menu">
   {{ range site.Menus.main }}
     <li itemscope itemtype="http://www.schema.org/SiteNavigationElement">
-      <a aria-current="{{ or (page.IsMenuCurrent .Menu .) (page.HasMenuCurrent .Menu .) }}" href="{{ .URL }}" itemprop="url">
+      <a class="block py-2 hover:text-[--text-1] aria-[current=true]:text-[--text-1]" aria-current="{{ or (page.IsMenuCurrent .Menu .) (page.HasMenuCurrent .Menu .) }}" href="{{ .URL }}" itemprop="url">
         <span itemprop="name">{{ .Name }}</span>
       </a>
     </li>

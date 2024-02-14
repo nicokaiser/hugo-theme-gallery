@@ -5,42 +5,6 @@
 @import "../lib/photoswipe/photoswipe.css";
 @import "../lib/photoswipe-dynamic-caption-plugin/photoswipe-dynamic-caption-plugin.css";
 
-@layer components {
-  .btn {
-    @apply inline-flex h-12 min-h-[3rem] select-none items-center justify-center rounded-lg 
-    px-4 text-sm font-semibold leading-4 shadow-sm transition-colors;
-    background-color: var(--surface-2);
-    color: var(--text-1);
-    &-square {
-      @apply w-12 p-0;
-    }
-    &-ghost {
-      @apply bg-transparent text-current shadow-none;
-    }
-  }
-
-  .card {
-    @apply flex flex-col rounded-2xl;
-    &-body {
-      @apply flex flex-auto flex-col gap-2 p-4 text-sm;
-    }
-    h2 {
-      @apply mb-1 text-lg font-semibold leading-6;
-    }
-    p {
-      color: var(--text-2);
-    }
-    img {
-      @apply overflow-hidden rounded-2xl shadow-sm transition-all duration-300 w-full object-cover aspect-[3/2];
-    }
-    &:hover {
-      img {
-        @apply scale-[1.02] shadow-lg;
-      }
-    }
-  }
-}
-
 @font-face {
   font-style: normal;
   font-weight: 100 900;
@@ -50,17 +14,11 @@
 }
 
 :root {
-  background-color: var(--surface-1);
-  color: var(--text-1);
   color-scheme: light;
   --surface-1: #ffffff;
   --surface-2: #ececec;
   --text-1: #0f0f0f;
   --text-2: #8e8e8e;
-}
-
-html {
-  height: 100%;
 }
 
 html[data-theme="dark"] {
@@ -69,45 +27,4 @@ html[data-theme="dark"] {
   --surface-2: #3a3a3a;
   --text-1: #f9f9f9;
   --text-2: #8e8e8e;
-}
-
-body {
-  @apply w-full antialiased flex min-h-full flex-col;
-}
-
-header {
-  @apply mx-auto mb-16 mt-8 flex max-w-screen-lg flex-col items-center gap-6 px-6 text-center;
-  h1 {
-    @apply text-3xl font-bold md:text-4xl;
-  }
-  p {
-    color: var(--text-2);
-    @apply md:text-lg;
-  }
-}
-
-main {
-  @apply w-full h-full grow;
-}
-
-footer {
-  color: var(--text-2);
-  @apply mx-auto grid grid-flow-col gap-4 p-10 text-sm;
-  a {
-    @apply [@media(hover:hover)]:hover:underline;
-  }
-}
-
-.navbar {
-  @apply flex min-h-16 w-full items-center p-2 justify-between;
-  :where(.navbar > *) {
-    display: inline-flex;
-  }
-}
-
-.menu {
-  @apply mx-auto mb-16 mt-8 w-full max-w-screen-md select-none text-center text-lg font-semibold text-[--text-2];
-  a {
-    @apply block py-2 hover:text-[--text-1] aria-[current=true]:text-[--text-1];
-  }
 }
