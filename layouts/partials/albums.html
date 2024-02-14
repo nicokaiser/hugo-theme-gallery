@@ -14,8 +14,8 @@
         <div class="card-body">
           <h2>{{ .page.Title }}</h2>
           <p>
-            {{ i18n "photoCount" (.imageCount | lang.FormatNumber 0) }}
-            {{ if gt .albumCount 0 }}{{ i18n "in" }} {{ i18n "albumCount" (.albumCount | lang.FormatNumber 0) }}{{ end }}
+            {{ T "photoCount" (.imageCount | lang.FormatNumber 0) }}
+            {{ if gt .albumCount 0 }}{{ T "in" }} {{ T "albumCount" (.albumCount | lang.FormatNumber 0) }}{{ end }}
           </p>
         </div>
       </a>
