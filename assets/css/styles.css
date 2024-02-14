@@ -104,3 +104,10 @@ footer {
     display: inline-flex;
   }
 }
+
+.menu {
+  @apply mx-auto mb-16 mt-8 w-full max-w-screen-md select-none text-center text-lg font-semibold text-[--text-2];
+  a {
+    @apply block py-2 hover:text-[--text-1] aria-[current=true]:text-[--text-1];
+  }
+}

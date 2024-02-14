@@ -967,9 +967,6 @@ img {
 .w-6 {
   width: 1.5rem;
 }
-.w-full {
-  width: 100%;
-}
 .max-w-screen-2xl {
   max-width: 1536px;
 }
@@ -978,11 +975,6 @@ img {
 }
 .cursor-zoom-in {
   cursor: zoom-in;
-}
-.select-none {
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
 }
 .grid-cols-1 {
   grid-template-columns: repeat(1, minmax(0, 1fr));
@@ -998,26 +990,9 @@ img {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
 }
-.py-2 {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-}
-.text-center {
-  text-align: center;
-}
-.text-lg {
-  font-size: 1.125rem;
-  line-height: 1.75rem;
-}
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
-}
-.font-semibold {
-  font-weight: 600;
-}
-.text-\[--text-2\] {
-  color: var(--text-2);
 }
 /*! PhotoSwipe main CSS by Dmytro Semenov | photoswipe.com */
 .pswp {
@@ -1518,6 +1493,33 @@ footer {
 .navbar :where(.navbar > *) {
     display: inline-flex;
   }
+.menu {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 4rem;
+  margin-top: 2rem;
+  width: 100%;
+  max-width: 768px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  text-align: center;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+  color: var(--text-2);
+}
+.menu a {
+  display: block;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+.menu a:hover {
+  color: var(--text-1);
+}
+.menu a[aria-current=true] {
+  color: var(--text-1);
+}
 :is([data-theme="dark"] .dark\:prose-invert) {
   --tw-prose-body: var(--tw-prose-invert-body);
   --tw-prose-headings: var(--tw-prose-invert-headings);
@@ -1537,12 +1539,6 @@ footer {
   --tw-prose-pre-bg: var(--tw-prose-invert-pre-bg);
   --tw-prose-th-borders: var(--tw-prose-invert-th-borders);
   --tw-prose-td-borders: var(--tw-prose-invert-td-borders);
-}
-.hover\:text-\[--text-1\]:hover {
-  color: var(--text-1);
-}
-.aria-\[current\=true\]\:text-\[--text-1\][aria-current=true] {
-  color: var(--text-1);
 }
 .group[aria-expanded="true"] .group-aria-expanded\:block {
   display: block;
