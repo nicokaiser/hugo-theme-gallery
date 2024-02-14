@@ -5,7 +5,7 @@
     "justified-layout": "^4.1.0",
     "photoswipe": "^5.4.3",
     "photoswipe-dynamic-caption-plugin": "^1.2.7",
-    "postcss": "^8.4.33",
+    "postcss": "^8.4.35",
     "postcss-cli": "^11.0.0",
     "postcss-import": "^16.0.0",
     "prettier": "^3.2.5",
