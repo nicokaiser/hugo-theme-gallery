@@ -23,7 +23,7 @@ A very simple and opinionated photo gallery theme for Hugo.
 
 ## Installation
 
-This theme requires Hugo >= 0.113, Node.js and NPM.
+This theme is built with Tailwind CSS and requires Hugo >= 0.113, Node.js and NPM.
 
 ### As a Hugo Module
 
@@ -33,7 +33,7 @@ Requires the Go binary installed.
 $ hugo mod init github.com/<your_user>/<your_project>
 ```
 
-Add the theme to your `hugo.toml`
+Then add the theme to your `hugo.toml`:
 
 ```
 [module]
@@ -41,7 +41,7 @@ Add the theme to your `hugo.toml`
     path = "github.com/nicokaiser/hugo-theme-gallery/v2"
 ```
 
-Install required packages
+Install required packages:
 
 ```
 $ hugo mod npm pack
@@ -102,11 +102,11 @@ content/
 - `sort_by` -- property used for sorting images in an album. Default is `Name` (filename), but can also be `Exif.Date` (only works if all images have EXIF tags).
 - `sort_order` -- sort order. Default is `asc`.
 
-### Custom CSS
+### Customization
 
-This theme uses Tailwind CSS, which is compiled using PostCSS. Some CSS variables can be used to create a customized look:
+The theme is very opinionated but kept simple to you can create a customized version. CSS is generated with Tailwind, PostCSS and Hugo Pipes, so you can use additional Tailwind utility classes in your custom templates.
 
-Add a `assets/css/custom.css` to your site and adjust the values to your needs (see the example in `exampleSite`).
+Custom CSS can be used in `assets/css/custom.css` (see the example in `exampleSite`).
 
 ## Author
 
