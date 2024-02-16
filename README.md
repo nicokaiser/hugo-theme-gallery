@@ -36,7 +36,9 @@ $ hugo mod init github.com/<your_user>/<your_project>
 Add the theme to your `hugo.toml`
 
 ```
-theme = ["github.com/nicokaiser/hugo-theme-gallery/v2"]
+[module]
+  [[module.imports]]
+    path = "github.com/nicokaiser/hugo-theme-gallery/v2"
 ```
 
 ### As Git Submodule
@@ -93,7 +95,7 @@ content/
 
 ### Custom CSS
 
-This theme uses Tailwind CSS and comes with a pre-built `styles.css`, so installing Node.js, PostCSS, etc. is not required. Some CSS variables can be used to create a customized look:
+This theme uses Tailwind CSS, which is compiled using PostCSS. Some CSS variables can be used to create a customized look:
 
 Add a `assets/css/custom.css` to your site and adjust the values to your needs (see the example in `exampleSite`).
 
