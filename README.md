@@ -23,7 +23,7 @@ A very simple and opinionated photo gallery theme for Hugo.
 
 ## Installation
 
-This theme requires Hugo >= 0.113.
+This theme requires Hugo >= 0.113, Node.js and NPM.
 
 ### As a Hugo Module
 
@@ -41,10 +41,19 @@ Add the theme to your `hugo.toml`
     path = "github.com/nicokaiser/hugo-theme-gallery/v2"
 ```
 
+Install required packages
+
+```
+$ hugo mod npm pack
+$ npm install
+```
+
 ### As Git Submodule
 
 ```
 $ git submodule add --depth=1 https://github.com/nicokaiser/hugo-theme-gallery.git themes/gallery
+$ hugo mod npm pack
+$ npm install
 ```
 
 ## Usage
@@ -98,26 +107,6 @@ content/
 This theme uses Tailwind CSS, which is compiled using PostCSS. Some CSS variables can be used to create a customized look:
 
 Add a `assets/css/custom.css` to your site and adjust the values to your needs (see the example in `exampleSite`).
-
-### Albums with images and sub-albums
-
-In some cases it might be desirable to show images _and_ sub-albums on one page. To achive this, a local version of `list.html` needs to be added with something like this:
-
-```diff
-  {{ define "main" }}
-    {{ partial "title.html" . }}
-    {{ partial "albums.html" . }}
-+   {{ partial "gallery.html" . }}
-  {{ end }}
-```
-
-In this case, featured images for albums which only contain other albums need to be moved to a sub-directory to avoid being displayed.
-
-### Folders with no images
-
-Albums with no images are hidden by default. This is a design decision to keep the structure as simple as possible and hides pages like `about.md` or `imprint.md` from the album list without the need of defining a layout/section for each gallery.
-
-[@baekgaard](https://github.com/baekgaard) made a [Pull request](https://github.com/nicokaiser/hugo-theme-gallery/pull/14) about handling of empty albums, which allows to modify this behaviour (which, for simplicity reasons, is not merged).
 
 ## Author
 
