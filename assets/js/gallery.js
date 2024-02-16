@@ -8,8 +8,8 @@ if (gallery) {
 
   const input = Array.from(items).map((item) => {
     const img = item.querySelector("img");
-    img.style.width = '100%';
-    img.style.height = 'auto';
+    img.style.width = "100%";
+    img.style.height = "auto";
     return {
       width: parseFloat(img.getAttribute("width")),
       height: parseFloat(img.getAttribute("height")),

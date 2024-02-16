@@ -1,7 +1,6 @@
 {
   "comments": {
-    "dependencies": {},
-    "devDependencies": {
+    "dependencies": {
       "@tailwindcss/typography": "project",
       "autoprefixer": "project",
       "justified-layout": "project",
@@ -11,10 +10,16 @@
       "postcss-cli": "project",
       "postcss-import": "project",
       "tailwindcss": "project"
+    },
+    "devDependencies": {
+      "prettier": "project",
+      "prettier-plugin-css-order": "project",
+      "prettier-plugin-go-template": "project",
+      "prettier-plugin-organize-attributes": "project",
+      "prettier-plugin-tailwindcss": "project"
     }
   },
-  "dependencies": {},
-  "devDependencies": {
+  "dependencies": {
     "@tailwindcss/typography": "^0.5.10",
     "autoprefixer": "^10.4.17",
     "justified-layout": "^4.1.0",
@@ -25,6 +30,16 @@
     "postcss-import": "^16.0.1",
     "tailwindcss": "^3.4.1"
   },
+  "devDependencies": {
+    "prettier": "^3.2.5",
+    "prettier-plugin-css-order": "^2.0.1",
+    "prettier-plugin-go-template": "^0.0.15",
+    "prettier-plugin-organize-attributes": "^1.0.0",
+    "prettier-plugin-tailwindcss": "^0.5.11"
+  },
   "private": "true",
+  "scripts": {
+    "prettier": "prettier . --write"
+  },
   "version": "2.7.0"
 }
