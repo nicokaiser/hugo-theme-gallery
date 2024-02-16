@@ -2,7 +2,7 @@ const defaultTheme = require("tailwindcss/defaultTheme");
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./layouts/**/*.html"],
+  content: ['./hugo_stats.json'],
   darkMode: ['class', '[data-theme="dark"]'],
   theme: {
     extend: {
