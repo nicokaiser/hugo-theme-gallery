@@ -2,7 +2,7 @@
 layout: page
 rss_ignore: true
 title: About
-menus:
+menu:
   main:
     weight: 90
 ---
