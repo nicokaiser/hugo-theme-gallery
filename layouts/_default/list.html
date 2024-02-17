@@ -1,6 +1,6 @@
 {{ define "main" }}
   {{ partial "title.html" . }}
-  <div class="mx-auto mb-16 mt-8 grid max-w-screen-2xl grid-cols-1 gap-x-6 gap-y-8 px-6 sm:grid-cols-2 sm:gap-y-12 lg:grid-cols-3 xl:grid-cols-4">
+  <div class="mx-auto mb-16 mt-12 grid max-w-screen-2xl grid-cols-1 gap-x-6 gap-y-8 px-6 sm:grid-cols-2 sm:gap-y-12 lg:grid-cols-3 xl:grid-cols-4">
     {{ range where .Pages.ByDate.Reverse "Params.private" "ne" true }}
       {{ partial "album-card.html" . }}
     {{ end }}
