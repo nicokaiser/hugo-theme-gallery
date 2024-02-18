@@ -38,7 +38,7 @@ Then add the theme to your `hugo.toml`:
 ```
 [module]
   [[module.imports]]
-    path = "github.com/nicokaiser/hugo-theme-gallery/v2"
+    path = "github.com/nicokaiser/hugo-theme-gallery/v3"
 ```
 
 Install required packages:

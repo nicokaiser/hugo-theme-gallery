@@ -32,7 +32,7 @@ title = "Gallery"
   [module.hugoVersion]
     min = "0.113.0"
   [[module.imports]]
-    path = "github.com/nicokaiser/hugo-theme-gallery/v2"
+    path = "github.com/nicokaiser/hugo-theme-gallery/v3"
   [[module.mounts]]
     source = "assets"
     target = "assets"
