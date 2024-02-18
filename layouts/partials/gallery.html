@@ -17,6 +17,13 @@
             {{ $rotation = " r270" }}
           {{ end }}
         {{ end }}
+        {{ $title := "" }}
+        {{ with $metadata.ImageDescription }}
+          {{ $title = . }}
+        {{ end }}
+        {{ if ne $original.Title $original.Name }}
+          {{ $title = $original.Title }}
+        {{ end }}
         {{ $thumbnail := ($original.Fit (printf "%s %s" "600x600" $rotation)) }}
         {{ $full := ($original.Fit (printf "%s %s" "1600x1600" $rotation)) }}
         {{ $color := index $thumbnail.Colors 0 | default "transparent" }}
@@ -26,13 +33,7 @@
           data-pswp-src="{{ $full.RelPermalink }}"
           data-pswp-width="{{ $full.Width }}"
           data-pswp-height="{{ $full.Height }}"
-          {{ with $metadata }}
-            {{ if .Title }}
-              title="{{ .Title }}"
-            {{ else if .ImageDescription }}
-              title="{{ .ImageDescription }}"
-            {{ end }}
-          {{ end }}
+          title="{{ $title }}"
           itemscope
           itemtype="https://schema.org/ImageObject"
           style="aspect-ratio: {{ $thumbnail.Width }} / {{ $thumbnail.Height }}"
@@ -43,15 +44,7 @@
             height="{{ $thumbnail.Height }}"
             src="{{ $thumbnail.RelPermalink }}"
             style="background-color: {{ $color }}"
-            {{ with $metadata }}
-              {{ if .ImageDescription }}
-                alt="{{ .ImageDescription }}"
-              {{ else }}
-                {{ if .Title }}
-                  alt="{{ .Title }}"
-                {{ end }}
-              {{ end }}
-            {{ end }}
+            alt="{{ $title }}"
           />
           <meta itemprop="contentUrl" content="{{ $original.RelPermalink }}" />
           {{ with $.Site.Author }}

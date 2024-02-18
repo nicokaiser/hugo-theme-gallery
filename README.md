@@ -102,6 +102,24 @@ content/
 - `sort_by` -- property used for sorting images in an album. Default is `Name` (filename), but can also be `Exif.Date` (only works if all images have EXIF tags).
 - `sort_order` -- sort order. Default is `asc`.
 
+### Metadata
+
+Image titles for the lightbox view are either taken from the `ImageDescription` EXIF tag, or the `title` in the resource metadata.
+
+Here is an example front matter which sets the title for two images (the other titles are generated from EXIF tags, if present):
+
+```markdown
+---
+date: 2024-02-18T14:12:44+0100
+title: Cats
+resources:
+  - src: cat-1.jpg
+    title: Brown tabby cat on white stairs
+  - src: cat-2.jpg
+    title: Selective focus photography of orange and white cat on brown table
+---
+```
+
 ### Customization
 
 The theme is very opinionated but kept simple to you can create a customized version. CSS is generated with Tailwind, PostCSS and Hugo Pipes, so you can use additional Tailwind utility classes in your custom templates.
