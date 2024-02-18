@@ -1,6 +1,7 @@
 import PhotoSwipeLightbox from "photoswipe/lightbox";
 import PhotoSwipe from "photoswipe";
 import PhotoSwipeDynamicCaption from "photoswipe-dynamic-caption-plugin";
+import * as params from "@params";
 
 const gallery = document.querySelector(".gallery");
 
@@ -27,6 +28,11 @@ if (gallery) {
             right: 0,
           };
     },
+    closeTitle: params.closeTitle,
+    zoomTitle: params.zoomTitle,
+    arrowPrevTitle: params.arrowPrevTitle,
+    arrowNextTitle: params.arrowNextTitle,
+    errorMsg: params.errorMsg,
   });
 
   lightbox.on("uiRegister", () => {
@@ -44,7 +50,7 @@ if (gallery) {
         el.setAttribute("download", "");
         el.setAttribute("target", "_blank");
         el.setAttribute("rel", "noopener");
-        el.setAttribute("title", "Download");
+        el.setAttribute("title", params.downloadTitle || 'Download');
         pswp.on("change", () => {
           el.href = pswp.currSlide.data.element.href;
         });

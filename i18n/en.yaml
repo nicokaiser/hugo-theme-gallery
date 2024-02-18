@@ -9,3 +9,9 @@ photoCount:
   one: 1 photo
   other: "{{ . }} photos"
 toHomepage: Go to homepage
+closeTitle: Close
+zoomTitle: Zoom
+arrowPrevTitle: Previous
+arrowNextTitle: Next
+errorMsg: The photo cannot be loaded
+downloadTitle: Download

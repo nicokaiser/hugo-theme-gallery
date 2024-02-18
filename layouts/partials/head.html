@@ -21,7 +21,15 @@
   {{ partial "opengraph.html" . }}
   {{ $css := slice (resources.Get "/css/styles.css") (resources.Get "/css/custom.css") | resources.Concat "/css/styles.css" | postCSS | minify | fingerprint | resources.PostProcess }}
   <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
-  {{ $js := resources.Get "js/main.js" | js.Build (dict "minify" true) | resources.Fingerprint }}
+  {{ $params := dict
+    "closeTitle" (i18n "closeTitle")
+    "zoomTitle" (i18n "zoomTitle")
+    "arrowPrevTitle" (i18n "arrowPrevTitle")
+    "arrowNextTitle" (i18n "arrowNextTitle")
+    "errorMsg" (i18n "errorMsg")
+    "downloadTitle" (i18n "downloadTitle")
+  }}
+  {{ $js := resources.Get "js/main.js" | js.Build (dict "minify" true "params" $params) | resources.Fingerprint }}
   <script src="{{ $js.RelPermalink }}" defer></script>
   {{- partial "head-custom.html" . -}}
 </head>

@@ -9,3 +9,9 @@ photoCount:
   one: 1 Foto
   other: "{{ . }} Fotos"
 toHomepage: Zur Startseite
+closeTitle: Schließen
+zoomTitle: Vergrößern
+arrowPrevTitle: Zurück
+arrowNextTitle: Weiter
+errorMsg: Das Bild konnte nicht geladen werden
+downloadTitle: Download
