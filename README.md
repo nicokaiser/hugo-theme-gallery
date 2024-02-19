@@ -106,7 +106,13 @@ content/
 
 Image titles for the lightbox view are either taken from the `ImageDescription` EXIF tag, or the `title` in the resource metadata.
 
-Here is an example front matter which sets the title for two images (the other titles are generated from EXIF tags, if present):
+EXIF tags can be written using software like Adobe Lightroom or by using command line tools like exiftool:
+
+```
+exiftool -ImageDescription="A closeup of a gray cat's face" cat-4.jpg
+```
+
+Alternatively, the image title can be set in the front matter:
 
 ```markdown
 ---
@@ -119,6 +125,8 @@ resources:
     title: Selective focus photography of orange and white cat on brown table
 ---
 ```
+
+Note: currently it is only possible to set the `title` in the front matter. Setting the `date` is not supported yet.
 
 ### Customization
 
