@@ -27,25 +27,8 @@
         {{ $thumbnail := ($original.Fit (printf "%s %s" "600x600" $rotation)) }}
         {{ $full := ($original.Fit (printf "%s %s" "1600x1600" $rotation)) }}
         {{ $color := index $thumbnail.Colors 0 | default "transparent" }}
-        <a
-          class="gallery-item cursor-zoom-in"
-          href="{{ $original.RelPermalink }}"
-          data-pswp-src="{{ $full.RelPermalink }}"
-          data-pswp-width="{{ $full.Width }}"
-          data-pswp-height="{{ $full.Height }}"
-          title="{{ $title }}"
-          itemscope
-          itemtype="https://schema.org/ImageObject"
-          style="aspect-ratio: {{ $thumbnail.Width }} / {{ $thumbnail.Height }}"
-        >
-          <img
-            loading="lazy"
-            width="{{ $thumbnail.Width }}"
-            height="{{ $thumbnail.Height }}"
-            src="{{ $thumbnail.RelPermalink }}"
-            style="background-color: {{ $color }}"
-            alt="{{ $title }}"
-          />
+        <a class="gallery-item cursor-zoom-in" href="{{ $original.RelPermalink }}" data-pswp-src="{{ $full.RelPermalink }}" data-pswp-width="{{ $full.Width }}" data-pswp-height="{{ $full.Height }}" title="{{ $title }}" itemscope itemtype="https://schema.org/ImageObject" style="aspect-ratio: {{ $thumbnail.Width }} / {{ $thumbnail.Height }}">
+          <img loading="lazy" width="{{ $thumbnail.Width }}" height="{{ $thumbnail.Height }}" src="{{ $thumbnail.RelPermalink }}" style="background-color: {{ $color }}" alt="{{ $title }}" />
           <meta itemprop="contentUrl" content="{{ $original.RelPermalink }}" />
           {{ with $.Site.Author }}
             <span itemprop="creator" itemtype="https://schema.org/Person" itemscope>

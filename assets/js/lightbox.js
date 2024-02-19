@@ -50,7 +50,7 @@ if (gallery) {
         el.setAttribute("download", "");
         el.setAttribute("target", "_blank");
         el.setAttribute("rel", "noopener");
-        el.setAttribute("title", params.downloadTitle || 'Download');
+        el.setAttribute("title", params.downloadTitle || "Download");
         pswp.on("change", () => {
           el.href = pswp.currSlide.data.element.href;
         });
