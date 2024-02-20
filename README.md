@@ -35,10 +35,31 @@ $ hugo mod init github.com/<your_user>/<your_project>
 
 Then add the theme to your `hugo.toml`:
 
-```
+```toml
 [module]
   [[module.imports]]
     path = "github.com/nicokaiser/hugo-theme-gallery/v3"
+  [[module.mounts]]
+    source = "assets"
+    target = "assets"
+  [[module.mounts]]
+    source = "hugo_stats.json"
+    target = "assets/watching/hugo_stats.json"
+
+[build]
+  writeStats = true
+  [[build.cachebusters]]
+    source = "assets/watching/hugo_stats\\.json"
+    target = "styles\\.css"
+  [[build.cachebusters]]
+    source = "(postcss|tailwind)\\.config\\.js"
+    target = "css"
+  [[build.cachebusters]]
+    source = "assets/.*\\.(js|ts|jsx|tsx)"
+    target = "js"
+  [[build.cachebusters]]
+    source = "assets/.*\\.(.*)$"
+    target = "$1"
 ```
 
 Install required packages:
@@ -55,6 +76,8 @@ $ git submodule add --depth=1 https://github.com/nicokaiser/hugo-theme-gallery.g
 $ hugo mod npm pack
 $ npm install
 ```
+
+The `module.mounts` and `build.cachebusters` settings from the above example also need to be added to your `hugo.toml`.
 
 ## Usage
 
