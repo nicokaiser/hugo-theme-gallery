@@ -1,6 +1,6 @@
 <div class="mx-auto mb-16 mt-12 max-w-screen-2xl sm:px-6">
   <div class="gallery" style="visibility: hidden; height: 1px; overflow: hidden">
-    {{ $images := sort (.Resources.ByType "image") (index .Params "sort_by" | default "Name") (.Params.sort_order | default "asc") }}
+    {{ $images := sort (.Resources.ByType "image") (.Params.sort_by | default "Name") (.Params.sort_order | default "asc") }}
     {{ range $image := $images }}
       {{ $rotation := "" }}
       {{ $title := "" }}
