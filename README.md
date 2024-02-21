@@ -122,7 +122,7 @@ content/
 - `weight` -- can be used to adjust sort order.
 - `private` -- if set to `true`, this album is not shown in the album overview and is excluded from RSS feeds.
 - `featured` -- if set to `true`, this album is listed on the homepage (even if private).
-- `sort_by` -- property used for sorting images in an album. Default is `Name` (filename), but can also be `Exif.Date` (only works if all images have EXIF tags).
+- `sort_by` -- property used for sorting images in an album. Default is `Name` (filename), but can also be `Date` (only works if all images have EXIF tags).
 - `sort_order` -- sort order. Default is `asc`.
 
 ### Metadata
@@ -144,12 +144,12 @@ title: Cats
 resources:
   - src: cat-1.jpg
     title: Brown tabby cat on white stairs
+    params:
+      date: 2024-02-18T13:04:30+0100
   - src: cat-2.jpg
     title: Selective focus photography of orange and white cat on brown table
 ---
 ```
-
-Note: currently it is only possible to set the `title` in the front matter. Setting the `date` is not supported yet.
 
 ### Customization
 

@@ -1,7 +1,7 @@
 <div class="mx-auto mb-16 mt-12 max-w-screen-2xl sm:px-6">
   <div class="gallery" style="visibility: hidden; height: 1px; overflow: hidden">
-    {{ $images := sort (.Resources.ByType "image") (.Params.sort_by | default "Name") (.Params.sort_order | default "asc") }}
-    {{ range $image := $images }}
+    {{ $images := slice }}
+    {{ range $image :=  .Resources.ByType "image" }}
       {{ $rotation := "" }}
       {{ $title := "" }}
       {{ with $image.Exif }}
@@ -23,11 +23,21 @@
         {{/* Title from front matter */}}
         {{ $title = $image.Title }}
       {{ end }}
-      {{ $thumbnail := ($image.Fit (printf "%s %s" "600x600" $rotation)) }}
-      {{ $full := ($image.Fit (printf "%s %s" "1600x1600" $rotation)) }}
+      {{ $images = $images | append (dict
+        "Name" $image.Name
+        "Title" $title
+        "rotation" $rotation
+        "image" $image
+        )
+      }}
+    {{ end }}
+    {{ range sort $images (.Params.sort_by | default "Name") (.Params.sort_order | default "asc") }}
+      {{ $image := .image }}
+      {{ $thumbnail := ($image.Fit (printf "%s %s" "600x600" .rotation)) }}
+      {{ $full := ($image.Fit (printf "%s %s" "1600x1600" .rotation)) }}
       {{ $color := index $thumbnail.Colors 0 | default "transparent" }}
-      <a class="gallery-item cursor-zoom-in" href="{{ $image.RelPermalink }}" data-pswp-src="{{ $full.RelPermalink }}" data-pswp-width="{{ $full.Width }}" data-pswp-height="{{ $full.Height }}" title="{{ $title }}" itemscope itemtype="https://schema.org/ImageObject" style="aspect-ratio: {{ $thumbnail.Width }} / {{ $thumbnail.Height }}">
-        <img loading="lazy" width="{{ $thumbnail.Width }}" height="{{ $thumbnail.Height }}" src="{{ $thumbnail.RelPermalink }}" style="background-color: {{ $color }}" alt="{{ $title }}" />
+      <a class="gallery-item cursor-zoom-in" href="{{ .RelPermalink }}" data-pswp-src="{{ $full.RelPermalink }}" data-pswp-width="{{ $full.Width }}" data-pswp-height="{{ $full.Height }}" title="{{ .Title }}" itemscope itemtype="https://schema.org/ImageObject" style="aspect-ratio: {{ $thumbnail.Width }} / {{ $thumbnail.Height }}">
+        <img loading="lazy" width="{{ $thumbnail.Width }}" height="{{ $thumbnail.Height }}" src="{{ $thumbnail.RelPermalink }}" style="background-color: {{ $color }}" alt="{{ .Title }}" />
         <meta itemprop="contentUrl" content="{{ $image.RelPermalink }}" />
         {{ with site.Params.Author }}
           <span itemprop="creator" itemtype="https://schema.org/Person" itemscope>
