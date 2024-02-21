@@ -99,7 +99,7 @@ content/
 │   |   └── dog2.jpg
 │   └── feature.jpg
 ├── bridge.jpg           <-- site thumbnail (OpenGraph, etc.)
-└──  nature/
+└── nature/
     ├── index.md         <-- contains `featured_image: images/tree.jpg`
     ├── images/
     |   └── tree.jpg     <-- album thumbnail
