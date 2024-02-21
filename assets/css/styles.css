@@ -13,7 +13,7 @@
   --text-2: #8e8e8e;
 }
 
-html[data-theme="dark"] {
+html.dark {
   color-scheme: dark;
   --surface-1: #191919;
   --surface-2: #3a3a3a;

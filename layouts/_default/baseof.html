@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="h-full" data-theme="{{- if (eq .Site.Params.defaultTheme "light") -}}light{{- else if (eq .Site.Params.defaultTheme "dark") }}dark{{ end -}}" lang="{{- site.LanguageCode | default "en" -}}">
+<html class="{{- if (eq .Site.Params.defaultTheme "light") -}}light{{- else if (eq .Site.Params.defaultTheme "dark") }}dark{{ end }} h-full" lang="{{- site.LanguageCode | default "en" -}}">
   {{ partial "head.html" . }}
   <body class="flex min-h-full w-full flex-col bg-[--surface-1] text-[--text-1] antialiased">
     {{ block "header" . }}{{ partial "header.html" . }}{{ end }}
