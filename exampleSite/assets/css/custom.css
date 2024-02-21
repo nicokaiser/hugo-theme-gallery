@@ -4,16 +4,16 @@
 :root {
   color-scheme: light;
   --surface-1: #ffffff;
-  --surface-2: #ececec;
-  --text-1: #0f0f0f;
-  --text-2: #8e8e8e;
+  --surface-2: #e5e5e5;
+  --text-1: #0a0a0a;
+  --text-2: #8b8b8b;
 }
 
 html.dark {
   color-scheme: dark;
-  --surface-1: #191919;
-  --surface-2: #3a3a3a;
-  --text-1: #f9f9f9;
-  --text-2: #8e8e8e;
+  --surface-1: #171717;
+  --surface-2: #404040;
+  --text-1: #fafafa;
+  --text-2: #8b8b8b;
 }
 */
