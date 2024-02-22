@@ -6,7 +6,7 @@
   --surface-1: #ffffff;
   --surface-2: #e5e5e5;
   --text-1: #0a0a0a;
-  --text-2: #8b8b8b;
+  --text-2: #737373;
 }
 
 html.dark {
@@ -14,6 +14,6 @@ html.dark {
   --surface-1: #171717;
   --surface-2: #404040;
   --text-1: #fafafa;
-  --text-2: #8b8b8b;
+  --text-2: #a3a3a3;
 }
 */
