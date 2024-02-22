@@ -3,7 +3,7 @@
   <a class="flex flex-col rounded-2xl" href="{{ .page.RelPermalink }}" title="{{ .page.Title }}">
     <img class="aspect-[3/2] w-full overflow-hidden rounded-2xl object-cover shadow-sm transition-all duration-150 hover:scale-[101%] hover:shadow-lg" loading="lazy" width="{{ .thumbnail.Width }}" height="{{ .thumbnail.Height }}" src="{{ .thumbnail.RelPermalink }}" style="background-color: {{ .color }}" alt="{{ .page.Title }}" />
     <div class="flex flex-auto flex-col gap-3 p-4">
-      <h2 class="text-lg font-semibold leading-6">{{ .page.Title }}</h2>
+      <h2 class="text-lg font-semibold leading-snug">{{ .page.Title }}</h2>
       <p class="text-sm text-[--text-2]">
         {{ T "photoCount" (.imageCount | lang.FormatNumber 0) }}
         {{ if gt .albumCount 0 }}{{ T "in" }} {{ T "albumCount" (.albumCount | lang.FormatNumber 0) }}{{ end }}
