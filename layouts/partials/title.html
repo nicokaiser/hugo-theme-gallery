@@ -1,8 +1,8 @@
 {{ if .Title }}
-  <hgroup class="mx-auto mb-16 mt-12 flex max-w-screen-lg flex-col items-center gap-6 px-6 text-center sm:w-5/6">
-    <h1 class="text-3xl font-bold md:text-4xl">{{ .Title }}</h1>
+  <hgroup>
+    <h1>{{ .Title }}</h1>
     {{ with .Params.Description }}
-      <p class="text-[--text-2] md:text-lg">{{ . }}</p>
+      <p>{{ . }}</p>
     {{ end }}
   </hgroup>
 {{ end }}

@@ -1,8 +1,5 @@
-/* Custom CSS definitions */
-
 /*
 :root {
-  color-scheme: light;
   --surface-1: #ffffff;
   --surface-2: #e5e5e5;
   --text-1: #0a0a0a;
@@ -10,7 +7,6 @@
 }
 
 html.dark {
-  color-scheme: dark;
   --surface-1: #171717;
   --surface-2: #404040;
   --text-1: #fafafa;

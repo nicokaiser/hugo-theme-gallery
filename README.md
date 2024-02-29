@@ -23,7 +23,7 @@ A very simple and opinionated photo gallery theme for Hugo.
 
 ## Installation
 
-This theme is built with Tailwind CSS and requires Hugo >= 0.113, Node.js and NPM.
+This theme requires Hugo Extended >= 0.113. Dependencies are bundled, so no Node.js/NPM and PostCSS is needed.
 
 ### As a Hugo Module
 
@@ -39,45 +39,13 @@ Then add the theme to your `hugo.toml`:
 [module]
   [[module.imports]]
     path = "github.com/nicokaiser/hugo-theme-gallery/v3"
-  [[module.mounts]]
-    source = "assets"
-    target = "assets"
-  [[module.mounts]]
-    source = "hugo_stats.json"
-    target = "assets/watching/hugo_stats.json"
-
-[build]
-  writeStats = true
-  [[build.cachebusters]]
-    source = "assets/watching/hugo_stats\\.json"
-    target = "styles\\.css"
-  [[build.cachebusters]]
-    source = "(postcss|tailwind)\\.config\\.js"
-    target = "css"
-  [[build.cachebusters]]
-    source = "assets/.*\\.(js|ts|jsx|tsx)"
-    target = "js"
-  [[build.cachebusters]]
-    source = "assets/.*\\.(.*)$"
-    target = "$1"
-```
-
-Install required packages:
-
-```
-$ hugo mod npm pack
-$ npm install
 ```
 
 ### As Git Submodule
 
 ```
 $ git submodule add --depth=1 https://github.com/nicokaiser/hugo-theme-gallery.git themes/gallery
-$ hugo mod npm pack
-$ npm install
 ```
-
-The `module.mounts` and `build.cachebusters` settings from the above example also need to be added to your `hugo.toml`.
 
 ## Usage
 
@@ -153,9 +121,7 @@ resources:
 
 ### Customization
 
-The theme is very opinionated but kept simple to you can create a customized version. CSS is generated with Tailwind, PostCSS and Hugo Pipes, so you can use additional Tailwind utility classes in your custom templates.
-
-Custom CSS can be used in `assets/css/custom.css` (see the example in `exampleSite`).
+The theme is very opinionated but kept simple to you can create a customized version. CSS is generated with Hugo Pipes, so you can add additional CSS in `assets/css/custom.css` (see example in `exampleSite`).
 
 ## Author
 

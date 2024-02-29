@@ -1,3 +1,4 @@
 node_modules/
+package-lock.json
 .hugo_build.lock
 exampleSite/assets/jsconfig.json

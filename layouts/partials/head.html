@@ -19,7 +19,7 @@
     {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
   {{ end -}}
   {{ partial "opengraph.html" . }}
-  {{ $css := slice (resources.Get "/css/styles.css") (resources.Get "/css/custom.css") | resources.Concat "/css/styles.css" | postCSS | minify | fingerprint | resources.PostProcess }}
+  {{ $css := resources.Get "/css/main.css" | toCSS | minify | fingerprint }}
   <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
   {{ $params := dict
     "closeTitle" (i18n "closeTitle")
