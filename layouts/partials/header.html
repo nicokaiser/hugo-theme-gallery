@@ -1,4 +1,4 @@
-<nav class="flex min-h-16 w-full items-center justify-between p-2">
+<header class="flex min-h-16 w-full items-center justify-between p-2">
   {{ with .Parent }}
     <a class="inline-flex h-12 w-12 select-none items-center justify-center rounded-lg p-0" href="{{ .RelPermalink | default .Site.Home.RelPermalink }}" title="{{ .Title }}">
       <svg width="24" height="24" data-slot="icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -22,5 +22,5 @@
       </button>
     </li>
   </ul>
-</nav>
+</header>
 {{ partial "menu.html" . }}

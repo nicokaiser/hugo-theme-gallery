@@ -1,10 +1,10 @@
 <footer class="mx-auto text-sm text-[--text-2]">
-  <nav class="grid grid-flow-col gap-4 p-10">
+  <section class="grid grid-flow-col gap-4 p-10">
     {{ .Site.Copyright }}
     {{ range .Site.Menus.footer }}
       <a class="hover:underline" {{ with .Params.rel -}}rel="{{ . }}"{{ end -}} href="{{ .URL }}">
         {{ .Name }}
       </a>
     {{ end }}
-  </nav>
+  </section>
 </footer>
