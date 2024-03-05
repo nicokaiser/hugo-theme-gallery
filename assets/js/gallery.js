@@ -1,10 +1,10 @@
 import justifiedLayout from "justified-layout";
 
-const gallery = document.querySelector(".gallery");
+const gallery = document.getElementById("gallery");
 
 if (gallery) {
   let containerWidth = 0;
-  const items = document.querySelectorAll(".gallery-item");
+  const items = gallery.querySelectorAll(".gallery-item");
 
   const input = Array.from(items).map((item) => {
     const img = item.querySelector("img");

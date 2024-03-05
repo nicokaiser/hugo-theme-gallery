@@ -1,5 +1,5 @@
 <section class="mx-auto mb-16 mt-12 max-w-screen-2xl sm:px-6">
-  <div class="gallery" style="visibility: hidden; height: 1px; overflow: hidden">
+  <div id="gallery" style="visibility: hidden; height: 1px; overflow: hidden">
     {{ $images := slice }}
     {{ range $image :=  .Resources.ByType "image" }}
       {{ $rotation := "" }}
