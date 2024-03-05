@@ -47,4 +47,5 @@ if (gallery) {
   window.addEventListener("orientationchange", updateGallery);
 
   updateGallery();
+  updateGallery();
 }
