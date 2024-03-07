@@ -119,6 +119,23 @@ resources:
 ---
 ```
 
+### Additional Features
+
+#### Social Icons
+
+Use the `socialIcons` configuration key to add social icons on the bottom of each page:
+
+```toml
+[params]
+  ...
+  [params.socialIcons]
+    facebook = "https://www.facebook.com/"
+    instagram = "https://www.instagram.com/"
+    github = "https://github.com/nicokaiser/hugo-theme-gallery/"
+    youtube = "https://www.youtube.com/"
+    email = "mailto:user@example.com"
+```
+
 ### Customization
 
 The theme is very opinionated but kept simple to you can create a customized version. CSS is generated with Hugo Pipes, so you can add additional CSS in `assets/css/custom.css` (see example in `exampleSite`).

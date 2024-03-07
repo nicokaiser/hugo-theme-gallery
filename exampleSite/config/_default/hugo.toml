@@ -14,6 +14,12 @@ title = "Gallery"
   [params.author]
     email = "user@example.com"
     name = "Your Name"
+  [params.socialIcons]
+    facebook = "https://www.facebook.com/"
+    instagram = "https://www.instagram.com/"
+    github = "https://github.com/nicokaiser/hugo-theme-gallery/"
+    youtube = "https://www.youtube.com/"
+    email = "mailto:user@example.com"
 
 [outputs]
   home = ["HTML", "RSS"]

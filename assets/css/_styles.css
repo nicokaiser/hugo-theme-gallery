@@ -280,3 +280,10 @@ section.gallery {
     display: none;
   }
 }
+
+section.social-icons {
+  display: flex;
+  column-gap: 1.5rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
