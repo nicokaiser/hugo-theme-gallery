@@ -3,7 +3,7 @@ import PhotoSwipe from "photoswipe";
 import PhotoSwipeDynamicCaption from "photoswipe-dynamic-caption-plugin";
 import * as params from "@params";
 
-const gallery = document.querySelector(".gallery");
+const gallery = document.getElementById("gallery");
 
 if (gallery) {
   const lightbox = new PhotoSwipeLightbox({
