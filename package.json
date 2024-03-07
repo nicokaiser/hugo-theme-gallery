@@ -1,12 +1,4 @@
 {
-  "comments": {
-    "devDependencies": {
-      "prettier": "project",
-      "prettier-plugin-css-order": "project",
-      "prettier-plugin-go-template": "project",
-      "prettier-plugin-organize-attributes": "project"
-    }
-  },
   "devDependencies": {
     "prettier": "^3.2.5",
     "prettier-plugin-css-order": "^2.0.1",

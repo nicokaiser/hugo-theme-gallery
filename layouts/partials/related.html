@@ -1,6 +1,6 @@
 {{ $related := where (site.RegularPages.Related .) "Params.private" "ne" true | first 3 }}
 {{ with $related }}
-  <hgroup>
+  <hgroup style="margin-top: 8rem">
     <h2>{{ T "relatedAlbums" }}</h2>
   </hgroup>
   <section class="galleries">
