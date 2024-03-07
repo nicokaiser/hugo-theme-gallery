@@ -287,3 +287,52 @@ section.social-icons {
   justify-content: center;
   margin-top: 2rem;
 }
+
+section.featured {
+  margin: 3rem auto 4rem;
+  padding-right: 1.5rem;
+  padding-left: 1.5rem;
+  max-width: 1280px;
+}
+
+.featured-card {
+  display: flex;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  border-radius: 1rem;
+  background-position: center;
+  background-size: cover;
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  overflow: hidden;
+
+  @media (min-width: 640px) {
+    aspect-ratio: 16/9;
+  }
+
+  & > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 1rem;
+    background-image: linear-gradient(to top, RGB(0 0 0 / 0.8) 10%, transparent 50%);
+    padding: 1.5rem;
+    width: 100%;
+    height: 100%;
+
+    & > h2 {
+      font-weight: 700;
+      font-size: 1.5rem;
+      line-height: 1.25;
+
+      @media (min-width: 768px) {
+        font-size: 1.875rem;
+        line-height: 2.25rem;
+      }
+    }
+
+    & > p {
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+    }
+  }
+}
