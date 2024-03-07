@@ -238,7 +238,13 @@ section.gallery {
   }
 
   p {
+    margin-top: 1.25em;
     margin-bottom: 1.25em;
+  }
+
+  img {
+    margin-top: 2em;
+    margin-bottom: 2em;
   }
 
   h3 {
@@ -271,6 +277,10 @@ section.gallery {
       text-indent: 0 !important;
       text-transform: none;
     }
+  }
+
+  & > :first-child {
+    margin-top: 0;
   }
 
   h3 + * {
