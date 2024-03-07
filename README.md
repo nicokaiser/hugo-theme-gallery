@@ -125,6 +125,11 @@ resources:
 
 On the homepage, up to one featured album (`featured: true` in the front matter) is displayed. Note: featured albums are displayed on the homepage, even if they are private.
 
+#### Related Content
+
+If related content is available for your site (e.g. when keywords or tags are used), related albums are shown below each gallery.
+Read more about this in the [Hugo Docs](https://gohugo.io/content-management/related/#configure-related-content).
+
 #### Social Icons
 
 Use the `socialIcons` configuration key to add social icons on the bottom of each page:

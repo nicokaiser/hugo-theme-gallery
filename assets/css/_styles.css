@@ -111,6 +111,12 @@ hgroup {
     line-height: 2.25rem;
   }
 
+  h2 {
+    font-weight: 700;
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
   p {
     color: var(--text-2);
   }
@@ -123,6 +129,11 @@ hgroup {
     h1 {
       font-size: 2.25rem;
       line-height: 2.5rem;
+    }
+
+    h2 {
+      font-size: 1.875rem;
+      line-height: 2.25rem;
     }
 
     p {
