@@ -1,0 +1,98 @@
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  border-width: 0;
+}
+
+html {
+  line-height: 1.5;
+  font-family:
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    Ubuntu,
+    Cantarell,
+    "Noto Sans",
+    sans-serif;
+  -webkit-text-size-adjust: 100%;
+  -moz-tab-size: 4;
+  tab-size: 4;
+}
+
+body {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: inherit;
+  font-size: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+button {
+  -webkit-appearance: button;
+  cursor: pointer;
+  margin: 0;
+  background-image: none;
+  background-color: transparent;
+  padding: 0;
+  color: inherit;
+  font-weight: inherit;
+  font-size: 100%;
+  line-height: inherit;
+  font-family: inherit;
+  font-variation-settings: inherit;
+  font-feature-settings: inherit;
+  text-transform: none;
+}
+
+:disabled {
+  cursor: default;
+}
+
+:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+ul,
+menu {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+img,
+svg,
+video {
+  display: block;
+  vertical-align: middle;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}

@@ -23,7 +23,7 @@ A very simple and opinionated photo gallery theme for Hugo.
 
 ## Installation
 
-This theme is built with Tailwind CSS and requires Hugo >= 0.113, Node.js and NPM.
+This theme requires Hugo Extended >= 0.113. Dependencies are bundled, so no Node.js/NPM and PostCSS is needed.
 
 ### As a Hugo Module
 
@@ -38,46 +38,14 @@ Then add the theme to your `hugo.toml`:
 ```toml
 [module]
   [[module.imports]]
-    path = "github.com/nicokaiser/hugo-theme-gallery/v3"
-  [[module.mounts]]
-    source = "assets"
-    target = "assets"
-  [[module.mounts]]
-    source = "hugo_stats.json"
-    target = "assets/watching/hugo_stats.json"
-
-[build]
-  writeStats = true
-  [[build.cachebusters]]
-    source = "assets/watching/hugo_stats\\.json"
-    target = "styles\\.css"
-  [[build.cachebusters]]
-    source = "(postcss|tailwind)\\.config\\.js"
-    target = "css"
-  [[build.cachebusters]]
-    source = "assets/.*\\.(js|ts|jsx|tsx)"
-    target = "js"
-  [[build.cachebusters]]
-    source = "assets/.*\\.(.*)$"
-    target = "$1"
-```
-
-Install required packages:
-
-```
-$ hugo mod npm pack
-$ npm install
+    path = "github.com/nicokaiser/hugo-theme-gallery/v4"
 ```
 
 ### As Git Submodule
 
 ```
 $ git submodule add --depth=1 https://github.com/nicokaiser/hugo-theme-gallery.git themes/gallery
-$ hugo mod npm pack
-$ npm install
 ```
-
-The `module.mounts` and `build.cachebusters` settings from the above example also need to be added to your `hugo.toml`.
 
 ## Usage
 
@@ -121,7 +89,7 @@ content/
 - `featured_image` -- name of the image file used for the album thumbnail. If not set, the first image which contains `feature` in its filename is used, otherwise the first image in the album.
 - `weight` -- can be used to adjust sort order.
 - `private` -- if set to `true`, this album is not shown in the album overview and is excluded from RSS feeds.
-- `featured` -- if set to `true`, this album is listed on the homepage (even if private).
+- `featured` -- if set to `true`, this album is featured on the homepage (even if private).
 - `sort_by` -- property used for sorting images in an album. Default is `Name` (filename), but can also be `Date`.
 - `sort_order` -- sort order. Default is `asc`.
 
@@ -151,11 +119,35 @@ resources:
 ---
 ```
 
+### Additional Features
+
+#### Featured Album
+
+On the homepage, up to one featured album (`featured: true` in the front matter) is displayed. Note: featured albums are displayed on the homepage, even if they are private.
+
+#### Related Content
+
+If related content is available for your site (e.g. when keywords or tags are used), related albums are shown below each gallery.
+Read more about this in the [Hugo Docs](https://gohugo.io/content-management/related/#configure-related-content).
+
+#### Social Icons
+
+Use the `socialIcons` configuration key to add social icons on the bottom of each page:
+
+```toml
+[params]
+  ...
+  [params.socialIcons]
+    facebook = "https://www.facebook.com/"
+    instagram = "https://www.instagram.com/"
+    github = "https://github.com/nicokaiser/hugo-theme-gallery/"
+    youtube = "https://www.youtube.com/"
+    email = "mailto:user@example.com"
+```
+
 ### Customization
 
-The theme is very opinionated but kept simple to you can create a customized version. CSS is generated with Tailwind, PostCSS and Hugo Pipes, so you can use additional Tailwind utility classes in your custom templates.
-
-Custom CSS can be used in `assets/css/custom.css` (see the example in `exampleSite`).
+The theme is very opinionated but kept simple to you can create a customized version. CSS is generated with Hugo Pipes, so you can add additional CSS in `assets/css/custom.css` (see example in `exampleSite`).
 
 ## Author
 

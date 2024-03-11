@@ -14,6 +14,12 @@ title = "Gallery"
   [params.author]
     email = "user@example.com"
     name = "Your Name"
+  [params.socialIcons]
+    facebook = "https://www.facebook.com/"
+    instagram = "https://www.instagram.com/"
+    github = "https://github.com/nicokaiser/hugo-theme-gallery/"
+    youtube = "https://www.youtube.com/"
+    email = "mailto:user@example.com"
 
 [outputs]
   home = ["HTML", "RSS"]
@@ -32,28 +38,7 @@ title = "Gallery"
   [module.hugoVersion]
     min = "0.113.0"
   [[module.imports]]
-    path = "github.com/nicokaiser/hugo-theme-gallery/v3"
-  [[module.mounts]]
-    source = "assets"
-    target = "assets"
-  [[module.mounts]]
-    source = "hugo_stats.json"
-    target = "assets/watching/hugo_stats.json"
-
-[build]
-  writeStats = true
-  [[build.cachebusters]]
-    source = "assets/watching/hugo_stats\\.json"
-    target = "styles\\.css"
-  [[build.cachebusters]]
-    source = "(postcss|tailwind)\\.config\\.js"
-    target = "css"
-  [[build.cachebusters]]
-    source = "assets/.*\\.(js|ts|jsx|tsx)"
-    target = "js"
-  [[build.cachebusters]]
-    source = "assets/.*\\.(.*)$"
-    target = "$1"
+    path = "github.com/nicokaiser/hugo-theme-gallery/v4"
 
 [menu]
   [[menu.footer]]

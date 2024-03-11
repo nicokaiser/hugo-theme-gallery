@@ -1,38 +1,4 @@
 {
-  "comments": {
-    "dependencies": {},
-    "devDependencies": {
-      "@tailwindcss/typography": "github.com/nicokaiser/hugo-theme-gallery/v2",
-      "autoprefixer": "github.com/nicokaiser/hugo-theme-gallery/v2",
-      "justified-layout": "github.com/nicokaiser/hugo-theme-gallery/v2",
-      "photoswipe": "github.com/nicokaiser/hugo-theme-gallery/v2",
-      "photoswipe-dynamic-caption-plugin": "github.com/nicokaiser/hugo-theme-gallery/v2",
-      "postcss": "github.com/nicokaiser/hugo-theme-gallery/v2",
-      "postcss-cli": "github.com/nicokaiser/hugo-theme-gallery/v2",
-      "prettier": "github.com/nicokaiser/hugo-theme-gallery/v2",
-      "prettier-plugin-css-order": "github.com/nicokaiser/hugo-theme-gallery/v2",
-      "prettier-plugin-go-template": "github.com/nicokaiser/hugo-theme-gallery/v2",
-      "prettier-plugin-organize-attributes": "github.com/nicokaiser/hugo-theme-gallery/v2",
-      "prettier-plugin-tailwindcss": "github.com/nicokaiser/hugo-theme-gallery/v2",
-      "tailwindcss": "github.com/nicokaiser/hugo-theme-gallery/v2"
-    }
-  },
-  "dependencies": {},
-  "devDependencies": {
-    "@tailwindcss/typography": "^0.5.10",
-    "autoprefixer": "^10.4.17",
-    "justified-layout": "^4.1.0",
-    "photoswipe": "^5.4.3",
-    "photoswipe-dynamic-caption-plugin": "^1.2.7",
-    "postcss": "^8.4.35",
-    "postcss-cli": "^11.0.0",
-    "prettier": "^3.2.5",
-    "prettier-plugin-css-order": "^2.0.1",
-    "prettier-plugin-go-template": "^0.0.15",
-    "prettier-plugin-organize-attributes": "^1.0.0",
-    "prettier-plugin-tailwindcss": "^0.5.11",
-    "tailwindcss": "^3.4.1"
-  },
   "private": "true",
   "scripts": {
     "build": "hugo --gc --minify",

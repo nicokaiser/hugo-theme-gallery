@@ -1,10 +1,3 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
-
-@import "photoswipe/dist/photoswipe";
-@import "photoswipe-dynamic-caption-plugin/photoswipe-dynamic-caption-plugin";
-
 :root {
   color-scheme: light;
   --surface-1: #ffffff;

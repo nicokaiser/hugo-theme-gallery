@@ -1,4 +1,4 @@
-import justifiedLayout from "justified-layout";
+import justifiedLayout from "./justified-layout/index.js";
 
 const gallery = document.getElementById("gallery");
 

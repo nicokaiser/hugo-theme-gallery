@@ -1,6 +1,6 @@
-import PhotoSwipeLightbox from "photoswipe/lightbox";
-import PhotoSwipe from "photoswipe";
-import PhotoSwipeDynamicCaption from "photoswipe-dynamic-caption-plugin";
+import PhotoSwipeLightbox from "./photoswipe/photoswipe-lightbox.esm.js";
+import PhotoSwipe from "./photoswipe/photoswipe.esm.js";
+import PhotoSwipeDynamicCaption from "./photoswipe/photoswipe-dynamic-caption-plugin.esm.min.js";
 import * as params from "@params";
 
 const gallery = document.getElementById("gallery");
