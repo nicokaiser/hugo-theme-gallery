@@ -38,7 +38,7 @@ Then add the theme to your `hugo.toml`:
 ```toml
 [module]
   [[module.imports]]
-    path = "github.com/nicokaiser/hugo-theme-gallery/v3"
+    path = "github.com/nicokaiser/hugo-theme-gallery/v4"
 ```
 
 ### As Git Submodule

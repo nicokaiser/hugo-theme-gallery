@@ -38,7 +38,7 @@ title = "Gallery"
   [module.hugoVersion]
     min = "0.113.0"
   [[module.imports]]
-    path = "github.com/nicokaiser/hugo-theme-gallery/v3"
+    path = "github.com/nicokaiser/hugo-theme-gallery/v4"
 
 [menu]
   [[menu.footer]]
