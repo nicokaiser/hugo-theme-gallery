@@ -1,16 +1,8 @@
 {{ define "main" }}
   {{ partial "title.html" . }}
-  {{ $albums := slice }}
-  {{ $albums = $albums | append (where site.Pages.ByDate.Reverse "Params.featured" "=" true) }}
-  {{ $albums = $albums | append (where .Pages.ByDate.Reverse "Params.private" "ne" true) }}
-  {{ $albums = $albums | uniq }}
-
-  <!-- Custom sorting function to sort albums by title -->
-  {{ $sortedAlbums := sort $albums "Params.title" "asc" }}
-
-  <section class="mx-auto mb-16 mt-12 grid max-w-screen-xl grid-cols-1 gap-x-6 gap-y-8 px-6 sm:grid-cols-2 sm:gap-y-12 lg:grid-cols-3">
-    {{ range $sortedAlbums }}
+  {{ partial "featured.html" . }}
+  <section class="galleries">
+    {{ range where .Pages "Params.private" "ne" true }}
       {{ partial "album-card.html" . }}
     {{ end }}
   </section>
-{{ end }}
