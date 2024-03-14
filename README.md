@@ -14,7 +14,7 @@ A very simple and opinionated photo gallery theme for Hugo.
 ## Features
 
 - Responsive design
-- Dark theme
+- Dark color scheme (can be set per page)
 - Private albums
 - Automatic (or manual) selection of feature images
 - Justified album views with [Flickr's Justified Layout](https://github.com/flickr/justified-layout)
@@ -92,6 +92,7 @@ content/
 - `featured` -- if set to `true`, this album is featured on the homepage (even if private).
 - `sort_by` -- property used for sorting images in an album. Default is `Name` (filename), but can also be `Date`.
 - `sort_order` -- sort order. Default is `asc`.
+- `params.theme` -- color theme for this page. Defaults to `defaultTheme` from configuration.
 
 ### Metadata
 

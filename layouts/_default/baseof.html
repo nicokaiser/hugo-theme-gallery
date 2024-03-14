@@ -1,5 +1,6 @@
 <!doctype html>
-<html class="{{- if (eq .Site.Params.defaultTheme "light") -}}light{{- else if (eq .Site.Params.defaultTheme "dark") }}dark{{ end }}" lang="{{- site.LanguageCode | default "en" -}}">
+{{- $theme := .Params.theme | default .Site.Params.defaultTheme }}
+<html class="{{- if (eq $theme "light") -}}light{{- else if (eq $theme "dark") }}dark{{ end }}" lang="{{- site.LanguageCode | default "en" -}}">
   {{ partial "head.html" . }}
   <body>
     {{ block "header" . }}{{ partial "header.html" . }}{{ end }}
