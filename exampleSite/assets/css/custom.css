@@ -1,15 +1,10 @@
 :root {
-  color-scheme: light;
-  --surface-1: #ffffff;
-  --surface-2: #dee2e6;
-  --text-1: #030507;
-  --text-2: #868e96;
-}
-
-html.dark {
-  color-scheme: dark;
-  --surface-1: #16191d;
-  --surface-2: #495057;
-  --text-1: #f8f9fa;
-  --text-2: #868e96;
+  --surface-1-light: #ffffff;
+  --surface-2-light: #dee2e6;
+  --text-1-light: #030507;
+  --text-2-light: #868e96;
+  --surface-1-dark: #16191d;
+  --surface-2-dark: #495057;
+  --text-1-dark: #f8f9fa;
+  --text-2-dark: #868e96;
 }
