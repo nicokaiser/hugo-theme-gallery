@@ -32,7 +32,7 @@ title = "Gallery"
   [imaging.exif]
     disableDate = false
     disableLatLong = true
-    includeFields = "ImageDescription"
+    includeFields = "ImageDescription|Orientation"
 
 [module]
   [module.hugoVersion]
