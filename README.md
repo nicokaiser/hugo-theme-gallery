@@ -23,7 +23,7 @@ A very simple and opinionated photo gallery theme for Hugo.
 
 ## Installation
 
-This theme requires Hugo Extended >= 0.113. Dependencies are bundled, so no Node.js/NPM and PostCSS is needed.
+This theme requires Hugo Extended >= 0.121.2. Dependencies are bundled, so no Node.js/NPM and PostCSS is needed.
 
 ### As a Hugo Module
 
