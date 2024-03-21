@@ -2,7 +2,7 @@
 
 A very simple and opinionated photo gallery theme for Hugo.
 
-- [Demo](https://hugo-gallery-example.netlify.com)
+- [Demo](https://nicokaiser.github.io/hugo-theme-gallery/)
 - [Example site source](exampleSite)
 
 ---
