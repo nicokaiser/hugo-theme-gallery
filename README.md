@@ -3,7 +3,7 @@
 A very simple and opinionated photo gallery theme for Hugo.
 
 - [Demo](https://nicokaiser.github.io/hugo-theme-gallery/)
-- [Example site source](exampleSite)
+- [Example site source](https://github.com/nicokaiser/hugo-theme-gallery/tree/main/exampleSite)
 
 ---
 
