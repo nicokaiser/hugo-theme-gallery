@@ -2,8 +2,8 @@
 
 A very simple and opinionated photo gallery theme for Hugo.
 
-- [Demo](https://hugo-gallery-example.netlify.com)
-- [Example site source](exampleSite)
+- [Demo](https://nicokaiser.github.io/hugo-theme-gallery/)
+- [Example site source](https://github.com/nicokaiser/hugo-theme-gallery/tree/main/exampleSite)
 
 ---
 
@@ -14,7 +14,7 @@ A very simple and opinionated photo gallery theme for Hugo.
 ## Features
 
 - Responsive design
-- Dark theme
+- Dark color scheme (can be set per page)
 - Private albums
 - Automatic (or manual) selection of feature images
 - Justified album views with [Flickr's Justified Layout](https://github.com/flickr/justified-layout)
@@ -23,7 +23,7 @@ A very simple and opinionated photo gallery theme for Hugo.
 
 ## Installation
 
-This theme requires Hugo Extended >= 0.113. Dependencies are bundled, so no Node.js/NPM and PostCSS is needed.
+This theme requires Hugo Extended >= 0.121.2. Dependencies are bundled, so no Node.js/NPM and PostCSS is needed.
 
 ### As a Hugo Module
 
@@ -92,6 +92,7 @@ content/
 - `featured` -- if set to `true`, this album is featured on the homepage (even if private).
 - `sort_by` -- property used for sorting images in an album. Default is `Name` (filename), but can also be `Date`.
 - `sort_order` -- sort order. Default is `asc`.
+- `params.theme` -- color theme for this page. Defaults to `defaultTheme` from configuration.
 
 ### Metadata
 

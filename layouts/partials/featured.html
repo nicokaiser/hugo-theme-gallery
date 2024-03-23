@@ -1,18 +1,20 @@
 {{ range where site.Pages.ByDate.Reverse "Params.featured" "=" true | first 1 }}
   {{ $gallery := partial "get-gallery.html" . }}
-  {{ $images := .Resources.ByType "image" }}
-  {{ $featured := ($images.GetMatch (.Params.featured_image | default "*feature*")) | default (index $images 0) }}
-  {{ $thumbnail := $featured.Fit "1600x1600" }}
-  {{ $color := index $thumbnail.Colors 0 | default "transparent" }}
-  <section class="featured">
-    <a class="featured-card" href="{{ .RelPermalink }}" style="background-image: url({{ $thumbnail.RelPermalink }})">
-      <div>
-        <h2>{{ .Title }}</h2>
-        <p>
-          {{ T "photoCount" ($gallery.imageCount | lang.FormatNumber 0) }}
-          {{ if gt $gallery.albumCount 0 }}{{ T "in" }} {{ T "albumCount" ($gallery.albumCount | lang.FormatNumber 0) }}{{ end }}
-        </p>
-      </div>
-    </a>
-  </section>
+  {{ if $gallery }}
+    {{ $images := .Resources.ByType "image" }}
+    {{ $featured := ($images.GetMatch (.Params.featured_image | default "*feature*")) | default (index $images 0) }}
+    {{ $thumbnail := $featured.Filter (slice images.AutoOrient (images.Process "fit 1600x1600")) }}
+    {{ $color := index $thumbnail.Colors 0 | default "transparent" }}
+    <section class="featured">
+      <a class="featured-card" href="{{ .RelPermalink }}" style="background-image: url({{ $thumbnail.RelPermalink }})">
+        <div>
+          <h2>{{ .Title }}</h2>
+          <p>
+            {{ T "photoCount" ($gallery.imageCount | lang.FormatNumber 0) }}
+            {{ if gt $gallery.albumCount 0 }}{{ T "in" }} {{ T "albumCount" ($gallery.albumCount | lang.FormatNumber 0) }}{{ end }}
+          </p>
+        </div>
+      </a>
+    </section>
+  {{ end }}
 {{ end }}

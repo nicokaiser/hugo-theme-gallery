@@ -1,15 +1,43 @@
 :root {
+  --surface-1-light: #ffffff;
+  --surface-2-light: #e5e5e5;
+  --text-1-light: #0a0a0a;
+  --text-2-light: #737373;
+  --surface-1-dark: #171717;
+  --surface-2-dark: #404040;
+  --text-1-dark: #fafafa;
+  --text-2-dark: #a3a3a3;
+}
+
+:root {
+  color-scheme: light dark;
+  --surface-1: var(--surface-1-light);
+  --surface-2: var(--surface-2-light);
+  --text-1: var(--text-1-light);
+  --text-2: var(--text-2-light);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --surface-1: var(--surface-1-dark);
+    --surface-2: var(--surface-2-dark);
+    --text-1: var(--text-1-dark);
+    --text-2: var(--text-2-dark);
+  }
+}
+
+html.light {
   color-scheme: light;
-  --surface-1: #ffffff;
-  --surface-2: #e5e5e5;
-  --text-1: #0a0a0a;
-  --text-2: #737373;
+  --surface-1: var(--surface-1-light);
+  --surface-2: var(--surface-2-light);
+  --text-1: var(--text-1-light);
+  --text-2: var(--text-2-light);
 }
 
 html.dark {
   color-scheme: dark;
-  --surface-1: #171717;
-  --surface-2: #404040;
-  --text-1: #fafafa;
-  --text-2: #a3a3a3;
+  --surface-1: var(--surface-1-dark);
+  --surface-2: var(--surface-2-dark);
+  --text-1: var(--text-1-dark);
+  --text-2: var(--text-2-dark);
 }

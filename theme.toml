@@ -1,11 +1,11 @@
 name = "Gallery"
 license = "MIT"
 licenselink = "https://github.com/nicokaiser/hugo-theme-gallery/blob/main/LICENSE"
-description = "A very simple and opinionated photo gallery theme for Hugo built with Tailwind CSS"
+description = "A very simple and opinionated photo gallery theme for Hugo"
 homepage = "https://github.com/nicokaiser/hugo-theme-gallery"
-demosite = "https://hugo-gallery-example.netlify.app/"
+demosite = "https://nicokaiser.github.io/hugo-theme-gallery/"
 tags = ["gallery", "responsive", "minimal", "dark"]
-min_version = "0.113.0"
+min_version = "0.121.2"
 
 [author]
   name = "Nico Kaiser"

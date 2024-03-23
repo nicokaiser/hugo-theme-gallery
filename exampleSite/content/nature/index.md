@@ -7,4 +7,6 @@ sort_order: desc
 title: Nature
 #type: gallery
 weight: 3
+params:
+  theme: dark
 ---
