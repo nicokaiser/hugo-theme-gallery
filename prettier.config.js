@@ -11,4 +11,5 @@ module.exports = {
       },
     },
   ],
+  cssDeclarationSorterCustomOrder: ["concentric-css"],
 };
