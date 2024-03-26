@@ -119,6 +119,7 @@ hgroup {
 
   p {
     color: var(--text-2);
+    text-wrap: balance;
   }
 
   @media (min-width: 640px) {
