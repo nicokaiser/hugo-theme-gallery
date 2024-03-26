@@ -4,9 +4,11 @@
   {{ $featured := ($images.GetMatch (.Params.featured_image | default "*feature*")) | default (index $images 0) }}
   {{ $thumbnail := $featured.Filter (slice images.AutoOrient (images.Process "fit 600x600")) }}
   {{ $color := index $thumbnail.Colors 0 | default "transparent" }}
-  {{ $imageCount := len $images }}
+  {{ $imageCount := 0 }}
   {{ $albumCount := 0 }}
-  {{ if .IsSection }}
+  {{ if .IsPage }}
+    {{ $imageCount = len $images }}
+  {{ else }}
     {{ range where .RegularPagesRecursive "Params.private" "ne" true }}
       {{ $albumCount = add $albumCount 1 }}
       {{ $imageCount = add $imageCount (len (.Resources.ByType "image")) }}
