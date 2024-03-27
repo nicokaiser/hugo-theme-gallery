@@ -20,9 +20,9 @@ title = "Gallery"
     github = "https://github.com/nicokaiser/hugo-theme-gallery/"
     youtube = "https://www.youtube.com/"
     email = "mailto:user@example.com"
-    website = "https://example.com"
-    mastodon = "https://example.com"
-    pixelfed = "https://example.com"
+    #website = "https://example.com"
+    #mastodon = "https://example.com"
+    #pixelfed = "https://example.com"
 
 [outputs]
   home = ["HTML", "RSS"]
