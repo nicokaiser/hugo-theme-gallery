@@ -83,8 +83,10 @@ body > footer {
   line-height: 1.25rem;
 
   section:last-of-type {
-    display: grid;
-    grid-auto-flow: column;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
     gap: 1rem;
     padding: 2.5rem;
 
@@ -323,9 +325,12 @@ section.gallery {
 
 section.social-icons {
   display: flex;
-  column-gap: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1.5rem;
   justify-content: center;
   margin-top: 2rem;
+  padding-right: 1.5rem;
+  padding-left: 1.5rem;
 }
 
 section.featured {
