@@ -1,0 +1,60 @@
+{
+    "name": "{{ .Site.Title }}",
+{{ if .Site.Params.ShortTitle }}
+    "short_name": "{{ .Site.Params.ShortTitle }}",
+{{ else }}
+    "short_name": "{{ .Site.Title }}",
+{{ end }}
+    "scope": "/",
+    "start_url": ".",
+    "theme_color": "#16191D",
+    "background_color": "#16191D",
+    "display": "standalone",
+    "icons": [
+        {
+            "src": "/images/favicon-48.png",
+            "sizes": "48x48",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/favicon-72.png",
+            "sizes": "72x72",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/favicon-96.png",
+            "sizes": "96x96",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/favicon-144.png",
+            "sizes": "144x144",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/favicon-180.png",
+            "sizes": "180x180",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/favicon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/favicon-256.png",
+            "sizes": "256x256",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/favicon-384.png",
+            "sizes": "384x384",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/favicon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
