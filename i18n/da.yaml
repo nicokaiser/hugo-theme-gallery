@@ -9,3 +9,10 @@ photoCount:
   one: 1 billede
   other: "{{ . }} billeder"
 toHomepage: Til forsiden
+closeTitle: Luk
+zoomTitle: Zoom
+arrowPrevTitle: Forrige
+arrowNextTitle: Næste
+errorMsg: Billedet kunne ikke indlæses
+downloadTitle: Download
+relatedAlbums: Lignende albums

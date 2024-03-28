@@ -9,3 +9,10 @@ photoCount:
   one: 1 photo
   other: "{{ . }} photos"
 toHomepage: Aller à l'accueil
+closeTitle: Fermer
+zoomTitle: Zoom
+arrowPrevTitle: Retour
+arrowNextTitle: Suivant
+errorMsg: L'image n'a pas pu être chargée
+downloadTitle: Télécharger
+relatedAlbums: Albums similaires
