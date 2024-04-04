@@ -7,15 +7,7 @@
 
 html {
   line-height: 1.5;
-  font-family:
-    system-ui,
-    -apple-system,
-    "Segoe UI",
-    Roboto,
-    Ubuntu,
-    Cantarell,
-    "Noto Sans",
-    sans-serif;
+  font-family: ui-sans-serif, system-ui, sans-serif;
   -webkit-text-size-adjust: 100%;
   -moz-tab-size: 4;
   tab-size: 4;
