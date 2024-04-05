@@ -1,10 +1,10 @@
 {
     "name": "{{ .Site.Title }}",
-{{ if .Site.Params.ShortTitle }}
+{{- if .Site.Params.ShortTitle }}
     "short_name": "{{ .Site.Params.ShortTitle }}",
-{{ else }}
+{{- else }}
     "short_name": "{{ .Site.Title }}",
-{{ end }}
+{{- end }}
     "scope": "/",
     "start_url": ".",
     "theme_color": "#16191D",
