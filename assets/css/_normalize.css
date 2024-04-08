@@ -37,21 +37,29 @@ strong {
   font-weight: bolder;
 }
 
+button,
+input {
+  font-family: inherit;
+  font-feature-settings: inherit;
+  font-variation-settings: inherit;
+  font-size: 100%;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+button,
+select {
+  text-transform: none;
+}
+
 button {
   -webkit-appearance: button;
-  cursor: pointer;
-  margin: 0;
   background-image: none;
   background-color: transparent;
-  padding: 0;
-  color: inherit;
-  font-weight: inherit;
-  font-size: 100%;
-  line-height: inherit;
-  font-family: inherit;
-  font-variation-settings: inherit;
-  font-feature-settings: inherit;
-  text-transform: none;
+  cursor: pointer;
 }
 
 :disabled {
