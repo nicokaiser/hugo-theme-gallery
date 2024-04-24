@@ -1,7 +1,7 @@
 {{ $gallery := partial "get-gallery.html" . }}
 {{ with $gallery }}
   <a class="card" href="{{ .page.RelPermalink }}" title="{{ .page.Title }}">
-    <img loading="lazy" width="{{ .thumbnail.Width }}" height="{{ .thumbnail.Height }}" src="{{ .thumbnail.RelPermalink }}" style="background-color: {{ .color }}" alt="{{ .page.Title }}" />
+    <img loading="lazy" width="{{ .thumbnail.Width }}" height="{{ .thumbnail.Height }}" src="{{ .thumbnail.RelPermalink }}" style="background-color: {{ .color }}" />
     <div>
       <h2>{{ .page.Title }}</h2>
       <p>
