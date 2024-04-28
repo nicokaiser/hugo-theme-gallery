@@ -1,0 +1,18 @@
+albumCount:
+  one: 1 album
+  other: "{{ . }} album"
+menu: Menu
+in: in
+home: Home
+pageNotFound: Pagina non trovata
+photoCount:
+  one: 1 foto
+  other: "{{ . }} foto"
+toHomepage: Vai alla home
+closeTitle: Chiudi
+zoomTitle: Zoom
+arrowPrevTitle: Indietro
+arrowNextTitle: Avanti
+errorMsg: La foto non può essere scaricata
+downloadTitle: Download
+relatedAlbums: Album correlati
