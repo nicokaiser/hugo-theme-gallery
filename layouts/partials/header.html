@@ -10,6 +10,7 @@
       {{ .Site.Title }}
     </a>
   {{ end }}
+  {{ if (gt site.Menus.main.Len 0) }}
   <ul>
     <li>
       <button class="btn btn-square group" id="menu-toggle" aria-expanded="false" type="button" title="{{ T "menu" }}">
@@ -22,5 +23,6 @@
       </button>
     </li>
   </ul>
+  {{ end }}
 </header>
 {{ partial "menu.html" . }}

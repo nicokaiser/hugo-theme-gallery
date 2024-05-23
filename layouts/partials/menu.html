@@ -1,3 +1,4 @@
+{{ if (gt site.Menus.main.Len 0) }}
 <menu class="hidden" id="menu">
   {{ range site.Menus.main }}
     <li itemscope itemtype="http://www.schema.org/SiteNavigationElement">
@@ -7,3 +8,4 @@
     </li>
   {{ end }}
 </menu>
+{{ end }}
