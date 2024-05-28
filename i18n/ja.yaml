@@ -1,0 +1,15 @@
+menu: メニュー
+home: ホーム
+pageNotFound: ページが見つかりません
+toHomepage: ホームに戻る 
+closeTitle: 閉める
+zoomTitle: ズーム
+arrowPrevTitle: 前
+arrowNextTitle: 次
+errorMsg: 写真を読み込めませんでした
+downloadTitle: ダウンロード
+relatedAlbums: 似たようなアルバム
+photoCount:
+  other: "写真{{ . }}枚"
+albumCount:
+  other: "{{ .count }}枚のアルバムに{{ .photoCount }}"
