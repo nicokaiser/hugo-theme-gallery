@@ -1,13 +1,6 @@
-albumCount:
-  one: 1 album
-  other: "{{ . }} albums"
 menu: Menu
-in: in
 home: Home
 pageNotFound: Page not found
-photoCount:
-  one: 1 photo
-  other: "{{ . }} photos"
 toHomepage: Go to homepage
 closeTitle: Close
 zoomTitle: Zoom
@@ -16,3 +9,9 @@ arrowNextTitle: Next
 errorMsg: The photo cannot be loaded
 downloadTitle: Download
 relatedAlbums: Related albums
+photoCount:
+  one: 1 photo
+  other: "{{ . }} photos"
+albumCount:
+  one: "{{ .photoCount }} in {{ .count }} album"
+  other: "{{ .photoCount }} in {{ .count }} albums"
