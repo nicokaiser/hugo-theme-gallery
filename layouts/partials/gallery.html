@@ -1,16 +1,14 @@
 <section class="gallery">
-  <div id="gallery" style="visibility: hidden; height: 1px; overflow: hidden">
+  <div id="gallery" style="visibility: hidden; height: 1px; overflow: hidden" image-download="{{ .Params.download | default false }}">
     {{ $images := slice }}
     {{ range $image :=  .Resources.ByType "image" }}
       {{ $title := "" }}
       {{ with $image.Exif }}
         {{ with .Tags.ImageDescription }}
-          {{/* Title from EXIF ImageDescription */}}
           {{ $title = . }}
         {{ end }}
       {{ end }}
       {{ if ne $image.Title $image.Name }}
-        {{/* Title from front matter */}}
         {{ $title = $image.Title }}
       {{ end }}
       {{ $images = $images | append (dict
