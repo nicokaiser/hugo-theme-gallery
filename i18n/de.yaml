@@ -1,13 +1,6 @@
-albumCount:
-  one: 1 Album
-  other: "{{ . }} Alben"
 menu: Menü
-in: in
 home: Home
 pageNotFound: Seite nicht gefunden
-photoCount:
-  one: 1 Foto
-  other: "{{ . }} Fotos"
 toHomepage: Zur Startseite
 closeTitle: Schließen
 zoomTitle: Vergrößern
@@ -16,3 +9,9 @@ arrowNextTitle: Weiter
 errorMsg: Das Bild konnte nicht geladen werden
 downloadTitle: Download
 relatedAlbums: Ähnliche Alben
+photoCount:
+  one: 1 Foto
+  other: "{{ . }} Fotos"
+albumCount:
+  one: "{{ .photoCount }} in {{ .count }} Album"
+  other: "{{ .photoCount }} in {{ .count }} Alben"

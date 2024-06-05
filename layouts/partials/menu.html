@@ -1,9 +1,11 @@
-<menu class="hidden" id="menu">
-  {{ range site.Menus.main }}
-    <li itemscope itemtype="http://www.schema.org/SiteNavigationElement">
-      <a aria-current="{{ or (page.IsMenuCurrent .Menu .) (page.HasMenuCurrent .Menu .) }}" href="{{ .URL }}" itemprop="url">
-        <span itemprop="name">{{ .Name }}</span>
-      </a>
-    </li>
-  {{ end }}
-</menu>
+{{ with site.Menus.main }}
+  <menu class="hidden" id="menu">
+    {{ range . }}
+      <li itemscope itemtype="http://www.schema.org/SiteNavigationElement">
+        <a aria-current="{{ or (page.IsMenuCurrent .Menu .) (page.HasMenuCurrent .Menu .) }}" href="{{ .URL }}" itemprop="url">
+          <span itemprop="name">{{ .Name }}</span>
+        </a>
+      </li>
+    {{ end }}
+  </menu>
+{{ end }}

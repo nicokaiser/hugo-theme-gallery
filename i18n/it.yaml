@@ -1,0 +1,17 @@
+menu: Menu
+home: Home
+pageNotFound: Pagina non trovata
+toHomepage: Vai alla home
+closeTitle: Chiudi
+zoomTitle: Zoom
+arrowPrevTitle: Indietro
+arrowNextTitle: Avanti
+errorMsg: La foto non può essere scaricata
+downloadTitle: Download
+relatedAlbums: Album correlati
+photoCount:
+  one: 1 foto
+  other: "{{ . }} foto"
+albumCount:
+  one: "{{ .photoCount }} in {{ .count }} album"
+  other: "{{ .photoCount }} in {{ .count }} album"

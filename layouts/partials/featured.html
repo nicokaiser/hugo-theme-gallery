@@ -10,8 +10,11 @@
         <div>
           <h2>{{ .Title }}</h2>
           <p>
-            {{ T "photoCount" ($gallery.imageCount | lang.FormatNumber 0) }}
-            {{ if gt $gallery.albumCount 0 }}{{ T "in" }} {{ T "albumCount" ($gallery.albumCount | lang.FormatNumber 0) }}{{ end }}
+            {{ if gt $gallery.albumCount 0 }}
+              {{ T "albumCount" (dict "count" ($gallery.albumCount | lang.FormatNumber 0) "photoCount" ($gallery.imageCount | lang.FormatNumber 0 | lang.Translate "photoCount")) }}
+            {{ else }}
+              {{ T "photoCount" ($gallery.imageCount | lang.FormatNumber 0) }}
+            {{ end }}
           </p>
         </div>
       </a>

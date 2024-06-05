@@ -1,11 +1,17 @@
-albumCount:
-  one: 1 album
-  other: "{{ . }} albummer"
 menu: Menu
-in: i
 home: Hjem
 pageNotFound: Siden blev ikke fundet
+toHomepage: Til forsiden
+closeTitle: Luk
+zoomTitle: Zoom
+arrowPrevTitle: Forrige
+arrowNextTitle: Næste
+errorMsg: Billedet kunne ikke indlæses
+downloadTitle: Download
+relatedAlbums: Lignende albums
 photoCount:
   one: 1 billede
   other: "{{ . }} billeder"
-toHomepage: Til forsiden
+albumCount:
+  one: "{{ .photoCount }} i {{ .count }} album"
+  other: "{{ .photoCount }} i {{ .count }} albummer"

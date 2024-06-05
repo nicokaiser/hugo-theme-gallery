@@ -1,0 +1,15 @@
+menu: 菜单
+home: 主页
+pageNotFound: 页面不存在
+toHomepage: 返回主页
+closeTitle: 关闭
+zoomTitle: 缩放
+arrowPrevTitle: 前一张
+arrowNextTitle: 后一张
+errorMsg: 照片无法加载
+downloadTitle: 下载
+relatedAlbums: 相关相册
+photoCount:
+  other: "{{ . }} 张照片"
+albumCount:
+  other: "{{ .photoCount }} 在 {{ .count }} 个相册"
