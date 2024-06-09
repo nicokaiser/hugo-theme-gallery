@@ -23,7 +23,7 @@
       {{ $thumbnail := $image.Filter (slice images.AutoOrient (images.Process "fit 600x600")) }}
       {{ $full := $image.Filter (slice images.AutoOrient (images.Process "fit 1600x1600")) }}
       {{ $color := index $thumbnail.Colors 0 | default "transparent" }}
-      <a class="gallery-item" href="{{ $image.RelPermalink }}" data-pswp-src="{{ $full.RelPermalink }}" data-pswp-width="{{ $full.Width }}" data-pswp-height="{{ $full.Height }}" title="{{ .Title }}" itemscope itemtype="https://schema.org/ImageObject" style="aspect-ratio: {{ $thumbnail.Width }} / {{ $thumbnail.Height }}">
+      <a class="gallery-item" href="{{ $image.RelPermalink }}" data-full-src="{{ $full.RelPermalink }}" data-pswp-width="{{ $full.Width }}" data-pswp-height="{{ $full.Height }}" title="{{ .Title }}" itemscope itemtype="https://schema.org/ImageObject" style="aspect-ratio: {{ $thumbnail.Width }} / {{ $thumbnail.Height }}">
         <img loading="lazy" width="{{ $thumbnail.Width }}" height="{{ $thumbnail.Height }}" src="{{ $thumbnail.RelPermalink }}" style="background-color: {{ $color }}" alt="{{ .Title }}" />
         <meta itemprop="contentUrl" content="{{ $image.RelPermalink }}" />
         {{ with site.Params.Author }}
@@ -34,4 +34,57 @@
       </a>
     {{ end }}
   </div>
+
+  <div style="display: flex; justify-content: center; margin-top: 56px;">
+    {{ if .Params.download_all }}
+      <button id="download-all" style="background-color: #3f51b5; color: white; border: none; padding: 10px 16px; text-align: center; text-decoration: none; display: inline-block; font-size: 14px; cursor: pointer; border-radius: 4px;">
+        Download All Images
+      </button>
+    {{ end }}
+  </div>
 </section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.6.0/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const downloadAllButton = document.getElementById("download-all");
+    if (downloadAllButton) {
+      downloadAllButton.addEventListener("click", () => {
+        // Disable button and change text
+        downloadAllButton.disabled = true;
+        downloadAllButton.textContent = "Downloading...";
+        // Change background color to green
+        downloadAllButton.style.backgroundColor = "#4CAF50";
+
+        const gallery = document.getElementById("gallery");
+        const zip = new JSZip();
+        const imgFolder = zip.folder("images");
+        const items = gallery.querySelectorAll(".gallery-item");
+        let imagesProcessed = 0;
+
+        items.forEach((item) => {
+          const url = item.getAttribute("data-full-src");
+          const filename = url.substring(url.lastIndexOf("/") + 1);
+
+          fetch(url)
+            .then((response) => response.blob())
+            .then((blob) => {
+              imgFolder.file(filename, blob);
+              imagesProcessed++;
+              if (imagesProcessed === items.length) {
+                zip.generateAsync({ type: "blob" }).then((content) => {
+                  // Enable button and reset text and style
+                  downloadAllButton.disabled = false;
+                  downloadAllButton.textContent = "Download All Images";
+                  downloadAllButton.style.backgroundColor = "#3f51b5";
+
+                  saveAs(content, "gallery-images.zip");
+                });
+              }
+            });
+        });
+      });
+    }
+  });
+</script>
