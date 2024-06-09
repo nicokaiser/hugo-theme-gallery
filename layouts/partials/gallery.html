@@ -24,7 +24,7 @@
       {{ $full := $image.Filter (slice images.AutoOrient (images.Process "fit 1600x1600")) }}
       {{ $color := index $thumbnail.Colors 0 | default "transparent" }}
       <a class="gallery-item" href="{{ $image.RelPermalink }}" data-full-src="{{ $full.RelPermalink }}" data-pswp-width="{{ $full.Width }}" data-pswp-height="{{ $full.Height }}" title="{{ .Title }}" itemscope itemtype="https://schema.org/ImageObject" style="aspect-ratio: {{ $thumbnail.Width }} / {{ $thumbnail.Height }}">
-        <img loading="lazy" width="{{ $thumbnail.Width }}" height="{{ $thumbnail.Height }}" src="{{ $thumbnail.RelPermalink }}" style="background-color: {{ $color }}" alt="{{ .Title }}" />
+        <img loading="lazy" width="{{ $thumbnail.Width }}" height="{{ $thumbnail.Height }}" src="{{ $thumbnail.RelPermalink }}" style="background-color: {{ $color }}" alt="{{ .Title }}" data-original-src="{{ $image.RelPermalink }}" />
         <meta itemprop="contentUrl" content="{{ $image.RelPermalink }}" />
         {{ with site.Params.Author }}
           <span itemprop="creator" itemtype="https://schema.org/Person" itemscope>
@@ -54,6 +54,7 @@
         // Disable button and change text
         downloadAllButton.disabled = true;
         downloadAllButton.textContent = "Downloading...";
+
         // Change background color to green
         downloadAllButton.style.backgroundColor = "#4CAF50";
 
@@ -63,8 +64,8 @@
         const items = gallery.querySelectorAll(".gallery-item");
         let imagesProcessed = 0;
 
-        items.forEach((item) => {
-          const url = item.getAttribute("data-full-src");
+        items.forEach((item, index) => {
+          const url = item.querySelector("img").getAttribute("data-original-src");
           const filename = url.substring(url.lastIndexOf("/") + 1);
 
           fetch(url)
@@ -72,14 +73,28 @@
             .then((blob) => {
               imgFolder.file(filename, blob);
               imagesProcessed++;
+              const progress = Math.round((imagesProcessed / items.length) * 100);
+              downloadAllButton.textContent = `Creating ZIP... ${progress}%`;
+
               if (imagesProcessed === items.length) {
+                // Display "Preparing original files" message after reaching 100%
+                setTimeout(() => {
+                  downloadAllButton.textContent = `Fetching original files. Please wait... (speed may vary depending on your internet)`;
+                }, 3000);
+
                 zip.generateAsync({ type: "blob" }).then((content) => {
                   // Enable button and reset text and style
-                  downloadAllButton.disabled = false;
-                  downloadAllButton.textContent = "Download All Images";
-                  downloadAllButton.style.backgroundColor = "#3f51b5";
+                  downloadAllButton.textContent = "Download Started!";
+                  downloadAllButton.style.backgroundColor = "#4CAF50";
 
                   saveAs(content, "gallery-images.zip");
+
+                  // Reset button text and style after 3 seconds
+                  setTimeout(() => {
+                    downloadAllButton.disabled = false;
+                    downloadAllButton.textContent = "Download All Images";
+                    downloadAllButton.style.backgroundColor = "#3f51b5";
+                  }, 4000);
                 });
               }
             });
