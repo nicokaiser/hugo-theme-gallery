@@ -63,6 +63,7 @@ if (gallery) {
     });
   }
 
+  // here we handle the back button press reload if pressed while lightbox is open
   window.onhashchange = function(event) {
     if (event.newURL.indexOf(window.location.pathname) !== -1) {
       location.reload();
@@ -74,7 +75,7 @@ if (gallery) {
   });
 
   lightbox.on("close", () => {
-    window.history.back();
+    window.history.back(); // if lightbox is closed, we remove the empty 'page' in history to allow normal fuction of pressing back
     history.replaceState("", document.title, window.location.pathname);
   });
 

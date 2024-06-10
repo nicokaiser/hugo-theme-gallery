@@ -1810,7 +1810,7 @@ class PhotoSwipeLightbox extends PhotoSwipeBase {
     this.options.initialPointerPos = initialPoint;
     this.shouldOpen = true;
     this.preload(index, dataSource);
-    window.history.pushState(null, null, null);
+    window.history.pushState(null, null, null); // we manually add an empty 'page' to the history to force the back button to do nothing if presses
     return true;
   }
   /**
