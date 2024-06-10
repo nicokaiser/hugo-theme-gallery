@@ -31,5 +31,8 @@
   }}
   {{ $js := resources.Get "js/main.js" | js.Build (dict "minify" true "params" $params) | resources.Fingerprint }}
   <script src="{{ $js.RelPermalink }}" defer></script>
+  {{ $manifestTemplate := resources.Get "manifest.webmanifest" }}
+  {{ $manifest := $manifestTemplate | resources.ExecuteAsTemplate "manifest.webmanifest" . }}
+  <link rel="manifest" href="{{ $manifest.Permalink }}">
   {{- partial "head-custom.html" . -}}
 </head>
