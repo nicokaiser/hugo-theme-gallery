@@ -37,26 +37,54 @@
 
   <div style="display: flex; justify-content: center; margin-top: 56px;">
     {{ if .Params.download_all }}
-      <button id="download-all" style="background-color: #3f51b5; color: white; border: none; padding: 10px 16px; text-align: center; text-decoration: none; display: inline-block; font-size: 14px; cursor: pointer; border-radius: 4px;">
+      <button id="download-all" style="background-color: #722F37; color: white; border: none; padding: 10px 16px; text-align: center; text-decoration: none; display: inline-block; font-size: 14px; cursor: pointer; border-radius: 4px;">
         Download All Images
       </button>
     {{ end }}
   </div>
 </section>
 
+<div id="spinner"></div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.6.0/jszip.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.min.js"></script>
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     const downloadAllButton = document.getElementById("download-all");
+    const spinner = document.getElementById("spinner");
+
+    let opts = {
+      lines: 13,
+      length: 28,
+      width: 14,
+      radius: 42,
+      scale: 1,
+      corners: 1,
+      color: '#FFF',
+      opacity: 0.25,
+      rotate: 0,
+      direction: 1,
+      speed: 1,
+      trail: 60,
+      fps: 20,
+      zIndex: 2e9,
+      className: 'spinner',
+      top: '50%',
+      left: '50%',
+      shadow: false,
+      hwaccel: false,
+      position: 'absolute'
+    };
+
+    const spinnerInstance = new Spinner(opts);
+
     if (downloadAllButton) {
       downloadAllButton.addEventListener("click", () => {
         // Disable button and change text
         downloadAllButton.disabled = true;
+        downloadAllButton.style.backgroundColor = "#4169E1";
         downloadAllButton.textContent = "Downloading...";
-
-        // Change background color to green
-        downloadAllButton.style.backgroundColor = "#4CAF50";
 
         const gallery = document.getElementById("gallery");
         const zip = new JSZip();
@@ -77,23 +105,26 @@
               downloadAllButton.textContent = `Creating ZIP... ${progress}%`;
 
               if (imagesProcessed === items.length) {
-                // Display "Preparing original files" message after reaching 100%
-                setTimeout(() => {
-                  downloadAllButton.textContent = `Fetching original files. Please wait... (speed may vary depending on your internet)`;
-                }, 3000);
+                downloadAllButton.textContent = "Fetching original files. This may take a minute, please wait...";
+
+                // Show spinner
+                spinnerInstance.spin(spinner);
+                spinner.style.display = "block";
 
                 zip.generateAsync({ type: "blob" }).then((content) => {
-                  // Enable button and reset text and style
-                  downloadAllButton.textContent = "Download Started!";
+                  // Hide spinner and show button
+                  spinnerInstance.stop();
+                  spinner.style.display = "none";
                   downloadAllButton.style.backgroundColor = "#4CAF50";
+                  downloadAllButton.textContent = "Download Started!";
 
                   saveAs(content, "gallery-images.zip");
 
                   // Reset button text and style after 3 seconds
                   setTimeout(() => {
-                    downloadAllButton.disabled = false;
+                    downloadAllButton.style.backgroundColor = "#722F37";
                     downloadAllButton.textContent = "Download All Images";
-                    downloadAllButton.style.backgroundColor = "#3f51b5";
+                    downloadAllButton.disabled = false;
                   }, 4000);
                 });
               }
