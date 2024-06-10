@@ -63,11 +63,18 @@ if (gallery) {
     });
   }
 
+  window.onhashchange = function(event) {
+    if (event.newURL.indexOf(window.location.pathname) !== -1) {
+      location.reload();
+    }
+  };
+
   lightbox.on("change", () => {
     history.replaceState("", document.title, "#" + lightbox.pswp.currSlide.index);
   });
 
   lightbox.on("close", () => {
+    window.history.back();
     history.replaceState("", document.title, window.location.pathname);
   });
 

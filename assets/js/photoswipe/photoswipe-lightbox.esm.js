@@ -1810,6 +1810,7 @@ class PhotoSwipeLightbox extends PhotoSwipeBase {
     this.options.initialPointerPos = initialPoint;
     this.shouldOpen = true;
     this.preload(index, dataSource);
+    window.history.pushState(null, null, null);
     return true;
   }
   /**
