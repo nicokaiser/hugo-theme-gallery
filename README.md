@@ -144,6 +144,7 @@ Use the `socialIcons` configuration key to add social icons on the bottom of eac
     github = "https://github.com/nicokaiser/hugo-theme-gallery/"
     youtube = "https://www.youtube.com/"
     email = "mailto:user@example.com"
+    linkedin = "https://linkedin.com/"
 ```
 
 ### Customization
