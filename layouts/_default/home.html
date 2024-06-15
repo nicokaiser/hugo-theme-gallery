@@ -1,5 +1,5 @@
 {{ define "main" }}
-  {{ partial "title.html" . }}
+  {{ partial "title_home.html" . }}
   {{ partial "featured.html" . }}
   <section class="galleries">
     {{ range where .Pages "Params.private" "ne" true }}

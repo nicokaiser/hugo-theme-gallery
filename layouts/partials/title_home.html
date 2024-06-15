@@ -1,0 +1,10 @@
+{{ if .Title }}
+  <section class="hero-section" style="background-image: url('{{ .Params.homepage_image }}');">
+    <div class="hero-content">
+      <h1>{{ .Title }}</h1>
+      {{ with .Params.Description }}
+        <p>{{ . }}</p>
+      {{ end }}
+    </div>
+  </section>
+{{ end }}

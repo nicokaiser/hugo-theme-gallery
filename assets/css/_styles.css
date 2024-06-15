@@ -75,6 +75,71 @@ body > main {
   height: 100%;
 }
 
+.hero-section {
+  height: calc(100vh - 4rem); /* Adjust height to account for the header */
+  margin-bottom: 6em;
+  background-size: cover;
+  background-position: center;
+  padding: 0px 36px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+}
+
+.hero-section .hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  margin: 3rem auto 4rem;
+  padding: 14px 18px;
+  max-width: 1024px;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.5); /* Optional: add background for better text readability */
+  border-radius: 5px;
+}
+
+.hero-section .hero-content h1 {
+  font-weight: 700;
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
+.hero-section .hero-content p {
+  color: var(--text-1);
+  font-size: 1rem; /* Ensure the paragraph text size */
+  line-height: 1.5rem; /* Ensure the paragraph line height */
+}
+
+@media (min-width: 768px) {
+  .hero-section .hero-content {
+    max-width: 720px; /* Adjust max-width for desktop view */
+    margin-top: 2rem; /* Add margin-top for spacing */
+    margin-bottom: 2rem; /* Add margin-bottom for spacing */
+    padding: 26px 32px; /* Adjust padding for desktop view */
+  }
+
+  .hero-section .hero-content h1 {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+
+  .hero-section .hero-content p {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    height: auto; /* Adjust height for mobile view */
+    min-height: calc(100vh - 4rem); /* Ensure the section covers the full viewport height on mobile */
+  }
+}
+
 body > footer {
   margin-right: auto;
   margin-left: auto;
@@ -88,7 +153,7 @@ body > footer {
     flex-direction: row;
     justify-content: center;
     gap: 1rem;
-    padding: 2.5rem;
+    padding: 1.5rem;
 
     a:hover {
       text-decoration-line: underline;
@@ -109,7 +174,7 @@ hgroup {
   flex-direction: column;
   align-items: center;
   gap: 1.5rem;
-  margin: 3rem auto 4rem;
+  margin: 2rem auto 3rem;
   padding-right: 1.5rem;
   padding-left: 1.5rem;
   max-width: 1024px;
@@ -155,7 +220,7 @@ hgroup {
 }
 
 main > section {
-  margin: 3rem auto 4rem;
+  margin: 0rem auto 2rem;
   padding-right: 1.5rem;
   padding-left: 1.5rem;
 }
