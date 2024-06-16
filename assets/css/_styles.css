@@ -136,7 +136,7 @@ body > main {
 @media (max-width: 768px) {
   .hero-section {
     height: auto; /* Adjust height for mobile view */
-    min-height: calc(100vh - 4rem); /* Ensure the section covers the full viewport height on mobile */
+    min-height: 100vh; /* Ensure the section covers the full viewport height on mobile */
   }
 }
 
