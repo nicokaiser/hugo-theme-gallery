@@ -1,5 +1,10 @@
 {{ define "main" }}
   {{ partial "title.html" . }}
+  {{ if .Params.profile_picture }}
+    <div class="profile-picture-container">
+      <img src="{{ .Site.BaseURL }}{{ .Params.profile_picture }}" alt="Profile Picture" class="profile-picture">
+    </div>
+  {{ end }}
   <section class="prose">
     {{ .Content }}
   </section>

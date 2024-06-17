@@ -140,6 +140,34 @@ body > main {
   }
 }
 
+.profile-picture-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem; /* Adjust margin as needed */
+}
+
+.profile-picture {
+  border-radius: 50%;
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 768px) {
+  .profile-picture {
+    width: 400px; /* Adjust size for desktop */
+    height: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .profile-picture {
+    width: 250px; /* Adjust size for mobile */
+    height: 250px;
+  }
+}
+
 body > footer {
   margin-right: auto;
   margin-left: auto;
