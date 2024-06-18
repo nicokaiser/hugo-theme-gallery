@@ -238,22 +238,6 @@ body > main {
   }
 }
 
-.justified-text {
-  max-width: 768px;
-  color: var(--text-1);
-  font-size: 1rem; /* Slightly bigger font size */
-  line-height: 1.5;
-  margin: 0 auto; /* Center horizontally */
-  text-align: justify; /* Center text */
-  padding: 0 42px; /* Add padding for better readability on mobile */
-}
-
-.justified-text p {
-  margin-top: 1.25em;
-  margin-bottom: 1.25em;
-  text-align: justify; /* Ensure paragraphs are centered */
-}
-
 body > footer {
   margin-right: auto;
   margin-left: auto;
@@ -418,8 +402,10 @@ section.gallery {
 .prose {
   max-width: 768px;
   color: var(--text-1);
-  font-size: 1rem;
-  line-height: 1.75;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  text-align: justify;
+  padding: 0 42px;
 
   a {
     color: var(--text-1);
