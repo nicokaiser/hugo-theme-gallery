@@ -169,10 +169,10 @@ body > main {
 }
 
 .gallery-code-form {
-  background: #ffffff;
+  background: #2c2c2c; /* Dark background */
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Darker shadow */
   width: 90%;
   max-width: 400px;
   margin: 20px auto 50px auto;
@@ -188,7 +188,7 @@ body > main {
 .gallery-code-form label {
   margin-bottom: 10px;
   font-size: 1.2em;
-  color: #333333;
+  color: #ffffff; /* Light gray color */
 }
 
 .gallery-code-form input[type="text"] {
@@ -200,13 +200,15 @@ body > main {
   text-align: center; 
   width: 100%;
   max-width: 300px;
+  background-color: #6e6e6e;
+  color: #ffffff;
 }
 
 .gallery-code-form button {
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
-  background-color: #007bff;
+  background-color: #005bb5;
   color: white;
   font-size: 1em;
   cursor: pointer;
@@ -214,7 +216,7 @@ body > main {
 }
 
 .gallery-code-form button:hover {
-  background-color: #0056b3;
+  background-color: #004494;
 }
 
 @media (max-width: 600px) {
@@ -236,20 +238,20 @@ body > main {
   }
 }
 
-.centered-text {
+.justified-text {
   max-width: 768px;
   color: var(--text-1);
-  font-size: 1.1rem; /* Slightly bigger font size */
-  line-height: 1.75;
+  font-size: 1rem; /* Slightly bigger font size */
+  line-height: 1.5;
   margin: 0 auto; /* Center horizontally */
-  text-align: center; /* Center text */
-  padding: 0 25px; /* Add padding for better readability on mobile */
+  text-align: justify; /* Center text */
+  padding: 0 42px; /* Add padding for better readability on mobile */
 }
 
-.centered-text p {
+.justified-text p {
   margin-top: 1.25em;
   margin-bottom: 1.25em;
-  text-align: center; /* Ensure paragraphs are centered */
+  text-align: justify; /* Ensure paragraphs are centered */
 }
 
 body > footer {
