@@ -1,0 +1,26 @@
+{{ define "main" }}
+  {{ partial "title.html" . }}
+
+  <!-- Add a form for gallery code input -->
+  <div class="gallery-code-form">
+    <form id="galleryForm">
+      <label for="galleryCode">Enter Gallery Code:</label>
+      <input type="text" id="galleryCode" name="galleryCode" required>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <section class="centered-text">
+    {{ .Content }}
+  </section>
+  
+  <!-- JavaScript for form submission and redirection -->
+  <script>
+    document.getElementById('galleryForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent the default form submission
+      var galleryCode = document.getElementById('galleryCode').value;
+      var baseUrl = '{{ .Site.BaseURL }}';
+      window.location.href = baseUrl + galleryCode;
+    });
+  </script>
+{{ end }}
