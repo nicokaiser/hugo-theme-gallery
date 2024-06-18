@@ -1,4 +1,13 @@
 <section class="gallery">
+
+  {{ if .Params.download_all }}  
+
+  <div style="display: flex; justify-content: center; margin-top: 28px; margin-bottom: 32px;">
+    <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="erielcruz" data-color="#5F7FFF" data-emoji="☕"  data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#ffffff" data-coffee-color="#FFDD00" ></script>
+  </div>
+ 
+  {{ end }}
+
   <div id="gallery" style="visibility: hidden; height: 1px; overflow: hidden" image-download="{{ .Params.download | default false }}">
     {{ $images := slice }}
     {{ range $image :=  .Resources.ByType "image" }}
@@ -38,11 +47,17 @@
   </div>
 
   {{ if .Params.download_all }}  
+
     <div style="display: flex; justify-content: center; margin-top: 28px;">
-      <button id="download-all" style="background-color: #722F37; color: white; border: none; padding: 10px 16px; text-align: center; text-decoration: none; display: inline-block; font-size: 14px; cursor: pointer; border-radius: 4px;">
+      <button id="download-all" style="background-color: #722F37; color: white; border: none; padding: 12px 24px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; cursor: pointer; border-radius: 12px;">
         Download All Images
       </button>
     </div>
+
+    <div style="display: flex; justify-content: center; margin-top: 28px;">
+      <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="erielcruz" data-color="#5F7FFF" data-emoji="☕"  data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#ffffff" data-coffee-color="#FFDD00" ></script>
+    </div>
+   
   {{ end }}
 </section>
 
@@ -85,7 +100,7 @@
       downloadAllButton.addEventListener("click", () => {
         // Disable button and change text
         downloadAllButton.disabled = true;
-        downloadAllButton.style.backgroundColor = "#4169E1";
+        downloadAllButton.style.backgroundColor = "#001DB9";
         downloadAllButton.textContent = "Downloading...";
 
         const gallery = document.getElementById("gallery");
@@ -107,7 +122,7 @@
               downloadAllButton.textContent = `Creating ZIP... ${progress}%`;
 
               if (imagesProcessed === items.length) {
-                downloadAllButton.textContent = "Fetching original files. This may take a minute, please wait...";
+                downloadAllButton.textContent = "Fetching files. This may take a minute, please wait...";
 
                 // Show spinner
                 spinnerInstance.spin(spinner);
