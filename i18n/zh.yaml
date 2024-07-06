@@ -12,4 +12,4 @@ relatedAlbums: 相关相册
 photoCount:
   other: "{{ . }} 张照片"
 albumCount:
-  other: "{{ .photoCount }} 在 {{ .count }} 个相册"
+  other: "{{ .count }} 个相册，共计 {{ .photoCount }}"
