@@ -6,7 +6,7 @@
     {{ $thumbnail := $featured.Filter (slice images.AutoOrient (images.Process "fit 1600x1600")) }}
     {{ $color := index $thumbnail.Colors 0 | default "transparent" }}
     <section class="featured">
-      <a class="featured-card lazyload" href="{{ .RelPermalink }}" style="background-image: url({{ $thumbnail.RelPermalink }})">
+      <a class="featured-card" href="{{ .RelPermalink }}" style="background-color: {{ $color }}; background-image: url({{ $thumbnail.RelPermalink }})">
         <div>
           <h2>{{ .Title }}</h2>
           <p>
