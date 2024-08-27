@@ -270,7 +270,7 @@ section.gallery {
     transition-duration: 150ms;
     transition-property: all;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 5%);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     border-radius: 1rem;
     aspect-ratio: 3/2;
     width: 100%;
@@ -280,8 +280,8 @@ section.gallery {
     &:hover {
       transform: scaleX(101%) scaleY(101%);
       box-shadow:
-        0 10px 15px -3px rgba(0, 0, 0, 10%),
-        0 4px 6px -4px rgba(0, 0, 0, 10%);
+        0 10px 15px -3px rgba(0, 0, 0, 0.1),
+        0 4px 6px -4px rgba(0, 0, 0, 0.1);
     }
   }
 
@@ -344,7 +344,7 @@ section.featured {
 
 .featured-card {
   display: flex;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 5%);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   border-radius: 1rem;
   background-position: center;
   background-size: cover;
@@ -361,7 +361,7 @@ section.featured {
     flex-direction: column;
     justify-content: flex-end;
     gap: 1rem;
-    background-image: linear-gradient(to top, RGB(0 0 0 / 80%) 10%, transparent 50%);
+    background-image: linear-gradient(to top, RGB(0 0 0 / 0.8) 10%, transparent 50%);
     padding: 1.5rem;
     width: 100%;
     height: 100%;
