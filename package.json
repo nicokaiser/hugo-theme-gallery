@@ -3,11 +3,14 @@
     "prettier": "^3.3.3",
     "prettier-plugin-css-order": "^2.1.2",
     "prettier-plugin-go-template": "^0.0.15",
-    "prettier-plugin-organize-attributes": "^1.0.0"
+    "prettier-plugin-organize-attributes": "^1.0.0",
+    "stylelint": "^16.8.2",
+    "stylelint-config-standard": "^36.0.1"
   },
   "private": "true",
   "scripts": {
-    "prettier": "prettier . --write"
+    "prettier": "prettier . --write",
+    "lint": "stylelint assets/css/*.css"
   },
   "version": "4.2.1"
 }

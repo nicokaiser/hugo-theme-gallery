@@ -1,0 +1,9 @@
+{
+  "extends": ["stylelint-config-standard"],
+  "rules": {
+    "color-function-notation": "legacy",
+    "import-notation": null,
+    "media-feature-range-notation": "prefix",
+    "property-no-vendor-prefix": null
+  }
+}
