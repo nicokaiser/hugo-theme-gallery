@@ -1,9 +1,11 @@
 <section class="gallery">
   <div id="gallery" style="visibility: hidden; height: 1px; overflow: hidden">
     {{ $images := slice }}
-    {{ range $image :=  .Resources.ByType "image" }}
+    {{ range $image := .Resources.ByType "image" }}
       {{ $title := "" }}
+      {{ $date := "" }}
       {{ with $image.Exif }}
+        {{ $date = .Date }}
         {{ with .Tags.ImageDescription }}
           {{/* Title from EXIF ImageDescription */}}
           {{ $title = . }}
@@ -16,6 +18,7 @@
       {{ $images = $images | append (dict
         "Name" $image.Name
         "Title" $title
+        "Date" $date
         "image" $image
         )
       }}
