@@ -1,0 +1,17 @@
+menu: Меню
+home: Головна
+pageNotFound: Сторінку не знайдено
+toHomepage: Перейти на головну сторінку
+closeTitle: Закрити
+zoomTitle: Масштабувати
+arrowPrevTitle: Попередній
+arrowNextTitle: Наступний
+errorMsg: Фото не вдалося завантажити
+downloadTitle: Завантажити
+relatedAlbums: Схожі альбоми
+photoCount:
+  one: 1 фото
+  other: "{{ . }} фото"
+albumCount:
+  one: "{{ .photoCount }} в {{ .count }} альбомі"
+  other: "{{ .photoCount }} в {{ .count }} альбомах"
