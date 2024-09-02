@@ -1,0 +1,17 @@
+menu: Meny
+home: Start
+pageNotFound: Side ikke funnt
+toHomepage: Gå til start
+closeTitle: Steng
+zoomTitle: Zoom
+arrowPrevTitle: Forrige
+arrowNextTitle: Neste
+errorMsg: Bildet kan ikke vises
+downloadTitle: Last ned
+relatedAlbums: Lignende album
+photoCount:
+  one: 1 photo
+  other: "{{ . }} fotos"
+albumCount:
+  one: "{{ .photoCount }} i {{ .count }} album"
+  other: "{{ .photoCount }} i {{ .count }} album"
