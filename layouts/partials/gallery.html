@@ -1,5 +1,5 @@
 <section class="gallery">
-  <div id="gallery" style="visibility: hidden; height: 1px; overflow: hidden">
+  <div id="gallery" style="overflow: hidden">
     {{ $images := slice }}
     {{ range $image := .Resources.ByType "image" }}
       {{ $title := "" }}
@@ -30,6 +30,9 @@
       {{ $color := index $thumbnail.Colors 0 | default "transparent" }}
       <a class="gallery-item" href="{{ $image.RelPermalink }}" data-pswp-src="{{ $full.RelPermalink }}" data-pswp-width="{{ $full.Width }}" data-pswp-height="{{ $full.Height }}" title="{{ .Title }}" itemscope itemtype="https://schema.org/ImageObject" style="aspect-ratio: {{ $thumbnail.Width }} / {{ $thumbnail.Height }}">
         <figure style="background-color: {{ $color }}; aspect-ratio: {{ $thumbnail.Width }} / {{ $thumbnail.Height }}">
+          <noscript>
+            <img loading="lazy" width="{{ $thumbnail.Width }}" height="{{ $thumbnail.Height }}" src="{{ $thumbnail.RelPermalink }}" alt="{{ .Title }}" />
+          </noscript>
           <img class="lazyload" width="{{ $thumbnail.Width }}" height="{{ $thumbnail.Height }}" data-src="{{ $thumbnail.RelPermalink }}" alt="{{ .Title }}" />
         </figure>
         <meta itemprop="contentUrl" content="{{ $image.RelPermalink }}" />
@@ -41,4 +44,8 @@
       </a>
     {{ end }}
   </div>
+  <script>menu =document.getElementById('menu')
+    menu.style("visibility") = "hidden";
+    menu.style("height") = "1px";
+  </script>
 </section>
