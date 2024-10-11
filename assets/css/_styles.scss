@@ -278,7 +278,6 @@ section.gallery {
     object-fit: cover;
 
     &:hover {
-      transform: scaleX(101%) scaleY(101%);
       box-shadow:
         0 10px 15px -3px rgba(0, 0, 0, 0.1),
         0 4px 6px -4px rgba(0, 0, 0, 0.1);
@@ -351,6 +350,9 @@ section.featured {
   aspect-ratio: 1 / 1;
   width: 100%;
   overflow: hidden;
+  transition-duration: 150ms;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
   @media (min-width: 640px) {
     aspect-ratio: 16/9;
@@ -381,6 +383,12 @@ section.featured {
       font-size: 0.875rem;
       line-height: 1.25rem;
     }
+  }
+
+  &:hover {
+    box-shadow:
+      0 10px 15px -3px rgba(0, 0, 0, 0.1),
+      0 4px 6px -4px rgba(0, 0, 0, 0.1);
   }
 }
 
