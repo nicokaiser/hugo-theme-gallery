@@ -383,3 +383,38 @@ section.featured {
     }
   }
 }
+
+nav.categories {
+  padding-right: 1.5rem;
+  padding-left: 1.5rem;
+  margin-top: 2rem;
+
+  & > ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+
+    li {
+      max-width: 100%;
+
+      & > a {
+        display: block;
+        padding: 0.5rem 0.75rem;
+        border-radius: 9999px;
+        border: 1px solid var(--text-2);
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        @media (min-width: 640px) {
+          padding: 0.75rem 1rem;
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}
