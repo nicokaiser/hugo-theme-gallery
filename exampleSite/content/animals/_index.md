@@ -1,5 +1,5 @@
 ---
-description: Exotic wildlife, pet kittens — and everything in between. Uncover the beauty of the animal kingdom through your screen.
+description: This is the "Animals" album. It has two sub-albums.
 featured_image: janis-ringli-UC1pzyJFyvs-unsplash.jpg
 keywords: [Animals, Photos, Cats, Dogs]
 title: Animals
