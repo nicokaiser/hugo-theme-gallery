@@ -1,6 +1,6 @@
 copyright = "© Your Name"
 defaultContentLanguage = "en"
-disableKinds = ["taxonomy", "term"]
+disableKinds = ["taxonomy"]
 enableRobotsTXT = true
 languageCode = "en"
 timeZone = "Europe/Berlin"
