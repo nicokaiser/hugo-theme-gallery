@@ -241,6 +241,10 @@ Use the `socialIcons` configuration key to add social icons on the bottom of eac
 
 CSS is generated with Hugo Pipes, so you can add additional CSS in `assets/css/custom.css` (see example in `exampleSite`).
 
+### Custom JavaScript
+
+You can add additional JavaScript in `assets/js/custom.js`.
+
 ## Author
 
 - [Nico Kaiser](https://kaiser.me/)
