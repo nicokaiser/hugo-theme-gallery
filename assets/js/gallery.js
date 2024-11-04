@@ -1,4 +1,5 @@
 import justifiedLayout from "./justified-layout/index.js";
+import * as params from "@params";
 
 const gallery = document.getElementById("gallery");
 
@@ -23,9 +24,9 @@ if (gallery) {
     const geometry = justifiedLayout(input, {
       containerWidth,
       containerPadding: 0,
-      boxSpacing: 10, // default: 10
-      targetRowHeight: 288,
-      targetRowHeightTolerance: 0.25, // default: 0.25
+      boxSpacing: Number.isInteger(params.boxSpacing) ? params.boxSpacing : 10,
+      targetRowHeight: params.targetRowHeight || 288,
+      targetRowHeightTolerance: Number.isInteger(params.targetRowHeightTolerance) ? params.targetRowHeightTolerance : 0.25,
     });
 
     items.forEach((item, i) => {
