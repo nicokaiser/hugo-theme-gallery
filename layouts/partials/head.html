@@ -28,9 +28,9 @@
     "arrowNextTitle" (i18n "arrowNextTitle")
     "errorMsg" (i18n "errorMsg")
     "downloadTitle" (i18n "downloadTitle")
-    "boxSpacing" 10
-    "targetRowHeight" 288
-    "targetRowHeightTolerance" 0.25
+    "boxSpacing" (default 10 .Site.Params.gallery.boxSpacing)
+    "targetRowHeight" (default 288 .Site.Params.gallery.targetRowHeight)
+    "targetRowHeightTolerance" (default 0.25 .Site.Params.gallery.targetRowHeightTolerance)
   }}
   {{ $js := resources.Get "js/main.js" | js.Build (dict "minify" true "params" $params) | resources.Fingerprint }}
   <script src="{{ $js.RelPermalink }}" defer></script>

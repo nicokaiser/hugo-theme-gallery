@@ -23,6 +23,10 @@ title = "Gallery"
     #website = "https://example.com"
     #mastodon = "https://example.com"
     #pixelfed = "https://example.com"
+  [params.gallery]
+    #boxSpacing = 10
+    #targetRowHeight = 288
+    #targetRowHeightTolerance = 0.25
 
 [outputs]
   home = ["HTML", "RSS"]
