@@ -266,7 +266,7 @@ section.gallery {
     border-radius: 1rem;
   }
 
-  & > img, & figure > img {
+  & > img, & figure > img, & noscript > img, & noscript > figure > img {
     transition-duration: 150ms;
     transition-property: all;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);

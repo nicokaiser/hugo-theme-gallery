@@ -21,6 +21,9 @@
   {{ partial "opengraph.html" . }}
   {{ $css := resources.Get "/css/main.scss" | toCSS | minify | fingerprint }}
   <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
+  {{ $css_noscript:= resources.Get "/css/no_script.css" | toCSS | minify | fingerprint }}
+  <noscript><link rel="stylesheet" href="{{ $css_noscript.RelPermalink }}" /></noscript>
+
   {{ $params := dict
     "closeTitle" (i18n "closeTitle")
     "zoomTitle" (i18n "zoomTitle")
