@@ -24,7 +24,7 @@ if (gallery) {
     const geometry = justifiedLayout(input, {
       containerWidth,
       containerPadding: 0,
-      boxSpacing: Number.isInteger(params.boxSpacing) ? params.boxSpacing : 10,
+      boxSpacing: Number.isInteger(params.boxSpacing) ? params.boxSpacing : 8,
       targetRowHeight: params.targetRowHeight || 288,
       targetRowHeightTolerance: Number.isInteger(params.targetRowHeightTolerance) ? params.targetRowHeightTolerance : 0.25,
     });
