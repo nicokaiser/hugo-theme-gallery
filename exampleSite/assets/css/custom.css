@@ -8,3 +8,13 @@
   --text-1-dark: #eeeeee; /* gray-12-dark */
   --text-2-dark: #b4b4b4; /* gray-11-dark */
 }
+
+/*
+section.gallery {
+  max-width: 1536px;
+  @media (min-width: 640px) {
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+  }
+}
+*/

@@ -45,14 +45,14 @@ body > header {
 }
 
 body > menu {
-  margin: 3rem auto 4rem;
+  margin: 2rem auto 3rem;
   padding-right: 1.5rem;
   padding-left: 1.5rem;
   width: 100%;
   max-width: 768px;
   color: var(--text-2);
   font-weight: 600;
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   line-height: 1.75rem;
   user-select: none;
   text-align: center;
@@ -76,7 +76,7 @@ body > main {
 }
 
 main > section {
-  margin: 3rem auto 4rem;
+  margin: 2rem auto 3rem;
   padding-right: 1.5rem;
   padding-left: 1.5rem;
 }
@@ -106,7 +106,7 @@ hgroup {
   flex-direction: column;
   align-items: center;
   gap: 1.5rem;
-  margin: 3rem auto 4rem;
+  margin: 2rem auto 3rem;
   padding-right: 1.5rem;
   padding-left: 1.5rem;
   max-width: 1024px;
@@ -170,12 +170,6 @@ section.galleries {
 section.gallery {
   padding-right: 0;
   padding-left: 0;
-  max-width: 1536px;
-
-  @media (min-width: 640px) {
-    padding-right: 1.5rem /* 24px */;
-    padding-left: 1.5rem /* 24px */;
-  }
 }
 
 .prose {
@@ -334,7 +328,6 @@ section.social-icons {
 }
 
 section.featured {
-  margin: 3rem auto 4rem;
   padding-right: 1.5rem;
   padding-left: 1.5rem;
   max-width: 1280px;
@@ -395,7 +388,7 @@ section.featured {
 nav.categories {
   padding-right: 1.5rem;
   padding-left: 1.5rem;
-  margin-top: 2rem;
+  margin: 2rem auto 3rem;
 
   & > ul {
     display: flex;
@@ -411,7 +404,7 @@ nav.categories {
         display: block;
         padding: 0.5rem 0.75rem;
         border-radius: 9999px;
-        border: 1px solid var(--text-2);
+        border: 1px solid var(--border);
         font-size: 0.875rem;
         line-height: 1.25rem;
         white-space: nowrap;
