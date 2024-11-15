@@ -13,21 +13,6 @@ if (gallery) {
     bgOpacity: 1,
     pswpModule: PhotoSwipe,
     imageClickAction: "close",
-    paddingFn: (viewportSize) => {
-      return viewportSize.x < 700
-        ? {
-            top: 0,
-            bottom: 0,
-            left: 0,
-            right: 0,
-          }
-        : {
-            top: 30,
-            bottom: 30,
-            left: 0,
-            right: 0,
-          };
-    },
     closeTitle: params.closeTitle,
     zoomTitle: params.zoomTitle,
     arrowPrevTitle: params.arrowPrevTitle,
