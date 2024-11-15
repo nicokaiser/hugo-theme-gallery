@@ -9,12 +9,23 @@
   --text-2-dark: #b4b4b4; /* gray-11-dark */
 }
 
-/*
+/* Set maximum width for galleries to 1536px, add padding
 section.gallery {
   max-width: 1536px;
   @media (min-width: 640px) {
     padding-right: 1.5rem;
     padding-left: 1.5rem;
   }
+}
+*/
+
+/* Larger header with circled buttons
+body > header {
+  padding: 1.5rem;
+  .btn-square {
+    background: var(--surface-2);
+    border-radius: 9999px;
+  }
+  margin-bottom: 0;
 }
 */
