@@ -44,7 +44,8 @@ if (gallery) {
   });
 
   lightbox.on("change", () => {
-    history.replaceState("", document.title, "#" + lightbox.pswp.currSlide.index);
+    const target = lightbox.pswp.currSlide?.data?.element?.dataset["pswpTarget"];
+    history.replaceState("", document.title, "#" + target);
   });
 
   lightbox.on("close", () => {
@@ -59,10 +60,14 @@ if (gallery) {
 
   lightbox.init();
 
-  if (window.location.hash.substring(1).length > 0) {
-    const index = parseInt(window.location.hash.substring(1), 10);
-    if (!Number.isNaN(index) && index >= 0 && index < gallery.querySelectorAll("a").length) {
-      lightbox.loadAndOpen(index, { gallery });
+  if (window.location.hash.substring(1).length > 1) {
+    const target = window.location.hash.substring(1);
+    const items = gallery.querySelectorAll("a");
+    for (let i = 0; i < items.length; i++) {
+      if (items[i].dataset["pswpTarget"] === target) {
+        lightbox.loadAndOpen(i, { gallery });
+        break;
+      }
     }
   }
 }
