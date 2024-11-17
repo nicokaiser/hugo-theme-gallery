@@ -262,9 +262,6 @@ section.gallery {
   }
 
   & > img, & figure > img {
-    transition-duration: 150ms;
-    transition-property: all;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     border-radius: 1rem;
     aspect-ratio: 3/2;
@@ -344,9 +341,6 @@ section.featured {
   aspect-ratio: 1 / 1;
   width: 100%;
   overflow: hidden;
-  transition-duration: 150ms;
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
   @media (min-width: 640px) {
     aspect-ratio: 16/9;
