@@ -1,5 +1,4 @@
 copyright = "© Your Name"
-defaultContentLanguage = "en"
 disableKinds = ["taxonomy"]
 enableRobotsTXT = true
 languageCode = "en"
