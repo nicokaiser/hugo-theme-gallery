@@ -2,7 +2,13 @@
   {{ $gallery := partial "get-gallery.html" . }}
   {{ if $gallery }}
     {{ $images := .Resources.ByType "image" }}
-    {{ $featured := ($images.GetMatch (.Params.featured_image | default "*feature*")) | default (index $images 0) }}
+    {{ $index := 0 }}
+    {{ range $i, $image := $images }}
+      {{ if index $image.Params "cover" }}
+        {{ $index = $i }}
+      {{ end }}
+    {{ end }}
+    {{ $featured := ($images.GetMatch (.Params.featured_image | default "*feature*")) | default (index $images $index) }}
     {{ $thumbnail := $featured.Filter (slice images.AutoOrient (images.Process "fit 1600x1600")) }}
     {{ $color := index $thumbnail.Colors 0 | default "transparent" }}
     <section class="featured">
