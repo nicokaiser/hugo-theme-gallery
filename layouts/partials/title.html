@@ -2,7 +2,7 @@
   <hgroup>
     <h1>{{ .Title }}</h1>
     {{ with .Params.Description }}
-      <p>{{ . }}</p>
+      <p>{{ . | markdownify }}</p>
     {{ end }}
   </hgroup>
 {{ end }}

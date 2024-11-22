@@ -85,7 +85,7 @@ content/
 
 - `title` -- title of the album, shown in the album list and on the album page.
 - `date` -- album date, used for sorting (newest first).
-- `description` -- description shown on the album page.
+- `description` -- description shown on the album page. Rendered as markdown to enable adding links and some formatting.
 - `featured_image` -- name of the image file used for the album thumbnail. If not set, the first image which contains `feature` in its filename is used, otherwise the first image in the album.
 - `weight` -- can be used to adjust sort order.
 - `private` -- if set to `true`, this album is not shown in the album overview and is excluded from RSS feeds.
