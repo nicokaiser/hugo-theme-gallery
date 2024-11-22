@@ -5,7 +5,7 @@ description = "A very simple and opinionated photo gallery theme for Hugo"
 homepage = "https://github.com/nicokaiser/hugo-theme-gallery"
 demosite = "https://nicokaiser.github.io/hugo-theme-gallery/"
 tags = ["gallery", "responsive", "minimal", "dark"]
-min_version = "0.121.2"
+min_version = "0.123.0"
 
 [author]
   name = "Nico Kaiser"

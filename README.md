@@ -23,7 +23,7 @@ A very simple and opinionated photo gallery theme for Hugo.
 
 ## Installation
 
-This theme requires Hugo Extended >= 0.121.2. Dependencies are bundled, so no Node.js/NPM and PostCSS is needed.
+This theme requires Hugo Extended >= 0.123.0. Dependencies are bundled, so no Node.js/NPM and PostCSS is needed.
 
 ### As a Hugo Module
 
@@ -60,15 +60,15 @@ content/
 │   ├── cats/
 │   |   ├── index.md
 │   |   ├── cat1.jpg
-│   |   └── feature.jpg  <-- album thumbnail
+│   |   └── feature.jpg  <-- album cover
 │   ├── dogs/
 │   |   ├── index.md
-│   |   ├── dog1.jpg     <-- album thumbnail
+│   |   ├── dog1.jpg     <-- album cover
 │   |   └── dog2.jpg
 │   └── feature.jpg
 ├── bridge.jpg           <-- site thumbnail (OpenGraph, etc.)
 └── nature/
-    ├── index.md         <-- contains `featured_image: tree.jpg`
+    ├── index.md         <-- contains `cover: true` for `tree.jpg`
     ├── nature1.jpg
     ├── nature2.jpg
     └── tree.jpg         <-- album thumbnail
@@ -85,22 +85,25 @@ content/
 - `title` -- title of the album, shown in the album list and on the album page.
 - `date` -- album date, used for sorting (newest first).
 - `description` -- description shown on the album page. Rendered as markdown to enable adding links and some formatting.
-- `featured_image` -- name of the image file used for the album thumbnail. If not set, the first image which contains `feature` in its filename is used, otherwise the first image in the album.
 - `weight` -- can be used to adjust sort order.
-- `private` -- if set to `true`, this album is not shown in the album overview and is excluded from RSS feeds.
-- `featured` -- if set to `true`, this album is featured on the homepage (even if private).
-- `sort_by` -- property used for sorting images in an album. Default is `Name` (filename), but can also be `Date`.
-- `sort_order` -- sort order. Default is `asc`.
+- `params.featured_image` -- name of the image file used for the album thumbnail. If not set, the first image which contains `feature` in its filename is used, otherwise the first image in the album.
+- `params.private` -- if set to `true`, this album is not shown in the album overview and is excluded from RSS feeds.
+- `params.featured` -- if set to `true`, this album is featured on the homepage (even if private).
+- `params.sort_by` -- property used for sorting images in an album. Default is `Name` (filename), but can also be `Date`.
+- `params.sort_order` -- sort order. Default is `asc`.
 - `params.theme` -- color theme for this page. Defaults to `defaultTheme` from configuration.
 
-### Album Cover / Featured Image
+### Album Cover
 
-By default, the cover image of an album is the first image in its folder. To select a specific image (which must be part of the album), use the `featured_image` frontmatter:
+By default, the cover image of an album is the first image in its folder. To select a specific image (which must be part of the album), use the `cover` resource parameter in the front matter:
 
 ```plain
 ---
-featured_image: img_1234.jpg
-title: Cats
+title: Nature
+resources:
+  - src: tree.jpg
+    params:
+      cover: true
 ---
 ```
 
@@ -140,9 +143,12 @@ content/dogs/index.md:
 ```plain
 ---
 date: 2023-01-12
-featured_image: dogs-title-image.jpg
 title: Dogs
 categories: ["animals", "nature"]
+resources:
+  - src: dogs-title-image.jpg
+    params:
+      cover: true
 ---
 ```
 
@@ -161,7 +167,7 @@ description: This is the description text of the "animals" category.
 
 To enable a list of categories, each category must at least have an image in the `content/categores/<category>/` folder. Also, `taxonomy` must _not_ be included in the `disableKinds` in the site config.
 
-Then, `/categories` displays a list of categories, with their featured image.
+Then, `/categories` displays a list of categories, with their cover image.
 
 #### Other Taxonomies
 
@@ -174,7 +180,8 @@ Albums (and als taxonomy pages like categories) can be marked as "featured":
 ```plain
 ---
 title: Featured Album
-featured: true
+params:
+  featured: true
 ---
 ```
 
