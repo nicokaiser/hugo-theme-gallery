@@ -4,7 +4,13 @@
 <meta property="og:url" content="{{ .Permalink }}" />
 
 {{- $images := $.Resources.ByType "image" -}}
-{{ $featured := ($images.GetMatch (.Params.featured_image | default "*feature*")) | default (index $images 0) }}
+{{ $index := 0 }}
+{{ range $i, $image := $images }}
+  {{ if index $image.Params "cover" }}
+    {{ $index = $i }}
+  {{ end }}
+{{ end }}
+{{ $featured := ($images.GetMatch (.Params.featured_image | default "*feature*")) | default (index $images $index) }}
 {{- with $featured -}}
   <meta property="og:image" content="{{ $featured.Permalink }}" />
 {{- end -}}
