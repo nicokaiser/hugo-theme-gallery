@@ -68,11 +68,10 @@ content/
 │   └── feature.jpg
 ├── bridge.jpg           <-- site thumbnail (OpenGraph, etc.)
 └── nature/
-    ├── index.md         <-- contains `featured_image: images/tree.jpg`
-    ├── images/
-    |   └── tree.jpg     <-- album thumbnail
+    ├── index.md         <-- contains `featured_image: tree.jpg`
     ├── nature1.jpg
-    └── nature2.jpg
+    ├── nature2.jpg
+    └── tree.jpg         <-- album thumbnail
 ```
 
 - `/about.md` is not a Page Bundle and does not have image resources. It is not displayed in the album list.
