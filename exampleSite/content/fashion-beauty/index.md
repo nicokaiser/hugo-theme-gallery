@@ -3,8 +3,11 @@ description: Fashion and Beauty are a powerful form of self-expression. This cat
 menus: "main"
 title: Fashion & Beauty
 weight: 2
-featured_image: mina-rad-V94CguEmeos-unsplash.jpg
 categories: ["beauty", "fashion"]
 params:
   theme: light
+resources:
+  - src: mina-rad-V94CguEmeos-unsplash.jpg
+    params:
+      cover: true
 ---
