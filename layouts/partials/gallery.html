@@ -15,6 +15,10 @@
         {{/* Title from front matter */}}
         {{ $title = $image.Title }}
       {{ end }}
+      {{ if $image.Params.Date }}
+        {{/* Date from front matter */}}
+        {{ $date = $image.Params.Date }}
+      {{ end }}
       {{ $images = $images | append (dict
         "Name" $image.Name
         "Title" $title
