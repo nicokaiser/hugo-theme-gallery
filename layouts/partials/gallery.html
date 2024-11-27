@@ -17,7 +17,7 @@
       {{ end }}
       {{ if $image.Params.Date }}
         {{/* Date from front matter */}}
-        {{ $date = $image.Params.Date }}
+        {{ $date = time $image.Params.Date }}
       {{ end }}
       {{ $images = $images | append (dict
         "Name" $image.Name
