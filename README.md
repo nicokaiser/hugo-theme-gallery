@@ -133,6 +133,21 @@ resources:
 ---
 ```
 
+This also enables custom ordering:
+
+```plain
+---
+sort_by: Params.weight
+resources:
+  - src: image-1.jpg
+    params:
+      weight: 20
+  - src: image-2.jpg
+    params:
+      weight: 10
+---
+```
+
 ### Categories
 
 If you use categories in your albums, the homepage displays a list of categories.
