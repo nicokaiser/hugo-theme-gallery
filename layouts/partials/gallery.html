@@ -33,7 +33,7 @@
       {{ if site.Params.watermark }}
         {{ $logo := (resources.Get site.Params.watermark ) }}
         {{ $size := math.Round (mul $image.Height 0.3) }}
-        {{ $size := (cond (ge $size 80) ($size) (80)) }}
+        {{ $size := (cond (ge $size 80) ($size) (80.0)) }}
         {{ $logo_ := $logo.Resize (printf "%.0fx" $size) }}
         {{ $watermark := images.Overlay $logo_ (sub $image.Width $logo_.Width) (sub $image.Height $logo_.Height) }}
         {{ $image = images.Filter $watermark $image }}
