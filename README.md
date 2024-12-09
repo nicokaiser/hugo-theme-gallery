@@ -21,6 +21,8 @@ A very simple and opinionated photo gallery theme for Hugo.
 - SEO with Open Graph tags
 - Automatic (or manual) selection of feature/cover images
 
+**Important note: do not try to use WebP images.** The golang WebP implementation used in Hugo has a bug which leads to wrong image levels (dull looking images) upon resize. See [nicokaiser/hugo-theme-gallery#102](https://github.com/nicokaiser/hugo-theme-gallery/issues/102) for more details.
+
 ## Installation
 
 This theme requires Hugo Extended >= 0.123.0. Dependencies are bundled, so no Node.js/NPM and PostCSS is needed.
