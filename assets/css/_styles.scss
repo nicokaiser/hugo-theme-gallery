@@ -54,7 +54,7 @@ body > menu {
   color: var(--text-2);
   font-weight: 600;
   font-size: 1.25rem;
-  line-height: 1.75rem;
+  line-height: 1.4;
   user-select: none;
   text-align: center;
 
@@ -87,7 +87,7 @@ body > footer {
   margin-left: auto;
   color: var(--text-2);
   font-size: 0.875rem;
-  line-height: 1.25rem;
+  line-height: 1.4286;
 
   section:last-of-type {
     display: flex;
@@ -116,13 +116,13 @@ hgroup {
   h1 {
     font-weight: 700;
     font-size: 1.875rem;
-    line-height: 2.25rem;
+    line-height: 1.2;
   }
 
   h2 {
     font-weight: 700;
     font-size: 1.5rem;
-    line-height: 2rem;
+    line-height: 1.3333;
   }
 
   p {
@@ -137,17 +137,17 @@ hgroup {
   @media (min-width: 768px) {
     h1 {
       font-size: 2.25rem;
-      line-height: 2.5rem;
+      line-height: 1.1111;
     }
 
     h2 {
       font-size: 1.875rem;
-      line-height: 2.25rem;
+      line-height: 1.2;
     }
 
     p {
       font-size: 1.125rem;
-      line-height: 1.75rem;
+      line-height: 1.5556;
     }
   }
 }
@@ -292,7 +292,7 @@ section.gallery {
     & > p {
       color: var(--text-2);
       font-size: 0.875rem;
-      line-height: 1.25rem;
+      line-height: 1.4286;
     }
   }
 }
@@ -363,13 +363,13 @@ section.featured {
 
       @media (min-width: 768px) {
         font-size: 1.875rem;
-        line-height: 2.25rem;
+        line-height: 1.2;
       }
     }
 
     & > p {
       font-size: 0.875rem;
-      line-height: 1.25rem;
+      line-height: 1.4286;
     }
   }
 
@@ -401,7 +401,7 @@ nav.categories {
         border-radius: 9999px;
         border: 1px solid var(--border);
         font-size: 0.875rem;
-        line-height: 1.25rem;
+        line-height: 1.4286;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -409,6 +409,7 @@ nav.categories {
         @media (min-width: 640px) {
           padding: 0.75rem 1rem;
           font-size: 1rem;
+          line-height: 1.25;
         }
       }
     }
