@@ -7,21 +7,18 @@ if (gallery) {
   let containerWidth = 0;
   const items = gallery.querySelectorAll(".gallery-item");
 
-  const input = Array.from(items).map((item) => {
+  const aspectRatios = Array.from(items).map((item) => {
     const img = item.querySelector("img");
     img.style.width = "100%";
     img.style.height = "auto";
-    return {
-      width: parseFloat(img.getAttribute("width")),
-      height: parseFloat(img.getAttribute("height")),
-    };
+    return parseFloat(img.getAttribute("width")) / parseFloat(img.getAttribute("height"));
   });
 
   function updateGallery() {
     if (containerWidth === gallery.getBoundingClientRect().width) return;
     containerWidth = gallery.getBoundingClientRect().width;
 
-    const geometry = justifiedLayout(input, {
+    const geometry = justifiedLayout(aspectRatios, {
       containerWidth,
       containerPadding: 0,
       boxSpacing: Number.isInteger(params.boxSpacing) ? params.boxSpacing : 8,
