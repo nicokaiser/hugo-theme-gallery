@@ -1,4 +1,4 @@
-import justifiedLayout from "./justified-layout/index.js";
+import justifiedLayout from "./justified-layout.js";
 import * as params from "@params";
 
 const gallery = document.getElementById("gallery");
@@ -18,16 +18,15 @@ if (gallery) {
     if (containerWidth === gallery.getBoundingClientRect().width) return;
     containerWidth = gallery.getBoundingClientRect().width;
 
-    const geometry = justifiedLayout(aspectRatios, {
-      containerWidth,
-      containerPadding: 0,
-      boxSpacing: Number.isInteger(params.boxSpacing) ? params.boxSpacing : 8,
-      targetRowHeight: params.targetRowHeight || 288,
-      targetRowHeightTolerance: Number.isInteger(params.targetRowHeightTolerance) ? params.targetRowHeightTolerance : 0.25,
+    const layout = justifiedLayout(aspectRatios, {
+      rowWidth: containerWidth,
+      spacing: Number.isInteger(params.boxSpacing) ? params.boxSpacing : 8,
+      rowHeight: params.targetRowHeight || 288,
+      heightTolerance: Number.isInteger(params.targetRowHeightTolerance) ? params.targetRowHeightTolerance : 0.25,
     });
 
     items.forEach((item, i) => {
-      const { width, height, top, left } = geometry.boxes[i];
+      const { width, height, top, left } = layout.boxes[i];
       item.style.position = "absolute";
       item.style.width = width + "px";
       item.style.height = height + "px";
@@ -37,13 +36,14 @@ if (gallery) {
     });
 
     gallery.style.position = "relative";
-    gallery.style.height = geometry.containerHeight + "px";
+    gallery.style.height = layout.containerHeight + "px";
     gallery.style.visibility = "";
   }
 
   window.addEventListener("resize", updateGallery);
   window.addEventListener("orientationchange", updateGallery);
 
+  // Call twice to adjust for scrollbars appearing after first call
   updateGallery();
   updateGallery();
 }
