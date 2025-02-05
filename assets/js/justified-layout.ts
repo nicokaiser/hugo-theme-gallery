@@ -24,7 +24,13 @@ class Row {
   heightTolerance: number;
   minAspectRatio: number;
   maxAspectRatio: number;
-  items = [];
+  items: {
+    aspectRatio: number;
+    top?: number;
+    width?: number;
+    height?: number;
+    left?: number;
+  }[] = [];
   height = 0;
 
   constructor(params: LayoutOptions & { top: number }) {
@@ -35,8 +41,10 @@ class Row {
     this.rowHeight = params.rowHeight;
     this.heightTolerance = params.heightTolerance;
 
-    this.minAspectRatio = this.rowWidth / params.rowHeight * (1 - params.heightTolerance);
-    this.maxAspectRatio = this.rowWidth / params.rowHeight * (1 + params.heightTolerance);
+    this.minAspectRatio =
+      (this.rowWidth / params.rowHeight) * (1 - params.heightTolerance);
+    this.maxAspectRatio =
+      (this.rowWidth / params.rowHeight) * (1 + params.heightTolerance);
   }
 
   /**
@@ -63,7 +71,8 @@ class Row {
     const newItems = this.items.concat(itemData);
 
     // Calculate aspect ratios for items only; exclude spacing
-    const rowWidthWithoutSpacing = this.rowWidth - (newItems.length - 1) * this.spacing;
+    const rowWidthWithoutSpacing =
+      this.rowWidth - (newItems.length - 1) * this.spacing;
     const newAspectRatio = newItems.reduce(function (sum, item) {
       return sum + item.aspectRatio;
     }, 0);
@@ -87,15 +96,22 @@ class Row {
       }
 
       // Calculate width/aspect ratio for row before adding new item
-      const previousRowWidthWithoutSpacing = this.rowWidth - (this.items.length - 1) * this.spacing;
+      const previousRowWidthWithoutSpacing =
+        this.rowWidth - (this.items.length - 1) * this.spacing;
       const previousAspectRatio = this.items.reduce(function (sum, item) {
         return sum + item.aspectRatio;
       }, 0);
-      const previousTargetAspectRatio = previousRowWidthWithoutSpacing / this.rowHeight;
+      const previousTargetAspectRatio =
+        previousRowWidthWithoutSpacing / this.rowHeight;
 
-      if (Math.abs(newAspectRatio - targetAspectRatio) > Math.abs(previousAspectRatio - previousTargetAspectRatio)) {
+      if (
+        Math.abs(newAspectRatio - targetAspectRatio) >
+        Math.abs(previousAspectRatio - previousTargetAspectRatio)
+      ) {
         // Row with new item is us farther away from target than row without; complete layout and reject item.
-        this.completeLayout(previousRowWidthWithoutSpacing / previousAspectRatio);
+        this.completeLayout(
+          previousRowWidthWithoutSpacing / previousAspectRatio,
+        );
         return false;
       } else {
         // Row with new item is closer to target than row without;
@@ -117,18 +133,25 @@ class Row {
    * Set row height and compute item geometry from that height.
    */
   completeLayout(newHeight: number) {
-    const rowWidthWithoutSpacing = this.rowWidth - (this.items.length - 1) * this.spacing;
+    const rowWidthWithoutSpacing =
+      this.rowWidth - (this.items.length - 1) * this.spacing;
     let clampedToNativeRatio;
 
     // Clamp row height to edge case minimum/maximum.
-    const clampedHeight = Math.max(0.5 * this.rowHeight, Math.min(newHeight, 2 * this.rowHeight));
+    const clampedHeight = Math.max(
+      0.5 * this.rowHeight,
+      Math.min(newHeight, 2 * this.rowHeight),
+    );
 
     if (newHeight !== clampedHeight) {
       // If row height was clamped, the resulting row/item aspect ratio will be off,
       // so force it to fit the width (recalculate aspectRatio to match clamped height).
       // NOTE: this will result in cropping/padding commensurate to the amount of clamping.
       this.height = clampedHeight;
-      clampedToNativeRatio = (rowWidthWithoutSpacing / clampedHeight) / (rowWidthWithoutSpacing / newHeight);
+      clampedToNativeRatio =
+        rowWidthWithoutSpacing /
+        clampedHeight /
+        (rowWidthWithoutSpacing / newHeight);
     } else {
       // If not clamped, leave ratio at 1.0.
       this.height = newHeight;
@@ -137,7 +160,7 @@ class Row {
 
     // Compute item geometry based on newHeight.
     let itemWidthSum = 0;
-    for (let item of this.items) {
+    for (const item of this.items) {
       item.top = this.top;
       item.width = item.aspectRatio * this.height * clampedToNativeRatio;
       item.height = this.height;
@@ -145,7 +168,7 @@ class Row {
       itemWidthSum += item.width + this.spacing;
     }
   }
-};
+}
 
 /**
  * Takes in a bunch of box data and config. Returns
@@ -153,12 +176,18 @@ class Row {
  */
 export default function (aspectRatios: number[], layoutOptions: LayoutOptions) {
   let containerHeight = 0;
-  let boxes = [];
+  let boxes: {
+    aspectRatio: number;
+    top?: number;
+    width?: number;
+    height?: number;
+    left?: number;
+  }[] = [];
 
   let currentRow;
   let lastRowHeight = 0;
 
-  for (let aspectRatio of aspectRatios) {
+  for (const aspectRatio of aspectRatios) {
     // If not currently building up a row, make a new one.
     if (!currentRow) {
       currentRow = new Row({ top: containerHeight, ...layoutOptions });
@@ -201,4 +230,4 @@ export default function (aspectRatios: number[], layoutOptions: LayoutOptions) {
   containerHeight -= layoutOptions.spacing;
 
   return { containerHeight, boxes };
-};
+}
