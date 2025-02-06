@@ -1,0 +1,17 @@
+menu: Menú
+home: Inicio
+pageNotFound: Página no encontrada
+toHomepage: Ir al inicio
+closeTitle: Cerrar
+zoomTitle: Ampliar
+arrowPrevTitle: Anterior
+arrowNextTitle: Siguiente
+errorMsg: La foto no puede ser cargada
+downloadTitle: Descargar
+relatedAlbums: Álbumes relacionados
+photoCount:
+  one: 1 foto
+  other: "{{ . }} fotos"
+albumCount:
+  one: "{{ .photoCount }} en {{ .count }} álbum"
+  other: "{{ .photoCount }} en {{ .count }} álbumes"
