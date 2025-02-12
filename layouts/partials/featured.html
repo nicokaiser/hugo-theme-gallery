@@ -1,4 +1,4 @@
-{{ range where site.Pages.ByDate.Reverse "Params.featured" "=" true | first 1 }}
+{{ range where site.Pages.ByDate.Reverse "Params.featured" "=" true }}
   {{ $gallery := partial "get-gallery.html" . }}
   {{ if $gallery }}
     {{ $images := .Resources.ByType "image" }}
