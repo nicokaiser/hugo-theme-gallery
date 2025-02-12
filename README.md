@@ -188,7 +188,7 @@ Then, `/categories` displays a list of categories, with their cover image.
 
 #### Other Taxonomies
 
-You can also use other taxonomies like `series`.  Note that only `categories` and `tags` are enabled by Hugo's default settings. Using `series` as additional taxonomy is left as an exercise for the reader.
+You can also use other taxonomies like `series`. Note that only `categories` and `tags` are enabled by Hugo's default settings. Using `series` as additional taxonomy is left as an exercise for the reader.
 
 ### Featured Content on the Homepage
 
