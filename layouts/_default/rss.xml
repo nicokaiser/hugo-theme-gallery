@@ -37,9 +37,15 @@
       {{- with $authorEmail }}<author>{{ . }}{{ with $authorName }} ({{ . }}){{ end }}</author>{{ end }}
       <guid>{{ .Permalink }}</guid>
       {{- $images := .Resources.ByType "image" -}}
-      {{- if gt (len $images) 0 -}}
-        {{- $featured := ($images.GetMatch (.Params.featured_image | default "*feature*")) | default (index $images 0) -}}
-        {{- $thumbnail := $featured.Fill "900x600" -}}
+      {{- $index := 0 -}}
+      {{- range $i, $image := $images -}}
+        {{- if index $image.Params "cover" -}}
+          {{- $index = $i -}}
+        {{- end -}}
+      {{- end -}}
+      {{- $image := ($images.GetMatch (.Params.featured_image | default "*feature*")) | default (index $images $index) -}}
+      {{- if $image -}}
+        {{ $thumbnail := $image.Filter (slice images.AutoOrient (images.Process "fill 900x600")) }}
         <media:content url="{{ $thumbnail.Permalink }}" type="image/jpeg"/>
         <description>
           &lt;img src=&quot;{{ $thumbnail.Permalink }}&quot; /&gt;
