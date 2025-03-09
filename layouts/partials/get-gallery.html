@@ -1,15 +1,9 @@
 {{ $gallery := "" }}
 {{ $images := .Resources.ByType "image" }}
 {{ if gt (len $images) 0 }}
-  {{ $index := 0 }}
-  {{ range $i, $image := $images }}
-    {{ if index $image.Params "cover" }}
-      {{ $index = $i }}
-    {{ end }}
-  {{ end }}
-  {{ $featured := ($images.GetMatch (.Params.featured_image | default "*feature*")) | default (index $images $index) }}
-  {{ $thumbnail := $featured.Filter (slice images.AutoOrient (images.Process "fit 600x600")) }}
-  {{ $color := index $thumbnail.Colors 0 | default "transparent" }}
+  {{ $featuredImage := partial "_get_featured_image" (dict "images" $images "params" .Params) }}
+  {{ $thumbnail := $featuredImage.Filter (slice images.AutoOrient (images.Process "fit 600x600")) }}
+  {{ $color := index $thumbnail.Colors 0 | default "transparent" }} 
   {{ $imageCount := 0 }}
   {{ $albumCount := 0 }}
   {{ if .IsPage }}
