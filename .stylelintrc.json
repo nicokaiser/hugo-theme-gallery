@@ -2,8 +2,9 @@
   "extends": ["stylelint-config-standard-scss"],
   "rules": {
     "alpha-value-notation": "number",
-    "color-function-notation": "legacy",
+    "color-function-notation": null,
     "media-feature-range-notation": "prefix",
-    "property-no-vendor-prefix": null
+    "property-no-vendor-prefix": null,
+    "function-name-case": null
   }
 }

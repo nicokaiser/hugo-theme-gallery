@@ -315,13 +315,13 @@ section.gallery {
   display: none;
 }
 
-.group[aria-expanded="true"] {
-  .group-aria-expanded\:block {
-    display: block;
+#menu-toggle[aria-expanded="true"] {
+  .icon-menu {
+    display: none;
   }
 
-  .group-aria-expanded\:hidden {
-    display: none;
+  .icon-close {
+    display: block;
   }
 }
 
@@ -397,10 +397,9 @@ nav.categories {
 
   & > ul {
     display: flex;
-    flex-direction: row;
+    flex-flow: row wrap;
     justify-content: center;
     gap: 0.75rem;
-    flex-wrap: wrap;
 
     li {
       max-width: 100%;
