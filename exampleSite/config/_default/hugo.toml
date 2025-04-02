@@ -23,7 +23,9 @@ title = "Gallery"
     #website = "https://example.com"
     #mastodon = "https://example.com"
     #pixelfed = "https://example.com"
-    #mixcloud = "https://mixcloud.com"
+    #mixcloud = "https://example.com"
+    #flickr = "https://www.flickr.com"
+    #500px = "https://500px"
   [params.gallery]
     #boxSpacing = 10
     #targetRowHeight = 288
