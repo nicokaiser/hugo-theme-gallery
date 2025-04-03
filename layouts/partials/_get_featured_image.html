@@ -1,0 +1,28 @@
+{{ $images := .images }}
+{{ $params := .params }}
+
+{{ $selectedImages := slice }}
+{{ if $params.featured_image }}
+    {{ with $images.GetMatch $params.featured_image }}
+        {{ $selectedImages = $selectedImages | append . }}
+    {{ end }}
+{{ end }}
+{{ if eq (len $selectedImages) 0 }}
+    {{ range $images }}
+        {{ if strings.Contains (lower .Name) "feature" }}
+            {{ $selectedImages = $selectedImages | append . }}
+        {{ end }}
+    {{ end }}
+{{ end }}
+{{ if eq (len $selectedImages) 0 }}
+    {{ range $images }}
+        {{ if index .Params "cover" }}
+            {{ $selectedImages = $selectedImages | append . }}
+        {{ end }}
+    {{ end }}
+{{ end }}
+{{ $selectedImages = cond (eq (len $selectedImages) 0) $images $selectedImages }}
+{{ $featuredImage := cond ($params.random_featured)
+  ( index ($selectedImages | shuffle) 0 )
+  ( index $selectedImages 0 ) }}
+{{ return $featuredImage }}

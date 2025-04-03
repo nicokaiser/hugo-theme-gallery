@@ -33,14 +33,12 @@
 {{- end }}
 
 {{- $images := $.Resources.ByType "image" -}}
-{{ $index := 0 }}
-{{ range $i, $image := $images }}
-  {{ if index $image.Params "cover" }}
-    {{ $index = $i }}
-  {{ end }}
-{{ end }}
-{{ $image := ($images.GetMatch (.Params.featured_image | default "*feature*")) | default (index $images $index) }}
-{{- with $image -}}
-  {{ $full := $image.Filter (slice images.AutoOrient (images.Process "fit 1600x1600")) }}
-  <meta property="og:image" content="{{ $full.Permalink }}" />
+{{ if gt (len $images) 0 }}
+  {{ $featuredImage := partial "_get_featured_image" (dict "images" $images  "params" .Params) }}
+  {{- with $featuredImage -}}
+    {{ $full := .Filter (slice images.AutoOrient (images.Process "fit 1200x1200")) }}
+    <meta property="og:image" content="{{ $full.Permalink }}" />
+    <meta property="og:image:width" content="{{ $full.Width }}" />
+    <meta property="og:image:height" content="{{ $full.Height }}" />
+  {{- end -}}
 {{- end -}}

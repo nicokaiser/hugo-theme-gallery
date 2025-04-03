@@ -89,6 +89,7 @@ content/
 - `description` -- description shown on the album page. Rendered as markdown to enable adding links and some formatting.
 - `weight` -- can be used to adjust sort order.
 - `params.featured_image` -- name of the image file used for the album thumbnail. If not set, the first image which contains `feature` in its filename is used, otherwise the first image in the album.
+- `params.random_featured` -- if set to `true`, this will select a random image from the album amongst the eligible images (See [Random Album Cover](#random-album-cover) for more details). 
 - `params.private` -- if set to `true`, this album is not shown in the album overview and is excluded from RSS feeds.
 - `params.featured` -- if set to `true`, this album is featured on the homepage (even if private).
 - `params.sort_by` -- property used for sorting images in an album. Default is `Name` (filename), but can also be `Date`.
@@ -106,6 +107,20 @@ resources:
   - src: tree.jpg
     params:
       cover: true
+---
+```
+#### Random Album Cover
+If `random_featured` is enabled for an album, its cover will be, by order of priority: 
+1.  the `featured_image`
+2.  A random image from the images with `feature` in its filename
+3.  A random image from images with the parameter `cover` set to `true`
+4.  A random image from the album
+
+The parameter can be set in the root cover with `Cascade` to apply to all albums (set to `false` on a specific album to disable for that album, or `cascade/false` to disable also for the subalbums)
+```plain
+---
+cascade:
+  random_featured: true
 ---
 ```
 

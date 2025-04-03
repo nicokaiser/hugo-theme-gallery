@@ -2,14 +2,8 @@
   {{ $gallery := partial "get-gallery.html" . }}
   {{ if $gallery }}
     {{ $images := .Resources.ByType "image" }}
-    {{ $index := 0 }}
-    {{ range $i, $image := $images }}
-      {{ if index $image.Params "cover" }}
-        {{ $index = $i }}
-      {{ end }}
-    {{ end }}
-    {{ $featured := ($images.GetMatch (.Params.featured_image | default "*feature*")) | default (index $images $index) }}
-    {{ $thumbnail := $featured.Filter (slice images.AutoOrient (images.Process "fit 1600x1600")) }}
+    {{ $featuredImage := partial "_get_featured_image" (dict "images" $images "params" .Params) }}
+    {{ $thumbnail := $featuredImage.Filter (slice images.AutoOrient (images.Process "fit 1600x1600")) }}
     {{ $color := index $thumbnail.Colors 0 | default "transparent" }}
     <section class="featured">
       <a class="featured-card" href="{{ .RelPermalink }}" style="background-color: {{ $color }}; background-image: url({{ $thumbnail.RelPermalink }})">
