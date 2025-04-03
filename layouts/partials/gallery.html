@@ -1,6 +1,7 @@
 <section class="gallery">
   <div id="gallery" style="visibility: hidden; height: 1px; overflow: hidden">
     {{ $images := slice }}
+    {{ $hiddenImages := .Params.hidden_images | default (slice) }}
     {{ range $image := .Resources.ByType "image" }}
       {{ $title := "" }}
       {{ $date := "" }}
@@ -19,14 +20,17 @@
         {{/* Date from front matter */}}
         {{ $date = time $image.Params.Date }}
       {{ end }}
-      {{ $images = $images | append (dict
-        "Name" $image.Name
-        "Title" $title
-        "Date" $date
-        "image" $image
-        "Params" $image.Params
-        )
-      }}
+      {{ if in $hiddenImages $image.Name }}
+        <!-- This image is hidden: {{ $image.Name }} -->
+      {{ else }}
+        {{ $images = $images | append (dict
+          "Name" $image.Name
+          "Title" $title
+          "Date" $date
+          "image" $image
+          "Params" $image.Params
+        ) }}
+      {{ end }}
     {{ end }}
     {{ $publishResources := default true .Params.build.publishResources }}
     {{ range sort $images (.Params.sort_by | default "Name") (.Params.sort_order | default "asc") }}
