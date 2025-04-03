@@ -260,6 +260,16 @@ Use the `socialIcons` configuration key to add social icons on the bottom of eac
     linkedin = "https://linkedin.com/"
 ```
 
+### Exclude original photos
+
+To exclude the original photos from the published site, and to disable the "Download" button, you can use the `build.publishResources` configuration option. Either add it to a specific album, or use `cascade` to omit the originals from all sub-albums. With `publishResources: false` only the resized images (without any metadata) are included in the published site, which can save quite some disk space.
+
+```toml
+cascade:
+  build:
+    publishResources: false
+```
+
 ### Custom CSS
 
 CSS is generated with Hugo Pipes, so you can add additional CSS in `assets/css/custom.css` (see example in `exampleSite`).
