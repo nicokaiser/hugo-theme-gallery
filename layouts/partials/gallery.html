@@ -1,7 +1,7 @@
 <section class="gallery">
   <div id="gallery" style="visibility: hidden; height: 1px; overflow: hidden">
     {{ $images := slice }}
-    {{ range $image := .Resources.ByType "image" }}
+    {{ range $image := where (.Resources.ByType "image") "Params.hidden" "ne" true }}
       {{ $title := "" }}
       {{ $date := "" }}
       {{ with $image.Exif }}

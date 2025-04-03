@@ -1,13 +1,12 @@
 {{ $gallery := "" }}
-{{ $images := .Resources.ByType "image" }}
+{{ $images :=  where (.Resources.ByType "image") "Params.hidden" "ne" true }}
 {{ if gt (len $images) 0 }}
-  {{ $index := 0 }}
-  {{ range $i, $image := $images }}
-    {{ if index $image.Params "cover" }}
-      {{ $index = $i }}
-    {{ end }}
+  {{ $covers := where (.Resources.ByType "image") "Params.cover" "eq" true }}
+  {{ $cover := "" }}
+  {{ if ge (len $covers) 0 }}
+    {{ $cover = index $covers 0 }}
   {{ end }}
-  {{ $featured := ($images.GetMatch (.Params.featured_image | default "*feature*")) | default (index $images $index) }}
+  {{ $featured := $cover | default ((.Resources.ByType "image").GetMatch (.Params.featured_image | default "*feature*")) | default (index $images 0) }}
   {{ $thumbnail := $featured.Filter (slice images.AutoOrient (images.Process "fit 600x600")) }}
   {{ $color := index $thumbnail.Colors 0 | default "transparent" }}
   {{ $imageCount := 0 }}
@@ -17,7 +16,7 @@
   {{ else }}
     {{ range where .RegularPagesRecursive "Params.private" "ne" true }}
       {{ $albumCount = add $albumCount 1 }}
-      {{ $imageCount = add $imageCount (len (.Resources.ByType "image")) }}
+      {{ $imageCount = add $imageCount (len (where (.Resources.ByType "image") "Params.hidden" "ne" true)) }}
     {{ end }}
   {{ end }}
   {{ $gallery = dict
