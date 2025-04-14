@@ -12,5 +12,5 @@
     "prettier": "prettier . --write",
     "lint": "stylelint assets/css/*.{css,scss}"
   },
-  "version": "4.8.0"
+  "version": "4.9.0"
 }
