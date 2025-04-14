@@ -1,7 +1,7 @@
 ---
 title: Imprint
 rss_ignore: true
-layout: page
+layout: prose
 menu:
   footer:
     weight: 1
