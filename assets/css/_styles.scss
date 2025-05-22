@@ -122,42 +122,29 @@ hgroup {
   text-align: center;
 
   h1 {
-    font-weight: 700;
-    font-size: 1.875rem;
-    line-height: 1.2;
+    font-weight: 600;
+    font-size: clamp(2rem, calc(1.667rem + 1.481vw), 3rem);
+    line-height: clamp(2.25rem, calc(1.833rem + 1.852vw), 3.5rem);
+    text-wrap: balance;
   }
 
   h2 {
-    font-weight: 700;
-    font-size: 1.5rem;
-    line-height: 1.3333;
+    font-weight: 600;
+    font-size: clamp(1.5rem, calc(1.333rem + 0.741vw), 2rem);
+    line-height: clamp(1.75rem, calc(1.500rem + 1.111vw), 2.5rem);
+    text-wrap: balance;
   }
 
   p {
     color: var(--text-2);
+    font-size: 1.0625rem;
+    line-height: 1.5556;
     text-wrap: balance;
   }
 
   @media (min-width: 640px) {
     width: 83.3333%;
     margin-bottom: 4rem;
-  }
-
-  @media (min-width: 768px) {
-    h1 {
-      font-size: 2.25rem;
-      line-height: 1.1111;
-    }
-
-    h2 {
-      font-size: 1.875rem;
-      line-height: 1.2;
-    }
-
-    p {
-      font-size: 1.125rem;
-      line-height: 1.5556;
-    }
   }
 }
 
@@ -367,14 +354,9 @@ section.featured {
     height: 100%;
 
     & > h2 {
-      font-weight: 700;
-      font-size: 1.5rem;
-      line-height: 1.25;
-
-      @media (min-width: 768px) {
-        font-size: 1.875rem;
-        line-height: 1.2;
-      }
+      font-weight: 600;
+      font-size: clamp(1.5rem, calc(1.375rem + 0.556vw), 1.875rem);
+      line-height: 1.2;
     }
 
     & > p {
