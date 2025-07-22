@@ -3,8 +3,10 @@
   "rules": {
     "alpha-value-notation": "number",
     "color-function-notation": null,
+    "color-function-alias-notation": null,
     "media-feature-range-notation": "prefix",
     "property-no-vendor-prefix": null,
-    "function-name-case": null
+    "function-name-case": null,
+    "no-descending-specificity": null
   }
 }
