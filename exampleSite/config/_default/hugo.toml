@@ -26,6 +26,7 @@ title = "Gallery"
     #mixcloud = "https://example.com"
     #flickr = "https://www.flickr.com"
     #500px = "https://500px"
+    #whatsapp = "1234567890"
   [params.gallery]
     #boxSpacing = 10
     #targetRowHeight = 288
