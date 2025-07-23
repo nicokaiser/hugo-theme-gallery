@@ -31,6 +31,14 @@
     {{ $publishResources := default true .Params.build.publishResources }}
     {{ range sort $images (.Params.sort_by | default "Name") (.Params.sort_order | default "asc") }}
       {{ $image := .image }}
+      {{ if site.Params.watermark }}
+        {{ $logo := (resources.Get site.Params.watermark ) }}
+        {{ $size := math.Round (mul $image.Height 0.3) }}
+        {{ $size := (cond (ge $size 80) ($size) (80.0)) }}
+        {{ $logo_ := $logo.Resize (printf "%.0fx" $size) }}
+        {{ $watermark := images.Overlay $logo_ (sub $image.Width $logo_.Width) (sub $image.Height $logo_.Height) }}
+        {{ $image = images.Filter $watermark $image }}
+      {{ end }}
       {{ $thumbnail := $image.Filter (slice images.AutoOrient (images.Process "fit 600x600")) }}
       {{ $full := $image.Filter (slice images.AutoOrient (images.Process "fit 1600x1600")) }}
       {{ $color := index $thumbnail.Colors 0 | default "transparent" }}
