@@ -205,7 +205,7 @@ You can also use other taxonomies like `series`. Note that only `categories` and
 
 ### Featured Content on the Homepage
 
-Albums (and als taxonomy pages like categories) can be marked as "featured":
+Albums (and also taxonomy pages like categories) can be marked as "featured":
 
 ```plain
 ---
