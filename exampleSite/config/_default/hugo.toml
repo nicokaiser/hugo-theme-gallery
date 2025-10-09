@@ -11,6 +11,7 @@ title = "Gallery"
   defaultTheme = "dark"
   description = "Example site for hugo-theme-gallery"
   title = "My Gallery"
+  #watermark = "images/watermark.png"
   [params.author]
     email = "user@example.com"
     name = "Your Name"
