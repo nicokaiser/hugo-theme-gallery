@@ -20,6 +20,7 @@ A very simple and opinionated photo gallery theme for Hugo.
 - Lightbox with [PhotoSwipe](https://photoswipe.com/)
 - SEO with Open Graph tags
 - Automatic (or manual) selection of feature/cover images
+- "Spoiler" images with content warnings (CW)
 
 **Important note: do not try to use WebP images.** The golang WebP implementation used in Hugo has a bug which leads to wrong image levels (dull looking images) upon resize. See [nicokaiser/hugo-theme-gallery#102](https://github.com/nicokaiser/hugo-theme-gallery/issues/102) for more details.
 
@@ -93,6 +94,7 @@ content/
 - `params.featured` -- if set to `true`, this album is featured on the homepage (even if private).
 - `params.sort_by` -- property used for sorting images in an album. Default is `Name` (filename), but can also be `Date`.
 - `params.sort_order` -- sort order. Default is `asc`.
+- `params.spoiler` -- if set to a string value, this image's thumbnail will be blurred, darkened, and the text will be put on top of it. Main image isn't modified.
 - `params.theme` -- color theme for this page. Defaults to `defaultTheme` from configuration.
 
 ### Album Cover
