@@ -1,0 +1,17 @@
+menu: Меню
+home: Главная
+pageNotFound: Страница не найдена
+toHomepage: На главную
+closeTitle: Закрыть
+zoomTitle: Увеличить
+arrowPrevTitle: Предыдущее
+arrowNextTitle: Следующее
+errorMsg: Не удалось загрузить фото
+downloadTitle: Скачать
+relatedAlbums: Похожие альбомы
+photoCount:
+  one: "1 фото"
+  other: "{{ . }} фото"
+albumCount:
+  one: "{{ .photoCount }} в {{ .count }} альбоме"
+  other: "{{ .photoCount }} в {{ .count }} альбомах"
