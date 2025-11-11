@@ -28,6 +28,8 @@ title = "Gallery"
     #500px = "https://500px"
     #whatsapp = "1234567890"
   [params.gallery]
+    #previewImageSize = "fit 600x600"
+    #fullImageSize = "fit 1600x1600"
     #boxSpacing = 10
     #targetRowHeight = 288
     #targetRowHeightTolerance = 0.25
