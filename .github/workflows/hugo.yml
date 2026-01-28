@@ -30,17 +30,16 @@ jobs:
         id: cache-images
         uses: actions/cache@v4
         with:
-          path: ./exampleSite/content
-          key: images-${{ hashFiles('exampleSite/content/**') }}
+          path: ./content          key: images-${{ hashFiles('/content/**') }}
       - name: Download example images
         if: steps.cache-images.outputs.cache-hit != 'true'
-        working-directory: ./exampleSite
+        working-directory: ./
         run: ./pull-images.sh
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
       - name: Build with Hugo
-        working-directory: ./exampleSite
+        working-directory: ./
         env:
           HUGO_ENVIRONMENT: production
           HUGO_ENV: production
@@ -48,7 +47,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: ./exampleSite/public
+          path: .//public
 
   deploy:
     environment:
