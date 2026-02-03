@@ -30,7 +30,8 @@ jobs:
         id: cache-images
         uses: actions/cache@v4
         with:
-          path: ./content          key: images-${{ hashFiles('/content/**') }}
+              path: ./content
+                            key: images-${{ hashFiles('/content/**') }}
       - name: Download example images
         if: steps.cache-images.outputs.cache-hit != 'true'
         working-directory: ./
