@@ -1,36 +1,31 @@
-copyright = "© Mantas"
+copyright = "© Mantas Zdancius"
 defaultContentLanguage = "en"
-disableKinds = ["taxonomy"]
+disableKinds = ["taxonomy", "term"]
 enableRobotsTXT = true
 languageCode = "en"
 timeZone = "Europe/Berlin"
-timeout = "120s"
-title = "Mantas"
+timeout = "180s"
+title = "Mantas Zdancius"
 
 [params]
     defaultTheme = "dark"
-    description = "I make hard things look easy. Technical depth meets human understanding."
-    title = "Mantas"
+    description = "Professional Photography Portfolio - I make hard things look easy. Technical depth meets human understanding."
+    title = "Mantas Zdancius"
+
 [params.author]
     email = "mantas.zdancius@me.com"
-    name = "Mantas"
+    name = "Mantas Zdancius"
+
 [params.socialIcons]
-    # facebook = "https://www.facebook.com/"
     instagram = "https://www.instagram.com/mantas.tv"
     github = "https://github.com/Mantexas"
-    # youtube = "https://www.youtube.com/"
     linkedin = "https://www.linkedin.com/in/finetune"
-    #website = "https://example.com"
-    #mastodon = "https://example.com"
-    #pixelfed = "https://example.com"
-    #mixcloud = "https://example.com"
-    #flickr = "https://www.flickr.com"
-    #500px = "https://500px"
-    #whatsapp = "1234567890"
+    email = "mailto:mantas.zdancius@me.com"
+
 [params.gallery]
-    #boxSpacing = 10
-    #targetRowHeight = 288
-    #targetRowHeightTolerance = 0.25
+    boxSpacing = 8
+    targetRowHeight = 280
+    targetRowHeightTolerance = 0.2
 
 [outputs]
     home = ["HTML", "RSS"]

@@ -2,7 +2,7 @@ name: Deploy to Pages
 
 on:
   push:
-    branches: ["main"]
+    branches: ["main", "claude/fix-website-loading-aBhAp"]
   workflow_dispatch:
 
 permissions:
@@ -41,11 +41,11 @@ jobs:
           path: ./exampleSite/public
 
   deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     needs: build
+    permissions:
+      pages: write
+      id-token: write
     steps:
       - name: Deploy to GitHub Pages
         id: deployment

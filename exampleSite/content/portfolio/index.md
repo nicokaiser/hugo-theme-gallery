@@ -1,10 +1,11 @@
 ---
-title: Nature
-description: Capturing the raw beauty of the natural world - landscapes, wildlife, and the serenity of untouched environments.
+title: Portfolio
+description: A curated selection of my finest work showcasing technical excellence and creative vision.
 menus: "main"
-weight: 2
+weight: 3
 params:
   theme: dark
+  featured: true
   sort_order: asc
   sort_by: Name
 resources:
