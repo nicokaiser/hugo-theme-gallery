@@ -1,25 +1,25 @@
-copyright = "© Your Name"
+copyright = "© Mantas"
 defaultContentLanguage = "en"
 disableKinds = ["taxonomy"]
 enableRobotsTXT = true
 languageCode = "en"
 timeZone = "Europe/Berlin"
 timeout = "120s"
-title = "Gallery"
+title = "Mantas"
 
 [params]
-  defaultTheme = "dark"
-  description = "Example site for hugo-theme-gallery"
-  title = "My Gallery"
-  [params.author]
-    email = "user@example.com"
-    name = "Your Name"
-  [params.socialIcons]
-    facebook = "https://www.facebook.com/"
-    instagram = "https://www.instagram.com/"
-    github = "https://github.com/nicokaiser/hugo-theme-gallery/"
-    youtube = "https://www.youtube.com/"
-    email = "mailto:user@example.com"
+    defaultTheme = "dark"
+    description = "I make hard things look easy. Technical depth meets human understanding."
+    title = "Mantas"
+[params.author]
+    email = "mantas.zdancius@me.com"
+    name = "Mantas"
+[params.socialIcons]
+    # facebook = "https://www.facebook.com/"
+    instagram = "https://www.instagram.com/mantas.tv"
+    github = "https://github.com/Mantexas"
+    # youtube = "https://www.youtube.com/"
+    linkedin = "https://www.linkedin.com/in/finetune"
     #website = "https://example.com"
     #mastodon = "https://example.com"
     #pixelfed = "https://example.com"
@@ -27,36 +27,11 @@ title = "Gallery"
     #flickr = "https://www.flickr.com"
     #500px = "https://500px"
     #whatsapp = "1234567890"
-  [params.gallery]
+[params.gallery]
     #boxSpacing = 10
     #targetRowHeight = 288
     #targetRowHeightTolerance = 0.25
 
 [outputs]
-  home = ["HTML", "RSS"]
-  page = ["HTML"]
-  section = ["HTML"]
-
-[imaging]
-  quality = 75
-  resampleFilter = "CatmullRom"
-  [imaging.exif]
-    disableDate = false
-    disableLatLong = true
-    includeFields = "ImageDescription|Orientation"
-
-[module]
-  [module.hugoVersion]
-    min = "0.121.2"
-  [[module.imports]]
-    path = "github.com/nicokaiser/hugo-theme-gallery/v4"
-
-[menu]
-  [[menu.footer]]
-    name = "GitHub"
-    url = "https://github.com/nicokaiser/hugo-theme-gallery/"
-    weight = 3
-
-[services]
-  [services.rss]
-    limit = 100
+    home = ["HTML", "RSS"]
+    page = ["HTML"]
