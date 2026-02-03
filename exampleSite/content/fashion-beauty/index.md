@@ -1,13 +1,14 @@
 ---
-description: Fashion and Beauty are a powerful form of self-expression. This category documents style through inspiring shots of street fashion, skincare products, avant-garde editorial photographs, and more.
-menus: "main"
 title: Fashion & Beauty
-weight: 2
-categories: ["beauty", "fashion"]
+description: Elegant portraits and editorial photography celebrating style, beauty, and the art of self-expression.
+menus: "main"
+weight: 1
 params:
   theme: light
+  sort_order: asc
+  sort_by: Name
 resources:
-  - src: mina-rad-V94CguEmeos-unsplash.jpg
+  - src: Mantas_Zdancius_Gallery1.jpeg
     params:
       cover: true
 ---
