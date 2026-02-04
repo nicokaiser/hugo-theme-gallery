@@ -1,35 +1,107 @@
-/* High contrast colours
-:root {
-  --surface-1-light: #fff;
-  --surface-2-light: #f5f5f5;
-  --text-1-light: #000;
-  --text-2-light: #737373;
-  --border-light: #bbb;
-  --surface-1-dark: #000;
-  --surface-2-dark: #171717;
-  --text-1-dark: #fff;
-  --text-2-dark: #a3a3a3;
-  --border-dark: #606060;
-}
-*/
+/* Custom styles for Mantas Zdancius Photography Portfolio */
 
-/* Set maximum width for galleries to 1536px, add padding
-section.gallery {
-  max-width: 1536px;
-  @media (min-width: 640px) {
-    padding-right: 1.5rem;
-    padding-left: 1.5rem;
-  }
-}
-*/
-
-/* Larger header with circled buttons
+/* Enhanced header with circled buttons and better spacing */
 body > header {
-  padding: 1.5rem;
+  padding: 1rem 1.5rem;
   .btn-square {
     background: var(--surface-2);
     border-radius: 9999px;
+    transition: transform 0.2s ease, background-color 0.2s ease;
   }
-  margin-bottom: 0;
+  .btn-square:hover {
+    transform: scale(1.05);
+    background: var(--border);
+  }
 }
-*/
+
+/* Improved gallery container with max width */
+section.gallery {
+  max-width: 1536px;
+  @media (min-width: 640px) {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+}
+
+/* Smoother image hover transitions */
+.gallery-item img {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.02);
+}
+
+/* Improved card hover effects */
+.card > img,
+.card figure > img {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover > img,
+.card:hover figure > img {
+  transform: scale(1.03);
+}
+
+/* Featured card enhancements */
+.featured-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.featured-card:hover {
+  transform: scale(1.01);
+}
+
+/* Better typography for titles */
+hgroup h1 {
+  letter-spacing: -0.02em;
+}
+
+hgroup p {
+  max-width: 600px;
+}
+
+/* Smooth menu transitions */
+body > menu a {
+  transition: color 0.2s ease;
+}
+
+/* Footer improvements */
+body > footer {
+  margin-top: 2rem;
+  padding-bottom: 1rem;
+}
+
+body > footer section:last-of-type a {
+  transition: color 0.2s ease;
+}
+
+/* Social icons hover effect */
+section.social-icons a {
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  opacity: 0.8;
+}
+
+section.social-icons a:hover {
+  transform: scale(1.1);
+  opacity: 1;
+}
+
+/* Prose section improvements for About page */
+.prose {
+  h2 {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+    letter-spacing: -0.01em;
+  }
+
+  h3 {
+    margin-top: 2rem;
+  }
+}
+
+/* Loading animation for images */
+.gallery-item {
+  background: var(--surface-2);
+  border-radius: 0.25rem;
+}
