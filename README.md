@@ -93,6 +93,38 @@ resources:
       date: 2024-01-01 # Custom date
 ```
 
+### Video Support
+
+The gallery supports HEVC (H.265) and other video formats. Simply add video files to your gallery folder:
+
+**Supported formats:**
+- `.mov` (HEVC/H.265 - best for Safari/macOS)
+- `.mp4` (H.264/HEVC)
+- `.webm` (VP9)
+
+**Adding videos:**
+1. Add video files to your gallery folder alongside images
+2. (Optional) Add a poster image with the same name: `video.mov` + `video.jpg`
+3. Videos appear in the gallery with a play icon overlay
+4. Click to open in lightbox with full playback controls
+
+**Video settings in `index.md`:**
+```yaml
+resources:
+  - src: my-video.mov
+    title: Video title
+    params:
+      poster: custom-poster.jpg  # Optional custom poster
+      width: 1920                # Video width (for aspect ratio)
+      height: 1080               # Video height
+      hidden: true               # Hide from gallery if needed
+```
+
+**HEVC Notes:**
+- HEVC is natively supported in Safari, Edge (Windows with HEVC extension)
+- For broader compatibility, consider also providing H.264 versions
+- Large video files will increase page load times
+
 ## Deployment
 
 The site automatically deploys to GitHub Pages when you push to `main`:

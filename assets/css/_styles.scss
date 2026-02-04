@@ -298,6 +298,77 @@ section.gallery {
   cursor: zoom-in;
 }
 
+/* Video gallery items */
+.gallery-video {
+  position: relative;
+
+  figure {
+    position: relative;
+  }
+
+  .video-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1a1a1a;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .video-play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 50%;
+    color: white;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    pointer-events: none;
+  }
+
+  &:hover .video-play-icon {
+    background-color: rgba(0, 0, 0, 0.8);
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+/* PhotoSwipe video styles */
+.pswp__video-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.pswp__video {
+  max-width: 100%;
+  max-height: 100%;
+  background-color: #000;
+}
+
+/* Video error message */
+.pswp__video-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+  padding: 2rem;
+
+  p {
+    margin-top: 1rem;
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.7);
+  }
+}
+
 .hidden {
   display: none;
 }

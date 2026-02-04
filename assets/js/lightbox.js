@@ -20,6 +20,76 @@ if (gallery) {
     errorMsg: params.errorMsg,
   });
 
+  // Handle video content
+  lightbox.addFilter("itemData", (itemData, index) => {
+    const element = itemData.element;
+    if (element && element.dataset.pswpType === "video") {
+      itemData.type = "video";
+      itemData.videoSrc = element.dataset.pswpVideoSrc;
+      itemData.width = parseInt(element.dataset.pswpWidth, 10) || 1920;
+      itemData.height = parseInt(element.dataset.pswpHeight, 10) || 1080;
+    }
+    return itemData;
+  });
+
+  // Register video content type
+  lightbox.on("contentLoad", (e) => {
+    const { content } = e;
+    if (content.type === "video") {
+      e.preventDefault();
+
+      content.element = document.createElement("div");
+      content.element.className = "pswp__video-container";
+
+      const video = document.createElement("video");
+      video.className = "pswp__video";
+      video.src = content.data.videoSrc;
+      video.controls = true;
+      video.autoplay = true;
+      video.playsInline = true;
+      video.preload = "auto";
+
+      // Add poster if available from the thumbnail
+      const thumb = content.data.element?.querySelector("img");
+      if (thumb && thumb.src) {
+        video.poster = thumb.src;
+      }
+
+      content.element.appendChild(video);
+      content.state = "loaded";
+    }
+  });
+
+  // Cleanup video on slide change or close
+  lightbox.on("contentActivate", (e) => {
+    const { content } = e;
+    if (content.type === "video" && content.element) {
+      const video = content.element.querySelector("video");
+      if (video) {
+        video.play().catch(() => {});
+      }
+    }
+  });
+
+  lightbox.on("contentDeactivate", (e) => {
+    const { content } = e;
+    if (content.type === "video" && content.element) {
+      const video = content.element.querySelector("video");
+      if (video) {
+        video.pause();
+        video.currentTime = 0;
+      }
+    }
+  });
+
+  lightbox.on("close", () => {
+    // Pause all videos when lightbox closes
+    const videos = document.querySelectorAll(".pswp__video");
+    videos.forEach((video) => {
+      video.pause();
+    });
+  });
+
   if (params.enableDownload) {
     lightbox.on("uiRegister", () => {
       lightbox.pswp.ui.registerElement({

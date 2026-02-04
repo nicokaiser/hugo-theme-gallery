@@ -1,50 +1,130 @@
 <section class="gallery">
   <div id="gallery" style="visibility: hidden; height: 1px; overflow: hidden">
-    {{ $images := slice }}
+    {{/* Collect all media items (images and videos) */}}
+    {{ $media := slice }}
+
+    {{/* Process images */}}
     {{ range $image := where (.Resources.ByType "image") "Params.hidden" "ne" true }}
       {{ $title := "" }}
       {{ $date := "" }}
       {{ with $image.Exif }}
         {{ $date = .Date }}
         {{ with .Tags.ImageDescription }}
-          {{/* Title from EXIF ImageDescription */}}
           {{ $title = . }}
         {{ end }}
       {{ end }}
       {{ if ne $image.Title $image.Name }}
-        {{/* Title from front matter */}}
         {{ $title = $image.Title }}
       {{ end }}
       {{ if $image.Params.Date }}
-        {{/* Date from front matter */}}
         {{ $date = time $image.Params.Date }}
       {{ end }}
-      {{ $images = $images | append (dict
+      {{ $media = $media | append (dict
         "Name" $image.Name
         "Title" $title
         "Date" $date
-        "image" $image
+        "resource" $image
         "Params" $image.Params
+        "Type" "image"
         )
       }}
     {{ end }}
-    {{ $publishResources := default true .Params.build.publishResources }}
-    {{ range sort $images (.Params.sort_by | default "Name") (.Params.sort_order | default "asc") }}
-      {{ $image := .image }}
-      {{ $thumbnail := $image.Filter (slice images.AutoOrient (images.Process "fit 600x600")) }}
-      {{ $full := $image.Filter (slice images.AutoOrient (images.Process "fit 1600x1600")) }}
-      {{ $color := index $thumbnail.Colors 0 | default "transparent" }}
-      <a class="gallery-item" href="{{ if $publishResources }}{{ $image.RelPermalink }}{{ else }}{{ $full.RelPermalink }}{{ end }}" data-pswp-src="{{ $full.RelPermalink }}" data-pswp-width="{{ $full.Width }}" data-pswp-height="{{ $full.Height }}" data-pswp-target="{{ $image.Name | urlize }}" title="{{ .Title }}" itemscope itemtype="https://schema.org/ImageObject" style="aspect-ratio: {{ $thumbnail.Width }} / {{ $thumbnail.Height }}">
-        <figure style="background-color: {{ $color }}; aspect-ratio: {{ $thumbnail.Width }} / {{ $thumbnail.Height }}">
-          <img class="lazyload" width="{{ $thumbnail.Width }}" height="{{ $thumbnail.Height }}" data-src="{{ $thumbnail.RelPermalink }}" alt="{{ .Title }}" />
-        </figure>
-        <meta itemprop="contentUrl" content="{{ if $publishResources }}{{ $image.RelPermalink }}{{ else }}{{ $full.RelPermalink }}{{ end }}" />
-        {{ with site.Params.Author }}
-          <span itemprop="creator" itemtype="https://schema.org/Person" itemscope>
-            <meta itemprop="name" content="{{ site.Params.Author.name }}" />
-          </span>
+
+    {{/* Process videos */}}
+    {{ range $video := where (.Resources.ByType "video") "Params.hidden" "ne" true }}
+      {{ $title := "" }}
+      {{ $date := "" }}
+      {{ if ne $video.Title $video.Name }}
+        {{ $title = $video.Title }}
+      {{ end }}
+      {{ if $video.Params.Date }}
+        {{ $date = time $video.Params.Date }}
+      {{ end }}
+      {{/* Get poster image if specified, or find matching image */}}
+      {{ $poster := "" }}
+      {{ $posterWidth := 1920 }}
+      {{ $posterHeight := 1080 }}
+      {{ with $video.Params.poster }}
+        {{ $posterRes := $.Resources.GetMatch . }}
+        {{ if $posterRes }}
+          {{ $poster = $posterRes.RelPermalink }}
+          {{ $posterWidth = $posterRes.Width }}
+          {{ $posterHeight = $posterRes.Height }}
         {{ end }}
-      </a>
+      {{ else }}
+        {{/* Try to find a matching poster image (same name, different extension) */}}
+        {{ $baseName := replaceRE "\\.[^.]+$" "" $video.Name }}
+        {{ $posterRes := $.Resources.GetMatch (printf "%s.{jpg,jpeg,png,webp}" $baseName) }}
+        {{ if $posterRes }}
+          {{ $poster = $posterRes.RelPermalink }}
+          {{ $posterWidth = $posterRes.Width }}
+          {{ $posterHeight = $posterRes.Height }}
+        {{ end }}
+      {{ end }}
+      {{ $media = $media | append (dict
+        "Name" $video.Name
+        "Title" $title
+        "Date" $date
+        "resource" $video
+        "Params" $video.Params
+        "Type" "video"
+        "Poster" $poster
+        "Width" ($video.Params.width | default $posterWidth)
+        "Height" ($video.Params.height | default $posterHeight)
+        )
+      }}
+    {{ end }}
+
+    {{ $publishResources := default true .Params.build.publishResources }}
+
+    {{/* Render all media items */}}
+    {{ range sort $media (.Params.sort_by | default "Name") (.Params.sort_order | default "asc") }}
+      {{ if eq .Type "image" }}
+        {{/* Image rendering */}}
+        {{ $image := .resource }}
+        {{ $thumbnail := $image.Filter (slice images.AutoOrient (images.Process "fit 600x600")) }}
+        {{ $full := $image.Filter (slice images.AutoOrient (images.Process "fit 1600x1600")) }}
+        {{ $color := index $thumbnail.Colors 0 | default "transparent" }}
+        <a class="gallery-item" href="{{ if $publishResources }}{{ $image.RelPermalink }}{{ else }}{{ $full.RelPermalink }}{{ end }}" data-pswp-src="{{ $full.RelPermalink }}" data-pswp-width="{{ $full.Width }}" data-pswp-height="{{ $full.Height }}" data-pswp-target="{{ $image.Name | urlize }}" title="{{ .Title }}" itemscope itemtype="https://schema.org/ImageObject" style="aspect-ratio: {{ $thumbnail.Width }} / {{ $thumbnail.Height }}">
+          <figure style="background-color: {{ $color }}; aspect-ratio: {{ $thumbnail.Width }} / {{ $thumbnail.Height }}">
+            <img class="lazyload" width="{{ $thumbnail.Width }}" height="{{ $thumbnail.Height }}" data-src="{{ $thumbnail.RelPermalink }}" alt="{{ .Title }}" />
+          </figure>
+          <meta itemprop="contentUrl" content="{{ if $publishResources }}{{ $image.RelPermalink }}{{ else }}{{ $full.RelPermalink }}{{ end }}" />
+          {{ with site.Params.Author }}
+            <span itemprop="creator" itemtype="https://schema.org/Person" itemscope>
+              <meta itemprop="name" content="{{ site.Params.Author.name }}" />
+            </span>
+          {{ end }}
+        </a>
+      {{ else if eq .Type "video" }}
+        {{/* Video rendering */}}
+        {{ $video := .resource }}
+        {{ $width := .Width }}
+        {{ $height := .Height }}
+        {{ $aspectRatio := div (float $width) (float $height) }}
+        {{ $thumbWidth := 600 }}
+        {{ $thumbHeight := int (div 600.0 $aspectRatio) }}
+        <a class="gallery-item gallery-video" href="{{ $video.RelPermalink }}" data-pswp-type="video" data-pswp-video-src="{{ $video.RelPermalink }}" data-pswp-width="{{ $width }}" data-pswp-height="{{ $height }}" data-pswp-target="{{ $video.Name | urlize }}" title="{{ .Title }}" itemscope itemtype="https://schema.org/VideoObject" style="aspect-ratio: {{ $thumbWidth }} / {{ $thumbHeight }}">
+          <figure style="background-color: #1a1a1a; aspect-ratio: {{ $thumbWidth }} / {{ $thumbHeight }}">
+            {{ if .Poster }}
+              <img class="lazyload" width="{{ $thumbWidth }}" height="{{ $thumbHeight }}" data-src="{{ .Poster }}" alt="{{ .Title }}" />
+            {{ else }}
+              <div class="video-placeholder" style="width: {{ $thumbWidth }}px; height: {{ $thumbHeight }}px;">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </div>
+            {{ end }}
+            <div class="video-play-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+          </figure>
+          <meta itemprop="contentUrl" content="{{ $video.RelPermalink }}" />
+          {{ with site.Params.Author }}
+            <span itemprop="creator" itemtype="https://schema.org/Person" itemscope>
+              <meta itemprop="name" content="{{ site.Params.Author.name }}" />
+            </span>
+          {{ end }}
+        </a>
+      {{ end }}
     {{ end }}
   </div>
 </section>
