@@ -7,6 +7,10 @@ timeZone = "Europe/Berlin"
 timeout = "180s"
 title = "Mantas Zdancius"
 
+[module]
+  [[module.imports]]
+    path = "github.com/nicokaiser/hugo-theme-gallery/v4"
+
 [params]
     defaultTheme = "dark"
     description = "Professional Photography Portfolio - I make hard things look easy. Technical depth meets human understanding."
