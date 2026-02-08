@@ -1,5 +1,23 @@
 node_modules/
 package-lock.json
 .hugo_build.lock
-exampleSite/assets/jsconfig.json
 .DS_Store
+
+# Hugo build artifacts (can be 500MB+)
+exampleSite/public/
+exampleSite/resources/
+public/
+resources/
+
+# Hugo stats
+hugo_stats.json
+exampleSite/hugo_stats.json
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+Thumbs.db

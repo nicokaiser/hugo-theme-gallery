@@ -1,15 +1,15 @@
 ---
 title: Portfolio
-description: A curated selection of my finest work showcasing technical excellence and creative vision.
+description: Selected work
 menus: "main"
-weight: 3
+weight: 1
 params:
   theme: dark
   featured: true
   sort_order: asc
   sort_by: Name
 resources:
-  - src: Mantas_Zdancius_Gallery1.jpeg
+  - src: Mantas_Zdancius_00001.jpg
     params:
       cover: true
 ---
