@@ -10,7 +10,7 @@ errorMsg: Не удалось загрузить фото
 downloadTitle: Скачать
 relatedAlbums: Похожие альбомы
 photoCount:
-  one: "1 фото"
+  one: "{{ . }} фото"
   other: "{{ . }} фото"
 albumCount:
   one: "{{ .photoCount }} в {{ .count }} альбоме"
