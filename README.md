@@ -195,7 +195,7 @@ description: This is the description text of the "animals" category.
 
 #### List of Categories
 
-To enable a list of categories, each category must at least have an image in the `content/categores/<category>/` folder. Also, `taxonomy` must _not_ be included in the `disableKinds` in the site config.
+To enable a list of categories, each category must at least have an image in the `content/categories/<category>/` folder. Also, `taxonomy` must _not_ be included in the `disableKinds` in the site config.
 
 Then, `/categories` displays a list of categories, with their cover image.
 
