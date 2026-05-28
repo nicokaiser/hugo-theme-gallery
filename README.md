@@ -166,7 +166,7 @@ resources:
 ### Categories
 
 If you use categories in your albums, the homepage displays a list of categories.
-Make sure `term` is not included in `disabledKinds` in the site config.
+Make sure `term` is not included in `disableKinds` in the site config.
 
 content/dogs/index.md:
 
