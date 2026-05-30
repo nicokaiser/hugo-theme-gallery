@@ -1,0 +1,15 @@
+<section class="gallery">
+  <div id="gallery" style=height: 1px;>
+
+  {{ $videoFiles := .Page.Resources.ByType "video" }}
+
+  {{ range $videoFiles }}
+    <div class="video-item" style="padding: 20px 0px;">
+      <video controls width="100%">
+        <source src="{{ .RelPermalink }}" type="{{ .MediaType }}">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  {{ end }}
+  </div>
+</section>
