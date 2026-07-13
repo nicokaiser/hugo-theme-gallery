@@ -283,6 +283,8 @@ cascade:
     publishResources: false
 ```
 
+This also applies to images referenced directly in Markdown content (e.g. `![alt](photo.jpg)`): they are resized and published the same way as gallery images, so the original is still omitted.
+
 ### Custom CSS
 
 CSS is generated with Hugo Pipes, so you can add additional CSS in `assets/css/custom.css` (see example in `exampleSite`).
