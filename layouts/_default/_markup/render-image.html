@@ -1,0 +1,16 @@
+{{/*
+  Images referenced directly from Markdown content (as opposed to the
+  gallery grid built from page resources) are not touched by any other
+  template. When `build.publishResources` is set to false to omit
+  full-resolution originals from the published site, Hugo does not
+  publish these raw resources, leaving a broken image behind. Resolve
+  and process the image the same way the gallery partial does, so it is
+  always published regardless of the `publishResources` setting.
+*/}}
+{{ $image := .Page.Resources.Get .Destination }}
+{{ with $image }}
+  {{ $full := .Filter (slice images.AutoOrient (images.Process "fit 1600x1600")) }}
+  <img src="{{ $full.RelPermalink }}" width="{{ $full.Width }}" height="{{ $full.Height }}" alt="{{ $.Text }}">
+{{ else }}
+  <img src="{{ .Destination | safeURL }}" alt="{{ .Text }}">
+{{ end }}
