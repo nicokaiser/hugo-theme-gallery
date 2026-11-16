@@ -47,7 +47,7 @@ title = "Gallery"
 
 [module]
   [module.hugoVersion]
-    min = "0.121.2"
+    min = "0.155.3"
   [[module.imports]]
     path = "github.com/nicokaiser/hugo-theme-gallery/v4"
 
