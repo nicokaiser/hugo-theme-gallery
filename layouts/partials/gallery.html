@@ -4,11 +4,13 @@
     {{ range $image := where (.Resources.ByType "image") "Params.hidden" "ne" true }}
       {{ $title := "" }}
       {{ $date := "" }}
-      {{ with $image.Exif }}
-        {{ $date = .Date }}
-        {{ with .Tags.ImageDescription }}
-          {{/* Title from EXIF ImageDescription */}}
-          {{ $title = . }}
+      {{ if reflect.IsImageResourceWithMeta $image }}
+        {{ with $image.Meta }}
+          {{ $date = .Date }}
+          {{ with .Exif.ImageDescription }}
+            {{/* Title from EXIF ImageDescription */}}
+            {{ $title = . }}
+          {{ end }}
         {{ end }}
       {{ end }}
       {{ if ne $image.Title $image.Name }}
